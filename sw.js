@@ -1,6 +1,6 @@
 importScripts("chapters.js");
 
-const CACHE = "cs-paper1-v1";
+const CACHE = "cs-paper1-v2";
 const SHELL = ["./index.html", "./chapters.js", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 function chapterKey(n) {
@@ -13,11 +13,21 @@ async function storeChapter(n, response) {
 }
 
 async function refreshChapter(n) {
-  const file = PAPER1_CHAPTERS[n - 1].file;
-  const res = await fetch(file, { cache: "no-cache" });
-  if (!res.ok) throw new Error("chapter " + n + " " + res.status);
-  await storeChapter(n, res.clone());
-  return res;
+  const name = PAPER1_CHAPTERS[n - 1].file.replace(/^\.\.\//, "");
+  const candidates = [
+    new URL(name, self.registration.scope),
+    new URL("../" + name, self.registration.scope)
+  ];
+  let last;
+  for (const url of candidates) {
+    const res = await fetch(url, { cache: "no-cache" });
+    last = res;
+    if (res.ok) {
+      await storeChapter(n, res.clone());
+      return res;
+    }
+  }
+  throw new Error("chapter " + n + " " + (last ? last.status : "missing"));
 }
 
 self.addEventListener("install", (event) => {
