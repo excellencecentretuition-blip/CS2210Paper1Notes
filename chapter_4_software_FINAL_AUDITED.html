@@ -1,0 +1,365 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 4 — Software | Cambridge O Level Computer Science 2210</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f5f7fb;color:#15203a;font-family:Inter,Segoe UI,Arial,sans-serif}.side{position:fixed;inset:0 auto 0 0;width:280px;background:#101c38;color:white;padding:24px 17px;overflow:auto}.side h2{margin:0;font-size:19px}.side p{font-size:12px;color:#aebee8}.side a{display:block;color:#eef3ff;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:13px}.side a:hover{background:#21345d}.main{margin-left:280px;padding:28px;max-width:1370px}.hero{background:linear-gradient(135deg,#101c38,#3559a8);color:#fff;border-radius:22px;padding:31px}.eyebrow{font-size:11px;letter-spacing:.13em;font-weight:900;color:#b9c9ff}.hero h1{font-size:46px;margin:6px 0}.hero p{line-height:1.6;color:#e4eaff}.rule{background:#ffffff13;border:1px solid #ffffff30;border-radius:12px;padding:13px}.sec{margin:34px 0;scroll-margin-top:20px}.sec h2{font-size:30px;margin:6px 0 15px}.sec p,.sec li{line-height:1.65}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#e9efff;color:#3157d5;font-size:12px;font-weight:900}.map,.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}.map div,.compare article{background:#fff;border:1px solid #dbe2ee;border-radius:15px;padding:17px}.map b,.map span{display:block}.map b{font-size:24px;color:#3157d5}.map span{margin-top:5px}table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}th,td{text-align:left;padding:12px;border-bottom:1px solid #dbe2ee;vertical-align:top;line-height:1.5}th{background:#edf2f8}.exam,.trap{padding:13px 15px;border-radius:11px;margin-top:13px;line-height:1.55}.exam{background:#eef5ff;border-left:4px solid #3157d5}.trap{background:#fff7e8;border-left:4px solid #b66c00}.stack{display:flex;flex-direction:column;gap:7px}.stack div{background:#fff;border:1px solid #dbe2ee;border-radius:12px;padding:13px;text-align:center}.stack b,.stack span{display:block}.stack span{font-size:13px;color:#667089;margin-top:4px}.steps{display:grid;grid-template-columns:1fr 1fr;gap:9px}.steps div{background:#fff;border:1px solid #dbe2ee;border-radius:12px;padding:13px;display:flex;gap:11px;align-items:flex-start}.steps b{background:#3157d5;color:#fff;min-width:28px;height:28px;border-radius:50%;display:grid;place-items:center}.steps span{line-height:1.5}.bank{margin-top:58px;border-top:4px solid #13244c;padding-top:25px}.bankhero{background:linear-gradient(135deg,#111d3b,#3157a6);color:#fff;border-radius:20px;padding:27px}.bankhero h2{font-size:34px;margin:4px 0}.bankhero p{color:#dce6ff;line-height:1.6}.tools{display:flex;gap:9px;margin:15px 0}.tools input{flex:1;padding:12px;border:1px solid #d5ddeb;border-radius:10px;font:inherit}.tools button,.reveal{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.qcard{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.qhead{background:#f0f3f8;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;color:#3157d5;font-weight:900;font-size:13px}.pills{display:flex;gap:7px}.pills span,.pills b{padding:5px 9px;border-radius:999px}.pills span{background:#e5ebfa}.pills b{background:#14244b;color:#fff}.qbody{padding:18px}.question{font-size:16px;font-weight:620;line-height:1.72}.qbody textarea{width:100%;min-height:115px;margin:14px 0 8px;padding:12px;border:1px solid #d5ddeb;border-radius:11px;font:inherit;resize:vertical}.marking{display:none;margin-top:14px}.marking.show{display:block}.label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin-bottom:8px}.msrow{background:#eef9f3;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;line-height:1.55}.reveal.open{background:#173f82}@media(max-width:850px){.side{position:relative;width:auto}.main{margin:0}.compare,.map,.steps{grid-template-columns:1fr}.qhead{flex-direction:column}}</style><style id="clean-bank-style">
+.clean-bank{margin-top:58px;border-top:4px solid #13244c;padding-top:25px}.clean-tools{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.clean-tools input{flex:1;min-width:260px;padding:12px 14px;border:1px solid #d3dceb;border-radius:11px;font:inherit}.clean-tools button,.clean-btn{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.clean-card{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.clean-head{background:#f1f4f9;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#3157d5;font-weight:900;font-size:13px}.clean-body{padding:18px}.clean-question{font-size:17px;font-weight:650;line-height:1.72;color:#121a2d;margin:4px 0 14px}.clean-answer{width:100%;min-height:110px;border:1px solid #d6deeb;border-radius:11px;padding:12px;font:inherit;resize:vertical;margin:7px 0 8px}.clean-marking{display:none;margin-top:14px}.clean-marking.show{display:block}.clean-label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin:0 0 8px}.clean-ms-row{background:#f0f9f4;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;line-height:1.55}.clean-btn.open{background:#173f82}
+</style><style id="shared-shell">
+.app{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}
+body>.app>.sidebar,body>.app>.side{position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto}
+body>.app>.main{margin-left:0!important;min-width:0}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+.nav button:hover,.nav button.active{background:#223052;color:#fff}
+.page-search{margin-top:16px}
+.page-search input{width:min(520px,100%);padding:11px 13px;border:0;border-radius:10px;font:inherit}
+.hidden-by-search{display:none!important}
+.clean-head .pills{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.clean-head .pills span{background:#e5ebfa;color:#3157d5;padding:5px 9px;border-radius:999px}
+.clean-head .pills b{background:#14244b;color:#fff;padding:5px 9px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar,body>.app>.side{position:relative;height:auto;width:auto}.nav{display:grid;grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.nav{grid-template-columns:1fr}}
+</style><style id="unified-chrome">
+body{background:#f6f8fc;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body>.app>.sidebar{background:#111b34;color:#eaf0ff;padding:22px 18px;position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto;box-sizing:border-box}
+.brand{font-weight:800;font-size:18px;line-height:1.25;color:#fff}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 8px;overflow:hidden}
+.progress>i,.progress i{display:block;height:100%;width:0;background:#8eabff}
+.pct{font-size:12px;color:#aebadd}
+.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}
+body>.app .nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+body>.app .nav button:hover,body>.app .nav button.active{background:#223052;color:#fff}
+body>.app .nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+header.hero,section.hero{background:linear-gradient(135deg,#fff,#eef3ff)!important;color:#172033!important;border-bottom:1px solid #dfe5ef;border-radius:0!important;box-shadow:none!important;padding:42px clamp(20px,5vw,70px) 30px!important;margin:0!important}
+.hero .eyebrow{color:#3157d5!important;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{color:#172033!important;font-size:clamp(30px,5vw,48px);line-height:1.05;margin:8px 0 12px}
+.hero-lead{color:#172033;font-size:18px;font-weight:650;margin:0 0 8px;max-width:800px}
+.hero p{color:#657089!important;max-width:820px}
+.hero .principle,.hero .rule{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important;border-radius:12px}
+.hero .hero-grid div{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important}
+.hero .hero-grid b{color:#3157d5!important}
+.hero .hero-grid span{color:#657089!important}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.searchbar{flex:1;min-width:220px;max-width:520px}
+.searchbar input{width:100%;padding:11px 13px;border:1px solid #dfe5ef;border-radius:10px;font:inherit;background:#fff;color:#172033}
+.toolbar .btn,.toolbar button.btn{border:1px solid #dfe5ef;background:#fff;color:#172033;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+.site-footer{margin:8px clamp(18px,4vw,48px) 36px;background:linear-gradient(135deg,#14244b,#294a88);color:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 10px 26px rgba(20,36,75,.14)}
+.site-footer-brand{font-weight:900;font-size:16px}
+.site-footer-brand span{opacity:.72}
+.site-footer-label{margin-top:7px;font-size:13px;opacity:.82}
+.site-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.site-footer-links a{display:inline-block;background:#fff;color:#14244b;text-decoration:none;font-weight:800;padding:9px 13px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar{position:relative;height:auto;width:auto}body>.app .nav{display:grid;grid-template-columns:1fr 1fr}header.hero,section.hero{padding:28px 18px 22px!important}}
+@media(max-width:520px){body>.app .nav{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app"><aside class="sidebar"><div class="brand">Excellence By Adeel Kapasi<small>CS Notes</small><small>Cambridge O Level 2210 • Paper 1 • 2026–2028</small></div><div class="progress"><i id="progressBar"></i></div><div class="pct" id="progressText">0% sections completed</div><div class="nav-title">Chapter 4</div><nav class="nav" id="nav"><button type="button" data-target="top">Overview</button><button type="button" data-target="map">Chapter map</button><button type="button" data-target="types">4.1 Software types</button><button type="button" data-target="os">Operating system</button><button type="button" data-target="stack">Hardware → applications</button><button type="button" data-target="interrupts">Interrupts</button><button type="button" data-target="languages">4.2 Languages</button><button type="button" data-target="assembly">Assembly language</button><button type="button" data-target="translators">Compiler vs interpreter</button><button type="button" data-target="ide">IDE</button><button type="button" data-target="practice">Past-paper source cards</button></nav></aside><main class="main"><section class="hero" id="top"><div class="eyebrow">Chapter 4 • Software</div><h1>Software</h1>
+<p><b>Master authority:</b> Cambridge O Level Computer Science 2210 syllabus 2026–2028. <b>Exam-evidence layer:</b> supplied 0478 Paper 1 QP/MS corpus, 2024–2025.</p>
+<div class="rule">Locked method: syllabus tells us <b>what</b> to teach; supplied QP/MS tells us <b>how deeply</b> to teach it; the source-card bank contains no invented questions.</div><div class="toolbar"><div class="searchbar"><input id="search" aria-label="Search chapter" placeholder="Search this chapter…"></div><button class="btn" id="resetProgress" type="button">Reset progress</button></div></section>
+
+<section class="sec" id="map"><h2>Chapter map</h2><div class="map"><div><b>4.1</b><span>Types of software & interrupts</span></div><div><b>4.2</b><span>Languages, translators & IDEs</span></div></div></section>
+
+<section class="sec" id="types"><div class="tag">4.1</div><h2>System software vs application software</h2>
+<div class="compare"><article><h3>System software</h3><p>Provides the services that the <b>computer requires</b>. The syllabus includes the <b>operating system</b> and <b>utility software</b>.</p><p>Its role is centred on managing/maintaining the computer system and providing the environment in which applications can run.</p></article>
+<article><h3>Application software</h3><p>Provides the services that the <b>user requires</b> and allows the user to perform tasks.</p><p>Supplied MS examples include word processor, spreadsheet, database, web browser, image/photo editor, video editor, email client, game and social-media app.</p></article></div>
+<div class="exam"><b>Cambridge distinction:</b> “system software is for the computer; application software is for the user” is a useful memory aid, but a stronger answer says what service each provides and gives a valid example.</div></section>
+
+
+<div class="sec" style="padding-top:0"><div class="exam"><b>MS depth — firmware:</b> Firmware can permanently store instructions, including start-up instructions; provide the operating system with a platform to run on; control/manage communication with hardware; and store instructions securely so they are not easily corrupted. Supplied examples include <b>bootstrap, bootloader and BIOS</b>. System-software examples include the <b>operating system</b> and <b>utility software</b>.</div></div>
+<section class="sec" id="os"><h2>Operating system: role and functions</h2>
+<p>The operating system is system software that manages the computer's main functions and provides the platform on which application software runs.</p>
+<table><tr><th>Function</th><th>What it means in an answer</th></tr>
+<tr><td>Managing files</td><td>Organises/manages files and folders and operations involving them.</td></tr>
+<tr><td>Handling interrupts</td><td>Responds to interrupt signals and arranges for the appropriate interrupt-handling routine.</td></tr>
+<tr><td>Providing an interface</td><td>Provides the means by which the user interacts with the computer.</td></tr>
+<tr><td>Managing peripherals and drivers</td><td>Controls communication with peripheral hardware through appropriate drivers.</td></tr>
+<tr><td>Managing memory</td><td>Allocates/manages RAM and can manage movement between RAM and virtual memory.</td></tr>
+<tr><td>Managing multitasking</td><td>Manages processor/memory resources so more than one process can make progress.</td></tr>
+<tr><td>Platform for applications</td><td>Provides the environment/services needed for application software to run.</td></tr>
+<tr><td>System security</td><td>Helps control and protect access to the computer/system resources.</td></tr>
+<tr><td>User accounts</td><td>Manages users and their access to the system.</td></tr></table>
+<div class="trap"><b>Common trap:</b> the bootstrap is not an OS function. Firmware/bootloader starts the chain that allows the OS to run.</div></section>
+
+
+<div class="sec" style="padding-top:0"><div class="exam"><b>OS answer depth:</b> Supplied papers test individual OS functions in context. For memory, accepted ideas include <b>managing/allocating memory</b>, <b>managing multitasking</b> and movement of data between <b>RAM and virtual memory</b>. Do not describe loading the bootstrap as an operating-system function: the bootloader/bootstrap is firmware used during start-up.</div></div>
+<section class="sec" id="stack"><h2>Hardware → firmware → operating system → applications</h2>
+<div class="stack"><div><b>Application software</b><span>runs on the operating system</span></div><div><b>Operating system</b><span>runs on / is supported by firmware</span></div><div><b>Firmware / bootloader</b><span>runs on the hardware and provides start-up/basic control instructions</span></div><div><b>Hardware</b><span>physical computer components</span></div></div>
+<p>Firmware is software stored so that essential instructions remain available. Supplied mark schemes accept examples such as <b>BIOS, bootstrap and bootloader</b>, and describe firmware as providing the operating system with a platform to run on and controlling/allowing communication with hardware.</p></section>
+
+<section class="sec" id="interrupts"><h2>Interrupts</h2>
+<p>An interrupt is a <b>signal/request requiring processor attention</b>. It allows an event to be dealt with rather than forcing the processor to continuously check every possible device/event.</p>
+<div class="compare"><article><h3>Hardware interrupt</h3><p>Generated by hardware. Syllabus examples: pressing a keyboard key and moving the mouse. Supplied papers also use mouse clicks and printer events.</p></article>
+<article><h3>Software interrupt</h3><p>Generated by a software condition. Syllabus examples: <b>division by zero</b> and <b>two processes trying to access the same memory location</b>.</p></article></div>
+<h3>How an interrupt is handled</h3>
+<div class="steps"><div><b>1</b><span>An event generates an interrupt and it is sent to the processor.</span></div><div><b>2</b><span>The interrupt is given/has a priority and may be placed in an interrupt queue.</span></div><div><b>3</b><span>The processor completes the current FDE cycle / checks the interrupt and its priority.</span></div><div><b>4</b><span>If it should be serviced, the current process/state is halted and stored, e.g. on a stack.</span></div><div><b>5</b><span>The processor fetches the interrupt/checks its source.</span></div><div><b>6</b><span>The <b>interrupt service routine (ISR)</b> / interrupt handler is called.</span></div><div><b>7</b><span>The ISR is a sequence of instructions that handles the interrupt.</span></div><div><b>8</b><span>After handling, the previous process can be restored/continued.</span></div></div>
+<div class="exam"><b>Examiner lens:</b> Cambridge repeatedly rewards the chain <b>priority → pause/store current process → ISR → handle → resume</b>, not simply “the CPU deals with the interrupt.”</div></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Interrupt sequence — full MS chain:</b> An interrupt is given a <b>priority</b> and may be placed in an <b>interrupt queue</b>. The processor completes/checks its current processing stage as required, checks interrupt priority, and if the interrupt has higher priority it halts the current process and stores its state (a supplied 2025 MS explicitly credits storing it on a <b>stack</b>). It fetches/checks the interrupt/source and calls the <b>interrupt service routine (ISR) / interrupt handler</b>. If the interrupt does not have higher priority, the current process continues. After servicing, the interrupted process can resume.</div>
+<div class="exam"><b>Hardware vs software interrupts:</b> Hardware examples required by the syllabus include a <b>keyboard key press</b> and <b>mouse movement/click</b>. Software examples include <b>division by zero</b> and <b>two processes attempting to access the same memory location</b>.</div>
+</div>
+<section class="sec" id="languages"><div class="tag">4.2</div><h2>High-level and low-level languages</h2>
+<table><tr><th>Comparison</th><th>High-level</th><th>Low-level</th></tr>
+<tr><td>Representation</td><td>English-like statements / closer to human language</td><td>Assembly mnemonics or machine code/binary</td></tr>
+<tr><td>Read/write/debug</td><td>Easier</td><td>More difficult</td></tr>
+<tr><td>Machine dependence</td><td>Machine independent / portable</td><td>Machine dependent / not portable</td></tr>
+<tr><td>Hardware control</td><td>Cannot directly manipulate hardware to the same degree</td><td>Can directly manipulate hardware</td></tr>
+<tr><td>Actions per statement</td><td>One line can perform multiple lower-level actions</td><td>One low-level instruction performs a more direct/single action</td></tr></table>
+<p>The syllabus expects advantages/disadvantages through these axes: <b>ease of reading/writing, ease of debugging, machine independence and direct manipulation of hardware</b>.</p></section>
+
+
+<div class="sec" style="padding-top:0"><div class="exam"><b>MS comparison depth:</b> High-level languages use English-like statements and are generally easier to read, write and debug; they are <b>machine independent/portable</b>, but do not directly manipulate hardware in the way low-level languages can. Low-level/assembly language uses <b>mnemonics</b>, is hardware/machine dependent, can manipulate hardware directly and can give closer control of memory/hardware. A high-level statement can represent several operations whereas a low-level instruction is much closer to a single machine operation.</div></div>
+<section class="sec" id="assembly"><h2>Assembly language & assembler</h2>
+<p><b>Assembly language</b> is a low-level language using <b>mnemonics</b>/symbolic instructions. An <b>assembler</b> translates assembly language into machine code.</p>
+<div class="exam"><b>Do not confuse the translators:</b> assembly → <b>assembler</b>; high-level → <b>compiler or interpreter</b>.</div>
+<p>Supplied papers test advantages such as memory efficiency and direct hardware manipulation. These are scenario-sensitive: the student should connect the advantage to why a low-level language is suitable for the task.</p></section>
+
+
+<div class="sec" style="padding-top:0"><div class="exam"><b>Assembly-language MS depth:</b> Assembly is a <b>low-level language</b> that uses <b>mnemonics</b> and is translated to machine code by an <b>assembler</b>. Supplied marking points include direct manipulation/communication with hardware and, in suitable contexts, memory efficiency or faster execution.</div></div>
+<section class="sec" id="translators"><h2>Compiler vs interpreter</h2>
+<div class="compare"><article><h3>Compiler</h3><ul><li>translates the <b>whole code at once</b> before execution</li><li>produces an <b>executable file</b></li><li>if errors are detected, produces an error report for the whole code / displays the errors</li><li>final program is commonly compiled when development is complete</li></ul></article>
+<article><h3>Interpreter</h3><ul><li>translates and <b>executes line by line</b></li><li>stops when an error is found</li><li>the error can be corrected before continuing</li><li>especially useful while developing/testing a program</li></ul></article></div>
+<div class="exam"><b>Why interpreter during development?</b> line-by-line translation/execution → stops at the error → programmer can identify/correct it immediately → useful for iterative development.</div></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Compiler — exact process:</b> A compiler translates the <b>whole program/code at once before execution</b>. It can produce an <b>executable file</b>. If errors are present, it produces an error report for the code rather than stopping after the first error.</div>
+<div class="exam"><b>Interpreter — development advantages from the supplied MS:</b> It translates and executes <b>one statement/line at a time</b>; stops when an error is found; lets the programmer correct the error and continue from that point; does <b>not need to retranslate all the code</b> after that correction; can <b>test sections of code</b>; and can test before the whole program is complete/functional/accurate. These are why an interpreter is especially useful during development.</div>
+<div class="exam"><b>Final-program distinction:</b> The syllabus expects the interpreter mainly during development, while a compiler is appropriate for producing the final translated/executable program.</div>
+</div>
+<section class="sec" id="ide"><h2>Integrated Development Environment (IDE)</h2>
+<p>An IDE brings tools for writing, translating, running and debugging code together in one development environment.</p>
+<table><tr><th>IDE feature</th><th>Role expected by Cambridge</th></tr>
+<tr><td>Code editor</td><td>Allows the programmer to write/change program code.</td></tr>
+<tr><td>Run-time environment</td><td>Allows the code to run and the programmer to see its output.</td></tr>
+<tr><td>Translator</td><td>Translates source code into the required lower-level/machine-code form.</td></tr>
+<tr><td>Error diagnostics</td><td>Features used to find errors in code.</td></tr>
+<tr><td>Auto-completion</td><td>When a programmer starts a command word, the IDE suggests completion options.</td></tr>
+<tr><td>Auto-correction</td><td>A misspelt command word can be changed to the correct spelling.</td></tr>
+<tr><td>Prettyprint</td><td>Formats code; supplied MS describes command words/identifiers being shown in different colours.</td></tr></table>
+<div class="trap"><b>Common trap:</b> when a question asks for “function and role”, naming <i>auto-completion</i> alone earns only the identification part; explain what it actually does.</div></section>
+<section class="clean-bank" id="practice"><div class="bankhero"><div class="eyebrow">SUPPLIED PAPER CORPUS • SOURCE-ONLY PRACTICE</div><h2>Past Paper Practice & Marking</h2><p>Clean source-card format. Questions are mapped from the supplied Cambridge papers; marking content is kept as the corresponding supplied mark-scheme knowledge, visually cleaned for study.</p></div><div class="clean-tools"><input id="cleanSearch" oninput="filterClean()" placeholder="Search session, paper, topic or question…"><button onclick="allClean(true)">Show all</button><button onclick="allClean(false)">Hide all</button></div><article class="clean-card" data-search="feb/mar 2024 0478/12 q3(a–b) operating system &amp; interrupts a computer has an operating system (os).
+
+(a) complete the table by writing each missing os function name and description.
+
+function name: managing memory
+description: [missing]
+
+function name: [missing]
+description: allows application software to run on the computer
+
+function name: managing peripherals
+description: [missing]
+
+(b) the os handles interrupts.
+(i) state the purpose of an interrupt.
+(ii) identify one input device and one example of an interrupt that it can generate.
+(iii) a processor is currently executing a program. the processor receives an interrupt. explain how the processor manages the current program and the interrupt.">
+<div class="clean-head"><div>Feb/Mar 2024 • 0478/12 • Q3(a–b)</div><div class="pills"><span>Operating system &amp; interrupts</span><b>9 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer has an operating system (OS).<br><br>(a) Complete the table by writing each missing OS function name and description.<br><br>Function name: managing memory<br>Description: [missing]<br><br>Function name: [missing]<br>Description: allows application software to run on the computer<br><br>Function name: managing peripherals<br>Description: [missing]<br><br>(b) The OS handles interrupts.<br>(i) State the purpose of an interrupt.<br>(ii) Identify one input device and one example of an interrupt that it can generate.<br>(iii) A processor is currently executing a program. The processor receives an interrupt. Explain how the processor manages the current program and the interrupt.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Managing memory: manages the use/allocation of RAM / moves data between RAM and virtual memory.</div><div class="clean-ms-row">Providing a platform for running applications: allows application software to run on the computer.</div><div class="clean-ms-row">Managing peripherals: manages communication with peripherals / uses device drivers.</div><div class="clean-ms-row">Interrupt: a signal/request that requires the processor&#x27;s attention.</div><div class="clean-ms-row">Suitable input device and matching interrupt, e.g. keyboard – key press; mouse – movement/click.</div><div class="clean-ms-row">Processor completes its current FDE cycle; checks interrupt priority/queue; if appropriate, current task/register contents are stored; interrupt is fetched/handled using an interrupt service routine (ISR); previous task is restored/continued.</div></div></div></article>
+<article class="clean-card" data-search="may/june 2024 0478/12 q4(a–c) system vs application software a student uses both system software and application software on their computer.
+
+(a) give one example of system software.
+(b) give two examples of application software.
+(c) describe the difference between system software and application software.">
+<div class="clean-head"><div>May/June 2024 • 0478/12 • Q4(a–c)</div><div class="pills"><span>System vs application software</span><b>5 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A student uses both system software and application software on their computer.<br><br>(a) Give one example of system software.<br>(b) Give two examples of application software.<br>(c) Describe the difference between system software and application software.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">System software: operating system or utility software.</div><div class="clean-ms-row">Application software examples include word processor, spreadsheet, database, web browser, image/photo editor, video editor, email client, game or social media app.</div><div class="clean-ms-row">System software manages/maintains the hardware/software.</div><div class="clean-ms-row">Application software allows the user to perform tasks.</div></div></div></article>
+<article class="clean-card" data-search="may/june 2024 0478/11 q6(a–c) firmware &amp; system software a computer needs firmware and system software to operate.
+
+(a) state the purpose of firmware.
+(b) give one example of firmware.
+(c) give two examples of system software.">
+<div class="clean-head"><div>May/June 2024 • 0478/11 • Q6(a–c)</div><div class="pills"><span>Firmware &amp; system software</span><b>4 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer needs firmware and system software to operate.<br><br>(a) State the purpose of firmware.<br>(b) Give one example of firmware.<br>(c) Give two examples of system software.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Firmware can permanently store instructions / store start-up instructions / provide the operating system with a platform to run on / control or manage communication with hardware / store instructions securely.</div><div class="clean-ms-row">Examples: bootstrap, bootloader, BIOS, operating system in an embedded system, programs in embedded systems.</div><div class="clean-ms-row">System software: operating system; utility software.</div></div></div></article>
+<article class="clean-card" data-search="may/june 2024 0478/13 q9(a–b) interrupts &amp; os memory functions a printer runs out of ink and needs a new ink cartridge. an interrupt is sent and a message is generated to notify the user that the ink cartridge is empty.
+
+(a) complete the paragraph about the use of an interrupt in this process using terms from the list:
+binary, clock, computer, data, error, fetch–decode–execute cycle, hexadecimal, higher, interrupt queue, interrupt service routine (isr), lower, printer, priority level, secondary storage, sorting, transmission.
+
+the ______ sends an interrupt to the ______. the interrupt is given a ______. the processor completes its current ______ and checks the ______ to see if there is an interrupt with ______ priority than the current task. if there is, it stores the current task and fetches the interrupt. it then calls the ______, which is a sequence of instructions that handles the interrupt.
+
+(b) handling interrupts is one function of an operating system. give two functions of an operating system that relate to memory.">
+<div class="clean-head"><div>May/June 2024 • 0478/13 • Q9(a–b)</div><div class="pills"><span>Interrupts &amp; OS memory functions</span><b>9 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is generated to notify the user that the ink cartridge is empty.<br><br>(a) Complete the paragraph about the use of an interrupt in this process using terms from the list:<br>binary, clock, computer, data, error, fetch–decode–execute cycle, hexadecimal, higher, interrupt queue, interrupt service routine (ISR), lower, printer, priority level, secondary storage, sorting, transmission.<br><br>The ______ sends an interrupt to the ______. The interrupt is given a ______. The processor completes its current ______ and checks the ______ to see if there is an interrupt with ______ priority than the current task. If there is, it stores the current task and fetches the interrupt. It then calls the ______, which is a sequence of instructions that handles the interrupt.<br><br>(b) Handling interrupts is one function of an operating system. Give two functions of an operating system that relate to memory.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">printer; computer; priority level; fetch–decode–execute cycle; interrupt queue; higher; interrupt service routine (ISR).</div><div class="clean-ms-row">Memory-related OS functions accepted by the mark scheme include managing memory / allocation of memory and managing multitasking / movement of data between RAM and virtual memory.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2024 0478/11 q6(b,d–e) assembly language &amp; ide a computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.
+
+(b) give the name of the translator used to translate assembly language into machine code.
+(d) give one benefit to the programmer of using assembly language to write the program.
+(e) the programmer uses an integrated development environment (ide) to write the program. a built-in translator to convert the program into machine code is one way that the ide helps the programmer. describe three other ways the ide can help the programmer.">
+<div class="clean-head"><div>Oct/Nov 2024 • 0478/11 • Q6(b,d–e)</div><div class="pills"><span>Assembly language &amp; IDE</span><b>10 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer programmer uses assembly language to create a computer program for an embedded system in a washing machine.<br><br>(b) Give the name of the translator used to translate assembly language into machine code.<br>(d) Give one benefit to the programmer of using assembly language to write the program.<br>(e) The programmer uses an integrated development environment (IDE) to write the program. A built-in translator to convert the program into machine code is one way that the IDE helps the programmer. Describe three other ways the IDE can help the programmer.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Assembler.</div><div class="clean-ms-row">Assembly-language benefits accepted include direct manipulation of hardware / memory efficiency / faster execution for testing than a high-level language.</div><div class="clean-ms-row">IDE functions and roles include: code editor – allows writing/editing code; run-time environment – allows code to be run and output viewed; error diagnostics – helps find errors; auto-completion – suggests completion of command words; auto-correction – corrects misspelt command words; prettyprint – formats/highlights code.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2024 0478/11 q7(a–b) operating-system functions &amp; firmware a computer has an operating system.
+
+(a)(i) tick one box to show which of these is not a function of the operating system:
+a managing files
+b providing an interface
+c handling interrupts
+d loading the bootstrap
+
+(ii) identify one other function of an operating system. describe the purpose of this function.
+
+(b) give the name of the set of instructions that are provided to the operating system to allow it to run.">
+<div class="clean-head"><div>Oct/Nov 2024 • 0478/11 • Q7(a–b)</div><div class="pills"><span>Operating-system functions &amp; firmware</span><b>4 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer has an operating system.<br><br>(a)(i) Tick one box to show which of these is not a function of the operating system:<br>A managing files<br>B providing an interface<br>C handling interrupts<br>D loading the bootstrap<br><br>(ii) Identify one other function of an operating system. Describe the purpose of this function.<br><br>(b) Give the name of the set of instructions that are provided to the operating system to allow it to run.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a)(i) D – loading the bootstrap.</div><div class="clean-ms-row">Other OS functions include managing peripherals/drivers, managing memory, managing multitasking, providing a platform for applications, providing system security and managing user accounts; description must match the function.</div><div class="clean-ms-row">(b) Firmware / bootloader.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2024 0478/13 q7 purpose of an ide a computer programmer uses an integrated development environment (ide) when creating a program.
+
+explain the purpose of the ide.">
+<div class="clean-head"><div>Oct/Nov 2024 • 0478/13 • Q7</div><div class="pills"><span>Purpose of an IDE</span><b>4 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer programmer uses an integrated development environment (IDE) when creating a program.<br><br>Explain the purpose of the IDE.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Provides tools/features in one environment to help develop/write/edit/test/debug program code.</div><div class="clean-ms-row">Can include features such as auto-completion or other suitable IDE feature.</div><div class="clean-ms-row">Can translate code to low-level language/machine code.</div><div class="clean-ms-row">Can run/execute the code in a run-time environment.</div></div></div></article>
+<article class="clean-card" data-search="feb/mar 2025 0478/12 q7(a–c) languages, interpreter &amp; ide programs can be written in a high-level language or a low-level language.
+
+(a) machine code is one type of low-level language. identify one other type of low-level language. identify the translator that is needed for the type of low-level language you have identified.
+
+(b) a high-level language can be translated into a low-level language, using a compiler or an interpreter. describe the advantages of using an interpreter instead of a compiler during software development.
+
+(c) integrated development environments (ides) provide translators. identify three other common functions of an ide.">
+<div class="clean-head"><div>Feb/Mar 2025 • 0478/12 • Q7(a–c)</div><div class="pills"><span>Languages, interpreter &amp; IDE</span><b>9 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">Programs can be written in a high-level language or a low-level language.<br><br>(a) Machine code is one type of low-level language. Identify one other type of low-level language. Identify the translator that is needed for the type of low-level language you have identified.<br><br>(b) A high-level language can be translated into a low-level language, using a compiler or an interpreter. Describe the advantages of using an interpreter instead of a compiler during software development.<br><br>(c) Integrated development environments (IDEs) provide translators. Identify three other common functions of an IDE.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) Assembly language; assembler.</div><div class="clean-ms-row">(b) Interpreter translates/executes line by line; stops when an error is found; the error can be corrected before continuing; useful during development/testing because errors can be found and corrected one at a time without recompiling the whole program.</div><div class="clean-ms-row">(c) Any three common functions such as code editor, run-time environment, error diagnostics, auto-completion, auto-correction, prettyprint.</div></div></div></article>
+<article class="clean-card" data-search="may/june 2025 0478/12 q3(a–b) high-level language, translators &amp; ide a programmer uses a high-level language to write the program.
+
+(a) one reason for writing the program using a high-level language is that it is easier to read and write. give two other reasons why the programmer chose to use a high-level language.
+
+(b)(i) complete the statements about a compiler and interpreter using terms from the list.
+(ii) give two other functions commonly found in an ide.">
+<div class="clean-head"><div>May/June 2025 • 0478/12 • Q3(a–b)</div><div class="pills"><span>High-level language, translators &amp; IDE</span><b>11 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A programmer uses a high-level language to write the program.<br><br>(a) One reason for writing the program using a high-level language is that it is easier to read and write. Give two other reasons why the programmer chose to use a high-level language.<br><br>(b)(i) Complete the statements about a compiler and interpreter using terms from the list.<br>(ii) Give two other functions commonly found in an IDE.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">High-level language: easier to debug; less likely to make errors; machine independent/portable.</div><div class="clean-ms-row">Compiler: translates the whole code at once before executing it; produces an error report displaying all errors.</div><div class="clean-ms-row">Interpreter: translates and executes code line by line; stops execution when an error is found and continues once corrected.</div><div class="clean-ms-row">IDE functions and matching roles include code editor, run-time environment, error diagnostics, auto-completion, auto-correction and prettyprint.</div></div></div></article>
+<article class="clean-card" data-search="may/june 2025 0478/13 q4(a–c) operating system &amp; interrupt types a computer has an operating system. one function of the operating system is handling interrupts.
+
+(a) describe the role of the operating system in handling interrupts.
+(b) give two other functions of an operating system.
+(c) hardware and software interrupts are two types of interrupt.
+(i) give one example of a hardware interrupt.
+(ii) give one example of a software interrupt.">
+<div class="clean-head"><div>May/June 2025 • 0478/13 • Q4(a–c)</div><div class="pills"><span>Operating system &amp; interrupt types</span><b>8 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer has an operating system. One function of the operating system is handling interrupts.<br><br>(a) Describe the role of the operating system in handling interrupts.<br>(b) Give two other functions of an operating system.<br>(c) Hardware and software interrupts are two types of interrupt.<br>(i) Give one example of a hardware interrupt.<br>(ii) Give one example of a software interrupt.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">The OS checks/handles the interrupt, including priority; current processing can be stopped/stored; an interrupt handler / interrupt service routine is used to process the interrupt; processing can then resume.</div><div class="clean-ms-row">Other OS functions: managing files; providing an interface; managing peripherals and drivers; managing memory; managing multitasking; providing a platform for applications; system security; managing user accounts.</div><div class="clean-ms-row">Hardware interrupt examples include keyboard key press or mouse movement/click.</div><div class="clean-ms-row">Software interrupt examples include division by zero or two processes attempting to access the same memory location.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2025 0478/11 q4(d) high-level language &amp; interpreter the computer game developers use a high-level language to create a computer game.
+
+(i) state what is meant by a high-level language.
+(ii) one benefit of using a high-level language is that the code is easy to debug. give two other benefits of using a high-level language.
+(iii) one drawback of using a high-level language is that it must be converted to a low-level language before it can be run. give one other drawback of using a high-level language.
+(iv) the computer game developers use an interpreter instead of a compiler when developing the computer game. explain why an interpreter would be more appropriate for developing the computer game.">
+<div class="clean-head"><div>Oct/Nov 2025 • 0478/11 • Q4(d)</div><div class="pills"><span>High-level language &amp; interpreter</span><b>7 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">The computer game developers use a high-level language to create a computer game.<br><br>(i) State what is meant by a high-level language.<br>(ii) One benefit of using a high-level language is that the code is easy to debug. Give two other benefits of using a high-level language.<br>(iii) One drawback of using a high-level language is that it must be converted to a low-level language before it can be run. Give one other drawback of using a high-level language.<br>(iv) The computer game developers use an interpreter instead of a compiler when developing the computer game. Explain why an interpreter would be more appropriate for developing the computer game.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">A high-level language uses English-like statements / is closer to human language and is machine independent.</div><div class="clean-ms-row">Benefits include easier to read/write, portable/machine independent, one high-level statement can perform multiple low-level operations.</div><div class="clean-ms-row">A drawback can be inability to directly manipulate hardware / less direct hardware control.</div><div class="clean-ms-row">Interpreter translates and executes line by line; stops at an error, allowing it to be found/corrected during development before continuing.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2025 0478/11 q6(b) interrupt classification &amp; isr handling interrupts is one function of an operating system.
+
+(i) an interrupt is sent to the cpu every time a key is pressed on the keyboard. give the name of this type of interrupt.
+(ii) give the name of the program that services the interrupt.
+(iii) give one other function of an operating system.">
+<div class="clean-head"><div>Oct/Nov 2025 • 0478/11 • Q6(b)</div><div class="pills"><span>Interrupt classification &amp; ISR</span><b>3 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">Handling interrupts is one function of an operating system.<br><br>(i) An interrupt is sent to the CPU every time a key is pressed on the keyboard. Give the name of this type of interrupt.<br>(ii) Give the name of the program that services the interrupt.<br>(iii) Give one other function of an operating system.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(i) Hardware interrupt.</div><div class="clean-ms-row">(ii) Interrupt handler / interrupt service routine.</div><div class="clean-ms-row">(iii) Any one: managing files; providing an interface; managing peripherals and drivers; managing memory; managing multitasking; providing a platform for running applications; providing system security; managing user accounts.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2025 0478/12 q3(a–c) assembly language a programmer uses assembly language to create a program for a coffee machine.
+
+(a) describe what is meant by assembly language.
+(b) identify the translator needed for assembly language.
+(c) tick one box to show which statement is an advantage of using assembly language:
+a it is close to human language.
+b it is memory efficient.
+c it is easy to debug.
+d it is machine independent.">
+<div class="clean-head"><div>Oct/Nov 2025 • 0478/12 • Q3(a–c)</div><div class="pills"><span>Assembly language</span><b>4 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A programmer uses assembly language to create a program for a coffee machine.<br><br>(a) Describe what is meant by assembly language.<br>(b) Identify the translator needed for assembly language.<br>(c) Tick one box to show which statement is an advantage of using assembly language:<br>A It is close to human language.<br>B It is memory efficient.<br>C It is easy to debug.<br>D It is machine independent.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Assembly language is a low-level language that uses mnemonics/symbolic instructions and is close to machine code.</div><div class="clean-ms-row">(b) Assembler.</div><div class="clean-ms-row">(c) B – It is memory efficient.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2025 0478/12 q5(a–b) servicing an interrupt a computer system has a mouse. an interrupt is sent to the cpu every time a button on the mouse is clicked.
+
+(a) identify the name of this type of interrupt.
+(b) the interrupt is placed in a queue. explain how the interrupt is serviced after it is placed in the queue.">
+<div class="clean-head"><div>Oct/Nov 2025 • 0478/12 • Q5(a–b)</div><div class="pills"><span>Servicing an interrupt</span><b>5 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A computer system has a mouse. An interrupt is sent to the CPU every time a button on the mouse is clicked.<br><br>(a) Identify the name of this type of interrupt.<br>(b) The interrupt is placed in a queue. Explain how the interrupt is serviced after it is placed in the queue.</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) Hardware interrupt.</div><div class="clean-ms-row">Checks the priority of the interrupt.</div><div class="clean-ms-row">If priority is higher, it halts the current process and stores it on a stack.</div><div class="clean-ms-row">Fetches the interrupt and checks its source.</div><div class="clean-ms-row">Calls the interrupt service routine (ISR) / interrupt handler to process the interrupt.</div><div class="clean-ms-row">If priority is not higher, it continues with the current process.</div></div></div></article>
+<article class="clean-card" data-search="oct/nov 2025 0478/13 q6(c–d) high-level vs low-level &amp; translators (c) the computer game is programmed using a high-level language. explain one difference between a high-level language and a low-level language.
+
+(d) the programmer uses translators to translate the high-level language source code into machine code. identify the name of the translator that would be used for each statement:
+(i) translates and executes the source code one line at a time.
+(ii) translates the source code and will not execute it if errors are found. it instead produces a full report of the errors in the source code.
+(iii) [compiler statement]
+(iv) [interpreter statement]">
+<div class="clean-head"><div>Oct/Nov 2025 • 0478/13 • Q6(c–d)</div><div class="pills"><span>High-level vs low-level &amp; translators</span><b>6 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">(c) The computer game is programmed using a high-level language. Explain one difference between a high-level language and a low-level language.<br><br>(d) The programmer uses translators to translate the high-level language source code into machine code. Identify the name of the translator that would be used for each statement:<br>(i) Translates and executes the source code one line at a time.<br>(ii) Translates the source code and will not execute it if errors are found. It instead produces a full report of the errors in the source code.<br>(iii) [compiler statement]<br>(iv) [interpreter statement]</div>
+<textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">High-level language is written in English-like statements whereas low-level uses mnemonics/machine code/binary; or high-level is easier to read/write/debug whereas low-level is harder; or high-level is portable whereas low-level is machine dependent; or high-level cannot directly manipulate hardware whereas low-level can; or one high-level line can perform multiple actions whereas one low-level line performs a single action.</div><div class="clean-ms-row">(d)(i) Interpreter.</div><div class="clean-ms-row">(d)(ii) Compiler.</div><div class="clean-ms-row">(d)(iii) Compiler.</div><div class="clean-ms-row">(d)(iv) Interpreter.</div></div></div></article></section>
+<footer class="site-footer">
+<div class="site-footer-brand">Excellence By Adeel Kapasi <span>•</span> CS Notes</div>
+<div class="site-footer-label">Google Maps • Our locations</div>
+<div class="site-footer-links">
+<a href="https://share.google/D6klleel4komfGVpH" target="_blank" rel="noopener">View Location 1 on Google Maps ↗</a>
+<a href="https://share.google/fnQfEAAVV0bo7B6q6" target="_blank" rel="noopener">View Location 2 on Google Maps ↗</a>
+</div>
+</footer>
+</main>
+</div><script id="clean-bank-script">
+function toggleClean(btn){const m=btn.nextElementSibling;const o=m.classList.toggle('show');btn.textContent=o?'Hide marking':'Show marking';btn.classList.toggle('open',o)}
+function cleanRoot(){return document.querySelector('.clean-bank')||document}
+function allClean(o){cleanRoot().querySelectorAll('.clean-marking').forEach(x=>x.classList.toggle('show',o));cleanRoot().querySelectorAll('.clean-btn').forEach(b=>{b.textContent=o?'Hide marking':'Show marking';b.classList.toggle('open',o)})}
+function filterClean(){const q=(document.getElementById('cleanSearch').value||'').toLowerCase();cleanRoot().querySelectorAll('.clean-card').forEach(c=>c.style.display=!q||c.innerText.toLowerCase().includes(q)?'block':'none')}
+</script><script id="shell-script">
+(function(){
+ const nav=[...document.querySelectorAll('#nav button')];
+ nav.forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.target);if(t)t.scrollIntoView({behavior:'smooth'});}));
+ const input=document.getElementById('search');
+ if(input) input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();document.querySelectorAll('.section,.sec').forEach(s=>s.classList.toggle('hidden-by-search',!!q&&!s.textContent.toLowerCase().includes(q)));});
+ const secs=[...document.querySelectorAll('.section[id],.sec[id],.hero[id],.clean-bank[id]')];
+ if(nav.length&&'IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)nav.forEach(n=>n.classList.toggle('active',n.dataset.target===e.target.id));});},{rootMargin:'-20% 0px -65% 0px'});
+  secs.forEach(s=>io.observe(s));
+ }
+})();
+</script><script id="unified-progress">
+(function(){
+ const bar=document.getElementById('progressBar');
+ const text=document.getElementById('progressText');
+ const boxes=[...document.querySelectorAll('input.donebox, input.done')];
+ const nav=[...document.querySelectorAll('#nav button')];
+ const STORE='excellence-cs-ch4-done';
+ function save(){localStorage.setItem(STORE,JSON.stringify(boxes.filter(b=>b.checked).map(b=>b.dataset.sec)));}
+ function paint(){
+  if(!bar) return;
+  const pct=boxes.length?Math.round(boxes.filter(b=>b.checked).length/boxes.length*100):0;
+  bar.style.width=pct+'%';
+  if(text) text.textContent=pct+'% sections completed';
+  nav.forEach(btn=>{const id=btn.dataset.target||btn.dataset.id; const box=boxes.find(b=>b.dataset.sec===id); btn.classList.toggle('done',!!(box&&box.checked));});
+ }
+ try{const saved=JSON.parse(localStorage.getItem(STORE)||'[]'); boxes.forEach(b=>{if(saved.includes(b.dataset.sec)) b.checked=true;});}catch(e){}
+ boxes.forEach(b=>b.addEventListener('change',()=>{save();paint();}));
+ paint();
+ const reset=document.getElementById('resetProgress');
+ if(reset) reset.addEventListener('click',()=>{boxes.forEach(b=>b.checked=false); localStorage.removeItem(STORE); paint();});
+})();
+</script></body></html>

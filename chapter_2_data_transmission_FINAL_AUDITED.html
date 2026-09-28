@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 2 — Data Transmission | Cambridge O Level Computer Science 2210</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--ink:#172033;--muted:#657089;--line:#dfe5ef;--nav:#111b34;--accent:#3157d5;--violet:#6c3dd1;--green:#13795b;--red:#b42318;--amber:#a35b00}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.62}.app{display:grid;grid-template-columns:292px minmax(0,1fr);min-height:100vh}
+aside{background:var(--nav);color:#eaf0ff;padding:22px 18px;position:sticky;top:0;height:100vh;overflow:auto}.brand{font-weight:850;font-size:18px}.brand small{display:block;font-size:12px;color:#9eacd0;font-weight:500}.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 7px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:#8eabff}.pct{font-size:12px;color:#aebadd}.navtitle{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}.nav button{width:100%;border:0;background:transparent;color:#ccd6ef;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer}.nav button:hover,.nav button.active{background:#223052;color:white}.nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+main{min-width:0}.hero{padding:42px clamp(20px,5vw,70px) 30px;background:linear-gradient(135deg,#fff,#eef3ff);border-bottom:1px solid var(--line)}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:900}h1{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:8px 0 12px}.hero p{max-width:820px;color:var(--muted);font-size:17px}.toolbar,.row{display:flex;gap:10px;flex-wrap:wrap}.toolbar{margin-top:20px}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:10px;font-weight:750;cursor:pointer}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}input,select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:white;min-width:0}.search{width:min(500px,100%)}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #9eb4ff;outline-offset:2px}
+.content{max-width:1050px;margin:auto;padding:28px clamp(18px,4vw,48px) 80px}.section{margin:0 0 45px;scroll-margin-top:16px}.head{display:flex;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}.num{min-width:42px;height:42px;border-radius:12px;background:var(--nav);color:white;display:grid;place-items:center;font-weight:900}.head h2{margin:0;font-size:27px;line-height:1.2}.lead{color:var(--muted);margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px;margin:12px 0}.card h3,.card h4{margin-top:0}.concept{border-left:4px solid var(--accent)}.ms{border-left:4px solid var(--green);background:#f3fbf7}.trap{border-left:4px solid var(--red);background:#fff7f6}.why{border-left:4px solid var(--violet);background:#faf7ff}.exam{border-left:4px solid var(--amber);background:#fffaf0}.label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;color:var(--muted);margin-bottom:5px}.chain{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:12px 0}.chain span{padding:7px 10px;border-radius:999px;background:#edf1f8;font-weight:750}.chain b{color:var(--accent)}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#10192f;color:#eef3ff;border-radius:12px;padding:14px;white-space:pre-wrap;overflow:auto}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;background:white;border:1px solid var(--line)}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f0f3f8;font-size:13px}.diagram{background:white;border:1px solid var(--line);border-radius:15px;padding:12px}.checklist label{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}.checklist input{margin-top:6px}.answer{display:none;margin-top:12px;padding:12px;background:#eaf6ef;border-radius:10px}.answer.show{display:block}.hidden{display:none!important}
+.lab{background:#10192f;color:#eef3ff;border-radius:18px;padding:20px}.lab p{color:#c6d0e8}.packet{display:grid;grid-template-columns:1.2fr 2.5fr 1fr;gap:4px;margin:14px 0}.packet div{padding:15px 8px;text-align:center;border-radius:8px;font-weight:850}.ph{background:#3157d5}.pp{background:#38506f}.pt{background:#6c3dd1}.parity-grid{display:grid;grid-template-columns:repeat(8,42px);gap:5px;margin:12px 0}.cell{height:42px;border-radius:8px;background:#1d2a48;color:#fff;display:grid;place-items:center;font-weight:900}.cell.par{background:#6c3dd1}.feedback{min-height:26px;margin-top:10px;font-weight:750}.ok{color:#8ce0bd}.bad{color:#ffb4ab}.quizchoice{display:block;width:100%;text-align:left;padding:11px;margin:8px 0;border-radius:10px;border:1px solid #425174;background:#182541;color:white;cursor:pointer}.quizchoice.correct{background:#173d35;border-color:#62c9a1}.quizchoice.wrong{background:#4a2529;border-color:#ff8c84}.footer{color:var(--muted);font-size:13px;margin-top:45px;padding-top:18px;border-top:1px solid var(--line)}
+@media(max-width:820px){.app{display:block}aside{position:relative;height:auto}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.content{padding-bottom:50px}}@media(max-width:470px){.nav{grid-template-columns:1fr}.packet{grid-template-columns:1fr}.parity-grid{grid-template-columns:repeat(4,42px)}}
+
+</style>
+<style id="clean-bank-style">
+.clean-bank{margin-top:55px;padding-top:25px;border-top:4px solid #14244b}.clean-intro{background:linear-gradient(135deg,#111d3b,#3157a6);color:#fff;padding:27px;border-radius:20px}.clean-intro h2{font-size:34px;margin:5px 0 8px}.clean-intro p{max-width:900px;color:#dbe5ff;line-height:1.6}.clean-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.clean-stats span{border:1px solid #ffffff38;background:#ffffff12;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:850}.clean-tools{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.clean-tools input{flex:1;min-width:260px;padding:12px 14px;border:1px solid #d3dceb;border-radius:11px;font:inherit}.clean-tools button,.clean-btn{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.clean-card{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.clean-head{background:#f1f4f9;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#3157d5;font-weight:900;font-size:13px}.marks-pill{background:#14244b;color:#fff;border-radius:999px;padding:6px 10px}.clean-body{padding:18px}.clean-question{font-size:17px;font-weight:650;line-height:1.72;color:#121a2d;margin:4px 0 14px}.clean-answer{width:100%;min-height:110px;border:1px solid #d6deeb;border-radius:11px;padding:12px;font:inherit;resize:vertical;margin:7px 0 8px}.clean-marking{display:none;margin-top:14px}.clean-marking.show{display:block}.clean-label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin:0 0 8px}.clean-ms-row{background:#f0f9f4;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;white-space:pre-wrap;line-height:1.55}.clean-btn.open{background:#173f82}@media(max-width:700px){.clean-head{align-items:flex-start}.clean-tools button{flex:1}}
+</style>
+<script id="clean-bank-script">
+function toggleClean(btn){const m=btn.nextElementSibling;const o=m.classList.toggle('show');btn.textContent=o?'Hide marking':'Show marking';btn.classList.toggle('open',o)}
+function cleanRoot(){return document.querySelector('.clean-bank')||document}
+function allClean(o){cleanRoot().querySelectorAll('.clean-marking').forEach(x=>x.classList.toggle('show',o));cleanRoot().querySelectorAll('.clean-btn').forEach(b=>{b.textContent=o?'Hide marking':'Show marking';b.classList.toggle('open',o)})}
+function filterClean(){const q=(document.getElementById('cleanSearch').value||'').toLowerCase();cleanRoot().querySelectorAll('.clean-card').forEach(c=>c.style.display=!q||c.innerText.toLowerCase().includes(q)?'block':'none')}
+</script><style id="unified-chrome">
+body{background:#f6f8fc;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body>.app>.sidebar{background:#111b34;color:#eaf0ff;padding:22px 18px;position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto;box-sizing:border-box}
+.brand{font-weight:800;font-size:18px;line-height:1.25;color:#fff}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 8px;overflow:hidden}
+.progress>i,.progress i{display:block;height:100%;width:0;background:#8eabff}
+.pct{font-size:12px;color:#aebadd}
+.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}
+body>.app .nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+body>.app .nav button:hover,body>.app .nav button.active{background:#223052;color:#fff}
+body>.app .nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+header.hero,section.hero{background:linear-gradient(135deg,#fff,#eef3ff)!important;color:#172033!important;border-bottom:1px solid #dfe5ef;border-radius:0!important;box-shadow:none!important;padding:42px clamp(20px,5vw,70px) 30px!important;margin:0!important}
+.hero .eyebrow{color:#3157d5!important;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{color:#172033!important;font-size:clamp(30px,5vw,48px);line-height:1.05;margin:8px 0 12px}
+.hero-lead{color:#172033;font-size:18px;font-weight:650;margin:0 0 8px;max-width:800px}
+.hero p{color:#657089!important;max-width:820px}
+.hero .principle,.hero .rule{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important;border-radius:12px}
+.hero .hero-grid div{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important}
+.hero .hero-grid b{color:#3157d5!important}
+.hero .hero-grid span{color:#657089!important}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.searchbar{flex:1;min-width:220px;max-width:520px}
+.searchbar input{width:100%;padding:11px 13px;border:1px solid #dfe5ef;border-radius:10px;font:inherit;background:#fff;color:#172033}
+.toolbar .btn,.toolbar button.btn{border:1px solid #dfe5ef;background:#fff;color:#172033;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+.site-footer{margin:8px clamp(18px,4vw,48px) 36px;background:linear-gradient(135deg,#14244b,#294a88);color:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 10px 26px rgba(20,36,75,.14)}
+.site-footer-brand{font-weight:900;font-size:16px}
+.site-footer-brand span{opacity:.72}
+.site-footer-label{margin-top:7px;font-size:13px;opacity:.82}
+.site-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.site-footer-links a{display:inline-block;background:#fff;color:#14244b;text-decoration:none;font-weight:800;padding:9px 13px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar{position:relative;height:auto;width:auto}body>.app .nav{display:grid;grid-template-columns:1fr 1fr}header.hero,section.hero{padding:28px 18px 22px!important}}
+@media(max-width:520px){body>.app .nav{grid-template-columns:1fr}}
+</style></head><body><div class="app">
+<aside class="sidebar"><div class="brand">Excellence By Adeel Kapasi<small>CS Notes</small><small>Cambridge O Level 2210 • Paper 1 • 2026–2028</small></div><div class="progress"><i id="progressBar"></i></div><div class="pct" id="progressText">0% sections completed</div><div class="nav-title">Chapter 2</div>
+<nav class="nav" id="nav">
+<button data-target="s1" data-id="s1">1. Packets</button><button data-target="s2" data-id="s2">2. Packet switching</button><button data-target="s3" data-id="s3">3. Serial & parallel</button><button data-target="s4" data-id="s4">4. Transmission direction</button><button data-target="s5" data-id="s5">5. USB</button><button data-target="s6" data-id="s6">6. Transmission errors</button><button data-target="s7" data-id="s7">7. Parity</button><button data-target="s8" data-id="s8">8. Checksum</button><button data-target="s9" data-id="s9">9. Echo check</button><button data-target="s10" data-id="s10">10. Check digit</button><button data-target="s11" data-id="s11">11. ARQ</button><button data-target="s12" data-id="s12">12. Encryption</button><button data-target="s13" data-id="s13">13. Mastery check</button>
+<button data-target="pastpapers" data-id="pastpapers">14. Past-paper practice</button></nav></aside>
+<main><header class="hero"><div class="eyebrow">Chapter 2 • Data Transmission</div><h1>Data Transmission</h1><p class="hero-lead">Follow the data from sender to receiver.</p><p>Full interactive notes built around the Cambridge syllabus and the supplied question-paper/mark-scheme patterns: packet switching, transmission methods, error detection, ARQ and encryption.</p><div class="toolbar"><div class="searchbar"><input id="search" placeholder="Search this chapter…"></div><button class="btn" id="answers">Show model answers</button><button class="btn" id="resetProgress">Reset progress</button></div></header>
+<div class="content">
+
+<section class="section" id="s1"><div class="head"><div class="num">1</div><div><h2>Packets & Packet Structure</h2><p class="lead">Large transmissions are broken into manageable units.</p></div></div>
+<div class="card concept"><p>Before transmission, data is broken down into <strong>packets</strong>. A packet has three main parts:</p><div class="packet"><div class="ph">HEADER</div><div class="pp">PAYLOAD</div><div class="pt">TRAILER</div></div></div>
+<div class="grid"><div class="card"><h3>Header</h3><p>Control information needed to deliver and rebuild the transmission. The syllabus specifically requires:</p><ul><li>destination address</li><li>originator's/source address</li><li>packet number</li></ul></div><div class="card"><h3>Payload</h3><p>The <strong>actual data</strong> being transmitted.</p><h3>Trailer</h3><p>Information placed at the end of the packet; keep the distinction between trailer and header clear.</p></div></div>
+<div class="card trap"><div class="label">Common confusion</div><p>The <strong>packet number</strong> is not the payload. It is header information that helps the receiver put packets back into the correct order.</p></div>
+
+<div class="card ms"><div class="label">MS depth: packet header</div><p>The <strong>header</strong> can contain the <strong>destination address/IP address</strong>, <strong>sender/originator address/IP address</strong> and <strong>packet number</strong>. The payload is the actual data being transmitted; the trailer contains end/error-checking information where applicable.</p></div><div class="checklist"><label><input class="done" data-sec="s1" type="checkbox"> I can draw and label a packet and identify the required header fields.</label></div></section>
+
+<section class="section" id="s2"><div class="head"><div class="num">2</div><div><h2>Packet Switching</h2><p class="lead">Packets can travel independently and be reconstructed at the destination.</p></div></div>
+<div class="diagram"><svg viewBox="0 0 850 300" role="img" aria-label="Packet switching diagram showing packets taking different routes" style="width:100%">
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#657089"/></marker></defs>
+<g fill="#fff" stroke="#aeb8ca" stroke-width="2"><rect x="25" y="115" width="110" height="65" rx="12"/><circle cx="280" cy="70" r="38"/><circle cx="280" cy="225" r="38"/><circle cx="500" cy="70" r="38"/><circle cx="500" cy="225" r="38"/><rect x="690" y="115" width="130" height="65" rx="12"/></g>
+<g fill="#172033" font-family="system-ui" font-size="16" text-anchor="middle"><text x="80" y="145">Sender</text><text x="280" y="76">Router</text><text x="280" y="231">Router</text><text x="500" y="76">Router</text><text x="500" y="231">Router</text><text x="755" y="145">Receiver</text></g>
+<g fill="none" stroke="#657089" stroke-width="3" marker-end="url(#a)"><path d="M135 135 C190 100 215 85 240 78"/><path d="M135 165 C190 195 215 215 240 220"/><path d="M318 70 L462 70"/><path d="M318 225 L462 225"/><path d="M310 95 C360 135 420 165 470 200"/><path d="M538 75 C600 85 635 115 690 132"/><path d="M538 220 C600 205 635 175 690 160"/></g>
+<g font-family="system-ui" font-weight="800"><text x="365" y="56" fill="#3157d5">P1</text><text x="365" y="242" fill="#6c3dd1">P2</text><text x="403" y="157" fill="#13795b">P3</text></g></svg></div>
+<div class="card ms"><div class="label">Process chain</div><div class="chain"><span>data split into packets</span><b>→</b><span>router chooses route</span><b>→</b><span>packets may take different routes</span><b>→</b><span>may arrive out of order</span><b>→</b><span>reordered after final packet arrives</span></div></div>
+<div class="card exam"><p><strong>Describe packet switching</strong> as an ordered process. Avoid giving disconnected definitions of “packet” and “router.”</p></div>
+<div class="card ms"><div class="label">MS depth: router and reassembly</div><p>A router can <strong>control the route</strong> a packet takes, send each packet towards its destination and choose a more efficient route. Packets from one message can take <strong>different routes</strong>, can arrive <strong>out of order</strong>, and packet numbers allow them to be put back into the correct order at the destination.</p></div><div class="checklist"><label><input class="done" data-sec="s2" type="checkbox"> I can describe packet switching from source to reassembly.</label></div></section>
+
+<section class="section" id="s3"><div class="head"><div class="num">3</div><div><h2>Serial vs Parallel Transmission</h2><p class="lead">How many bits are sent at the same time?</p></div></div>
+<div class="grid"><div class="card concept"><h3>Serial</h3><p>Data is sent <strong>one bit at a time</strong> along a single wire/channel.</p><p><strong>Advantages:</strong> less interference/crosstalk, reliable over longer distances, fewer wires, often cheaper.</p><p><strong>Disadvantage:</strong> fewer bits are sent simultaneously.</p></div><div class="card concept"><h3>Parallel</h3><p>Multiple bits are sent <strong>simultaneously</strong> using multiple wires/channels.</p><p><strong>Advantages:</strong> can transfer several bits at once; suitable over short distances.</p><p><strong>Disadvantages:</strong> more wires, more costly, risk of skew/interference/crosstalk over distance.</p></div></div>
+<div class="card why"><div class="label">Scenario answer formula</div><div class="formula">method → technical property → consequence → why suitable here</div><p>For a printer on the same desk, do not stop at “parallel is faster” or “serial is cheaper.” Tie the property to the short distance, required speed, interference risk and cabling.</p></div>
+<div class="card trap"><p><strong>Serial/parallel</strong> describes how bits travel. It does <em>not</em> tell you whether communication is one-way or two-way. That is simplex/duplex.</p></div>
+<div class="card ms"><div class="label">MS comparison depth</div><p><strong>Serial:</strong> one bit at a time down a single wire; generally cheaper cabling, less skew/crosstalk and more reliable over longer distances, but can be slower than parallel. <strong>Parallel:</strong> multiple bits are sent simultaneously using multiple wires/channels; it can transfer more bits at once but needs more wires and is more vulnerable to skew/crosstalk over distance. In scenario questions, connect the technical property to distance, required speed, cost and reliability.</p></div><div class="checklist"><label><input class="done" data-sec="s3" type="checkbox"> I can compare serial and parallel and justify one for a scenario.</label></div></section>
+
+<section class="section" id="s4"><div class="head"><div class="num">4</div><div><h2>Simplex, Half-Duplex & Full-Duplex</h2><p class="lead">Which direction can the data travel, and when?</p></div></div>
+<div class="scroll"><table><thead><tr><th>Method</th><th>Direction</th><th>Meaning</th><th>Think of</th></tr></thead><tbody>
+<tr><td><strong>Simplex</strong></td><td>A → B</td><td>Data travels in one direction only.</td><td>One-way data flow</td></tr>
+<tr><td><strong>Half-duplex</strong></td><td>A ⇄ B</td><td>Both directions are possible, but not simultaneously.</td><td>Take turns</td></tr>
+<tr><td><strong>Full-duplex</strong></td><td>A ⇄ B</td><td>Both directions can transmit at the same time.</td><td>Simultaneous two-way</td></tr>
+</tbody></table></div>
+<div class="card ms"><p>A supplied 2025 mark scheme demonstrates the precision expected for <strong>serial simplex</strong>: one bit at a time, down a single wire, and data only in one direction. These are separate creditworthy ideas.</p></div>
+<div class="card exam"><p>Cambridge can combine dimensions: <strong>serial full-duplex</strong>, for example, tells you both <em>how bits are sent</em> and <em>the permitted direction/timing of communication</em>.</p></div>
+<div class="card ms"><div class="label">Combining transmission dimensions</div><p>Cambridge may combine the two classifications. For example, <strong>serial full-duplex</strong> means bits are sent one at a time while data can travel in both directions simultaneously; <strong>parallel half-duplex</strong> means multiple bits travel together and communication can go both ways, but not at the same time.</p></div><div class="checklist"><label><input class="done" data-sec="s4" type="checkbox"> I can distinguish all three direction methods and combine them with serial/parallel.</label></div></section>
+
+<section class="section" id="s5"><div class="head"><div class="num">5</div><div><h2>Universal Serial Bus (USB)</h2><p class="lead">A standard interface for connecting peripherals and transmitting serial data.</p></div></div>
+<div class="grid"><div class="card concept"><h3>How it is used</h3><p>A USB interface provides a standard connection between devices. Data is transmitted serially through the USB connection. The interface can be used to connect peripherals and may also provide electrical power to a connected device.</p></div><div class="card"><h3>Benefits & drawbacks</h3><p><strong>Benefits:</strong> widely supported standard, simple connection, plug-and-play/hot-swappable in typical systems, data and power can share the connection.</p><p><strong>Drawbacks:</strong> connector/version differences can create compatibility issues; cable length and transmission performance are limited by the implementation/version.</p></div></div>
+<div class="card exam"><p>The syllabus specifically requires <strong>benefits and drawbacks</strong>, so learn USB as more than the expansion of the acronym.</p></div>
+<div class="card ms"><div class="label">2025 MS: USB details</div><p>USB sends data <strong>one bit at a time down a single wire</strong>. Supplied mark schemes credit benefits including: the peripheral can be <strong>powered by the device</strong>; USB is a <strong>universal connection</strong>; it is <strong>backward compatible</strong>; there is less chance of skew/errors; different/adequate transmission speeds are supported; the cable cannot be inserted incorrectly; and the device can be automatically detected / its driver automatically installed. Drawbacks credited include <strong>slower transmission than a parallel connection</strong> and a wire that can get in the way or limit movement.</p></div><div class="checklist"><label><input class="done" data-sec="s5" type="checkbox"> I can explain USB data transmission and discuss benefits/drawbacks.</label></div></section>
+
+<section class="section" id="s6"><div class="head"><div class="num">6</div><div><h2>Why Transmission Errors Occur</h2><p class="lead">Correct data can become incorrect while travelling.</p></div></div>
+<div class="card concept"><p>Interference during transmission can cause data to be:</p><div class="chain"><span>lost</span><b>•</b><span>gained/added</span><b>•</b><span>changed</span></div><p>Past mark schemes also recognise contexts such as crosstalk, collisions and other transmission/network problems.</p></div>
+<div class="card ms"><p><strong>Strong 2-mark chain:</strong> interference/crosstalk occurs during transmission → this causes data/bits to be lost, gained or changed.</p></div>
+<div class="card trap"><p>Error <strong>detection</strong> does not automatically mean the method corrects the corrupted bit. Many methods establish that an error exists; retransmission may then be required.</p></div>
+<div class="card ms"><div class="label">Error cause → effect</div><p>Interference or <strong>crosstalk</strong> during transmission can cause data/bits to be <strong>lost, gained/added or changed</strong>. Keep the cause and its effect linked when the command is <em>explain</em>.</p></div><div class="checklist"><label><input class="done" data-sec="s6" type="checkbox"> I can explain how interference can alter transmitted data.</label></div></section>
+
+<section class="section" id="s7"><div class="head"><div class="num">7</div><div><h2>Parity Check</h2><p class="lead">Add a parity bit so the number of 1s follows an agreed rule.</p></div></div>
+<div class="grid"><div class="card"><h3>Even parity</h3><p>The total number of 1s, <strong>including the parity bit</strong>, must be even.</p></div><div class="card"><h3>Odd parity</h3><p>The total number of 1s, <strong>including the parity bit</strong>, must be odd.</p></div></div>
+<div class="lab"><div class="label" style="color:#9eacd0">Interactive parity lab</div><p>Enter seven data bits and choose the parity rule. The tool calculates the eighth parity bit.</p><div class="row"><input id="parBits" value="1011010" maxlength="7" aria-label="Seven data bits"><select id="parMode"><option value="even">Even parity</option><option value="odd">Odd parity</option></select><button class="btn primary" id="parCalc" type="button">Calculate</button></div><div class="parity-grid" id="parGrid"></div><div class="feedback" id="parOut" aria-live="polite"></div></div>
+<div class="card ms"><div class="label">Detection process</div><ol><li>Sender counts the 1s in each byte.</li><li>A parity bit is set so the byte matches the agreed odd/even parity.</li><li>Byte is transmitted.</li><li>Receiver counts the 1s again.</li><li>If the received parity does not match the agreed rule, an error is detected.</li></ol></div>
+<div class="card why"><h3>Parity block / parity byte</h3><p>Parity can be extended across a block of bytes. A parity byte provides parity information across corresponding bit positions, allowing checking in another dimension. You must be able to complete parity-block tables, not merely define parity.</p></div>
+<div class="card trap"><p>A basic parity check may fail to detect some patterns of multiple-bit errors. Its job in this syllabus is to <strong>detect</strong> transmission errors, not identify the original value of every corrupted bit.</p></div>
+<div class="card ms"><div class="label">Parity at byte and block level</div><p>For parity, sender and receiver agree on <strong>odd or even parity</strong>. A parity bit is set so the total number of 1s has the required parity. The receiver counts/checks the 1s; the wrong parity indicates an error. With <strong>block parity</strong>, parity can be checked across rows/columns of a block to help identify the location of an erroneous bit.</p></div><div class="checklist"><label><input class="done" data-sec="s7" type="checkbox"> I can calculate odd/even parity and complete a parity block.</label></div></section>
+
+<section class="section" id="s8"><div class="head"><div class="num">8</div><div><h2>Checksum</h2><p class="lead">A calculated value travels with the data and is independently recalculated.</p></div></div>
+<div class="card ms"><div class="label">Mark-scheme process chain</div><ol><li>A checksum is calculated from the original data.</li><li>A defined algorithm/calculation is used.</li><li>The checksum is transmitted with the data.</li><li>The receiving device recalculates the checksum from the received data.</li><li>The received/recalculated values are compared.</li><li>If they do not match, an error is indicated and retransmission can be requested.</li></ol></div>
+<div class="card exam"><p>For a multi-mark <strong>describe</strong> question, write this as an ordered process. “A checksum checks whether data is correct” is far too vague.</p></div>
+<div class="card ms"><div class="label">Checksum process</div><p>A checksum value is <strong>calculated from the data using an algorithm before transmission</strong> and sent with the data. The receiving device performs the corresponding calculation again and compares the result with the received checksum. A mismatch indicates that an error has occurred.</p></div><div class="checklist"><label><input class="done" data-sec="s8" type="checkbox"> I can describe checksum from sender calculation through comparison.</label></div></section>
+
+<section class="section" id="s9"><div class="head"><div class="num">9</div><div><h2>Echo Check</h2><p class="lead">The receiver sends a copy back to the sender.</p></div></div>
+<div class="diagram"><svg viewBox="0 0 800 180" role="img" aria-label="Echo check sends data to receiver and copy back to sender" style="width:100%"><defs><marker id="e" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8z" fill="#657089"/></marker></defs><rect x="45" y="55" width="150" height="70" rx="14" fill="#fff" stroke="#aeb8ca" stroke-width="2"/><rect x="605" y="55" width="150" height="70" rx="14" fill="#fff" stroke="#aeb8ca" stroke-width="2"/><text x="120" y="96" text-anchor="middle" font-family="system-ui" font-size="18">Sender</text><text x="680" y="96" text-anchor="middle" font-family="system-ui" font-size="18">Receiver</text><path d="M200 72 C340 30 465 30 600 72" fill="none" stroke="#3157d5" stroke-width="4" marker-end="url(#e)"/><path d="M600 110 C465 155 340 155 200 110" fill="none" stroke="#6c3dd1" stroke-width="4" marker-end="url(#e)"/><text x="400" y="35" text-anchor="middle" fill="#3157d5">original data</text><text x="400" y="163" text-anchor="middle" fill="#6c3dd1">copy returned</text></svg></div>
+<div class="card ms"><ol><li>Sender transmits the data.</li><li>Receiver sends a copy of the received data back.</li><li>Sender compares the returned copy with the original.</li><li>If they differ, an error occurred and the data can be resent.</li></ol></div>
+<div class="card trap"><p>Do not confuse echo check with checksum. <strong>Echo check returns data</strong>; <strong>checksum recalculates a value</strong>.</p></div>
+<div class="card ms"><div class="label">Echo-check process</div><p>The receiver sends a <strong>copy of the received data back to the sender</strong>. The returned copy is compared with the original data. If the two do not match, an error is detected and the data can be sent again.</p></div><div class="checklist"><label><input class="done" data-sec="s9" type="checkbox"> I can explain the roles of sender and receiver in an echo check.</label></div></section>
+
+<section class="section" id="s10"><div class="head"><div class="num">10</div><div><h2>Check Digit</h2><p class="lead">Primarily used to detect errors in data entry.</p></div></div>
+<div class="card concept"><ol><li>A check digit is calculated from the other digits using an algorithm.</li><li>The calculated digit is appended to/stored with the data.</li><li>When the code is entered, the calculation is performed again.</li><li>The result is compared with the entered/stored check digit.</li><li>A mismatch indicates an entry error.</li></ol></div>
+<div class="grid"><div class="card"><h3>Required examples</h3><p><strong>ISBN</strong> and <strong>bar codes</strong> are explicitly named by the syllabus.</p></div><div class="card trap"><h3>Key distinction</h3><p>Check digit → <strong>data entry</strong> errors.<br>Parity/checksum/echo → typically <strong>transmission</strong> errors in this chapter.</p></div></div>
+
+<div class="card ms"><div class="label">Check digit process</div><p>A check digit is calculated from the other digits using an algorithm and <strong>appended to the data</strong>, for example in a barcode/ISBN. On data entry, the check digit is recalculated/checked using the entered digits. If the calculated value does not match the entered check digit, a data-entry error is detected.</p></div><div class="checklist"><label><input class="done" data-sec="s10" type="checkbox"> I can describe check-digit validation and give ISBN/bar-code examples.</label></div></section>
+
+<section class="section" id="s11"><div class="head"><div class="num">11</div><div><h2>Automatic Repeat Query (ARQ)</h2><p class="lead">Acknowledgement + timeout + retransmission.</p></div></div>
+<div class="card ms"><div class="chain"><span>send packet</span><b>→</b><span>start timer</span><b>→</b><span>receiver checks data</span><b>→</b><span>acknowledgement</span><b>→</b><span>next packet</span></div><p>If a valid acknowledgement is not received before the <strong>timeout</strong>, the packet is resent.</p></div>
+<div class="grid"><div class="card"><h3>Positive acknowledgement</h3><p>Indicates successful/error-free receipt so transmission can continue.</p></div><div class="card"><h3>Negative acknowledgement</h3><p>Indicates a problem and can trigger retransmission. The syllabus requires awareness of positive/negative acknowledgements and timeout.</p></div></div>
+<div class="card exam"><p>A strong ARQ description explicitly names <strong>acknowledgement</strong> and <strong>timeout</strong>. A 2024 supplied MS combines parity checking with ARQ in an 8-mark process question, showing that Cambridge can connect error detection and retransmission rather than testing each idea in isolation.</p></div>
+<div class="card ms"><div class="label">ARQ — full process</div><p><strong>Automatic Repeat reQuest (ARQ)</strong> uses an <strong>acknowledgement</strong> and a <strong>timeout</strong>. After data is sent, a timer starts. If the receiver confirms valid data, an acknowledgement can be returned and the sender continues. If the data is invalid, a negative acknowledgement may be returned; alternatively an expected positive acknowledgement may not arrive. If the required acknowledgement is not received before timeout, the data/packet is retransmitted.</p></div>
+<div class="card exam"><div class="label">Parity + ARQ together</div><p>Supplied papers combine methods: receiver checks the agreed parity → valid parity can lead to a positive acknowledgement → invalid parity means no positive acknowledgement / may produce a negative acknowledgement → timeout or NAK causes retransmission.</p></div><div class="checklist"><label><input class="done" data-sec="s11" type="checkbox"> I can explain ARQ including acknowledgements, timer/timeout and resend.</label></div></section>
+
+<section class="section" id="s12"><div class="head"><div class="num">12</div><div><h2>Encryption</h2><p class="lead">Protect transmitted data from being understood if intercepted.</p></div></div>
+<div class="card concept"><div class="chain"><span>plaintext</span><b>→</b><span>encryption algorithm + key</span><b>→</b><span>ciphertext</span><b>→</b><span>decryption</span><b>→</b><span>plaintext</span></div><p><strong>Plaintext</strong> is readable original data. <strong>Ciphertext</strong> is encrypted data that should be meaningless without the appropriate key.</p></div>
+<div class="card why"><h3>Purpose</h3><p>Encryption protects the <strong>confidentiality</strong> of transmitted data. If encrypted data is intercepted, the interceptor should not be able to understand it without the required key. Encryption does not by itself prevent interception.</p></div>
+<div class="grid"><div class="card"><h3>Symmetric encryption</h3><p>The same shared secret key is used for encryption and decryption. The key therefore needs to be known securely by the communicating parties.</p></div><div class="card"><h3>Asymmetric encryption</h3><p>Uses a mathematically related <strong>public key</strong> and <strong>private key</strong>. The syllabus explicitly requires the public/private-key idea.</p><p>For confidentiality, data encrypted using the recipient's public key can be decrypted using the corresponding private key.</p></div></div>
+<div class="card ms"><div class="label">Terminology bank</div><span class="tag">plaintext</span> <span class="tag">ciphertext</span> <span class="tag">algorithm</span> <span class="tag">key</span> <span class="tag">public key</span> <span class="tag">private key</span> <span class="tag">symmetric</span> <span class="tag">asymmetric</span></div>
+<div class="card trap"><p><strong>Wrong idea:</strong> “Encryption stops hackers from getting the data.” Better: encrypted data may still be intercepted, but it is intended to be unreadable without the appropriate key.</p></div>
+<div class="card ms"><div class="label">Encryption — exact comparison depth</div><p>The purpose of encryption is that if transmitted data is intercepted, it <strong>cannot be understood without the required key</strong>; encryption does not prevent interception itself. <strong>Symmetric encryption</strong> uses a shared key for both encryption and decryption, so sender and receiver know the same key. <strong>Asymmetric encryption</strong> uses different keys: a <strong>public key</strong> can be known by anyone and is used to encrypt, while the corresponding <strong>private key</strong> is kept by the intended recipient and is used to decrypt.</p></div><div class="checklist"><label><input class="done" data-sec="s12" type="checkbox"> I can explain the purpose of encryption and distinguish symmetric/asymmetric methods.</label></div></section>
+
+<section class="section" id="s13"><div class="head"><div class="num">13</div><div><h2>Chapter 2 Mastery Check</h2><p class="lead">Test the distinctions Cambridge can exploit.</p></div></div>
+<div class="lab" id="quiz"><div class="label" style="color:#9eacd0">Question <span id="qn">1</span> / 8</div><h3 id="qt"></h3><div id="choices"></div><div class="feedback" id="qf" aria-live="polite"></div><button class="btn" id="next" type="button" style="display:none">Next</button></div>
+<div class="card ms"><div class="label">Mastery standard</div><p>You should be able to <strong>describe processes in sequence</strong>, distinguish easily confused methods, and justify transmission choices using the scenario—not merely recite definitions.</p></div>
+<div class="checklist"><label><input class="done" data-sec="s13" type="checkbox"> I completed the mastery check and reviewed errors.</label></div></section>
+
+
+<section class="section" id="pastpapers">
+ <div class="head"><div class="num">PP</div><div><h2>Past Paper Practice & Marking</h2><p class="lead">Attempt first. Reveal the supplied mark-scheme points only after writing your answer.</p></div></div>
+ <div class="card exam"><div class="label">Method</div><p>These questions are formatted/adapted from the supplied Cambridge papers. Each reveal converts the matching official mark scheme into <strong>MP1, MP2…</strong>, then shows how those points become a natural answer.</p></div>
+ <article class="clean-card">
+<div class="clean-head"><span>Feb/Mar 2025 • 0478/12 • Q2(d)(i)</span><span class="marks-pill">[5]</span></div>
+<div class="clean-body">
+<div class="clean-question">Describe how data is packetised and transmitted using packet switching.</div>
+<textarea class="clean-answer" placeholder="Write an ordered process…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-ms-row"><strong>Packet structure:</strong> data split into fixed-size packets; data forms payload; each packet has header and trailer.</div><div class="clean-ms-row"><strong>Header example:</strong> destination IP/address, packet number or hop information.</div><div class="clean-ms-row"><strong>Routing:</strong> router directs packets towards destination / selects efficient route.</div><div class="clean-ms-row"><strong>Independent routes:</strong> packets can take different paths and arrive out of order.</div><div class="clean-ms-row"><strong>Reassembly:</strong> after the final packet arrives, packets are reordered.</div><div class="clean-ms-row"><strong>Model:</strong> Data is divided into packets containing payload plus header/trailer information. Routers direct each packet towards the destination and different packets may take different routes. They may therefore arrive out of order and are reordered after the final packet arrives.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q5(b)</span><span class="marks-pill">Serial simplex + suitability</span></div>
+<div class="clean-body">
+<div class="clean-question">Describe serial simplex transmission, then explain why it can be suitable for sending small amounts of stock-control data over a potentially long distance.</div>
+<textarea class="clean-answer" placeholder="Definition first, then scenario-linked justification…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-ms-row"><strong>Serial:</strong> bits sent one at a time down a single wire.</div><div class="clean-ms-row"><strong>Simplex:</strong> data travels in one direction only.</div><div class="clean-ms-row"><strong>Distance:</strong> serial is more reliable over longer distance / parallel is unsuitable.</div><div class="clean-ms-row"><strong>Amount/speed:</strong> only small amounts are sent, so parallel's extra speed is unnecessary.</div><div class="clean-ms-row"><strong>Reliability:</strong> less interference/crosstalk/skew → fewer errors.</div><div class="clean-ms-row"><strong>Direction:</strong> no reply is required, so duplex transmission is unnecessary.</div><div class="clean-ms-row"><strong>Exam lesson:</strong> every advantage should be tied back to the stock-control scenario.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q6</span><span class="marks-pill">[5]</span></div>
+<div class="clean-body">
+<div class="clean-question">For each method, state the key error-detection idea: parity, checksum, echo check, ARQ and check digit.</div>
+<textarea class="clean-answer" placeholder="Five methods, five precise distinguishing ideas…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-ms-row"><strong>Parity:</strong> uses an agreed odd/even process.</div><div class="clean-ms-row"><strong>Checksum:</strong> a value is calculated from data using an algorithm before and after transmission.</div><div class="clean-ms-row"><strong>Echo check:</strong> receiver sends a copy of data back to sender.</div><div class="clean-ms-row"><strong>ARQ:</strong> uses acknowledgement and timeout.</div><div class="clean-ms-row"><strong>Check digit:</strong> calculated value is appended to data and checked on data entry.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q9(b)(i)</span><span class="marks-pill">[8]</span></div>
+<div class="clean-body">
+<div class="clean-question">Describe how odd parity and positive ARQ can work together to detect transmission errors and request retransmission.</div>
+<textarea class="clean-answer" placeholder="This is a process question: write it in order…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-ms-row"><strong>MP1:</strong> count the 1s in each byte.</div><div class="clean-ms-row"><strong>MP2:</strong> each byte has a parity bit; set it so odd parity is achieved.</div><div class="clean-ms-row"><strong>MP3:</strong> send first packet and start timer.</div><div class="clean-ms-row"><strong>MP4:</strong> receiver counts 1s/checks odd parity.</div><div class="clean-ms-row"><strong>MP5:</strong> if parity is valid, send acknowledgement that data is error-free.</div><div class="clean-ms-row"><strong>MP6:</strong> sender sends next packet and restarts timer.</div><div class="clean-ms-row"><strong>MP7:</strong> if parity is invalid, acknowledgement is not sent.</div><div class="clean-ms-row"><strong>MP8:</strong> if acknowledgement is not received before timeout, resend the packet.</div><div class="clean-ms-row"><strong>Why this matters:</strong> Cambridge combines concepts. Knowing “parity” and “ARQ” separately is not enough; you must connect them into one causal sequence.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/13 • Q7</span><span class="marks-pill">[10 across parts]</span></div>
+<div class="clean-body">
+<div class="clean-question">Explain how transmission errors may occur, then complete the ideas behind parity, echo check and ARQ.</div>
+<textarea class="clean-answer" placeholder="Include cause → corruption, then the three methods…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-ms-row"><strong>Error cause:</strong> interference/crosstalk can cause data to be lost, gained or changed.</div><div class="clean-ms-row"><strong>Parity:</strong> set odd/even; add a parity bit to each byte to match the selected parity.</div><div class="clean-ms-row"><strong>Echo check:</strong> compare data sent with data received back from the receiving device.</div><div class="clean-ms-row"><strong>ARQ:</strong> uses acknowledgement and timeout; acknowledgement can be positive or negative.</div></div>
+</div>
+</article>
+
+ <div class="checklist"><label><input class="done" data-sec="pastpapers" type="checkbox"> I attempted the Chapter 2 past-paper set before revealing the mark schemes.</label></div>
+</section>
+<section class="clean-bank" id="past-paper-bank">
+ <div class="clean-intro">
+  <div class="eyebrow" style="color:#a9bdff">Past-paper practice</div>
+  <h2>Chapter 2 • Data Transmission</h2>
+  <p>Every card below uses a question from the supplied Cambridge papers and answer content from its corresponding supplied mark scheme. The presentation is cleaned for the app; no question or answer has been generated.</p>
+  <div class="clean-stats"><span>23 mapped source subquestions</span><span>0 generated questions</span><span>0 generated answers</span></div>
+ </div>
+ <div class="clean-tools"><input id="cleanSearch" placeholder="Search: packet, serial, parity, checksum, encryption, USB..." oninput="filterClean()"><button onclick="allClean(true)">Reveal all MS</button><button onclick="allClean(false)">Hide all MS</button></div>
+ 
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Feb/Mar 2024 • 0478/12 • Q5</span>
+    <span class="marks-pill">[4]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5  Complete the description of digital currencies using the terms provided.<br>  blockchains  changed  datachains  decentralised<br>  deleted  encryption  passport  physical address<br>  physically  records  time-stamp  traced<br>  transaction-chains  virtually<br>  A digital currency does not exist ........................................................... , it can only be accessed<br>  electronically.<br>  Some digital currencies have digital ledgers called ........................................................... .<br>  These are decentralised databases where each transaction is stored as a new set of data with<br>  a ........................................................... and is linked to the previous set of data. This means that<br>  transactions cannot be altered, only new transactions added, which allows the location of the data<br>  to be ........................................................... .<br>  [4]<br>  10</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5  One mark for each term in correct place:  4</div><div class="clean-ms-row">• physically</div><div class="clean-ms-row">• blockchains</div><div class="clean-ms-row">• time-stamp</div><div class="clean-ms-row">• traced
+  A digital currency does not exist physically, it can only be accessed electronically.
+  Some digital currencies have digital ledgers called a blockchains. These are decentralised databases where each
+  transaction is stored as a new set of data with a time-stamp and is linked to the previous set of data. This means that
+  transactions cannot be altered, only new transactions added, which allows the location of the data to be traced.
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/11 • Q4(a)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">4  Data packets are transmitted across a network from one computer to another computer.<br>  (a) Describe the structure of a data packet.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">4(a)  Any three from:  3
+    A packet is split into three different sections
+    … the header
+    … the payload
+    … the trailer</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/11 • Q4(b)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">4  Data packets are transmitted across a network from one computer to another computer.<br>  (b) Packet switching is used to transmit the data packets across the network.<br>  Identify the device that controls which path is taken by each data packet.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">4(b)  Router  1
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/11 • Q4(c)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">4  Data packets are transmitted across a network from one computer to another computer.<br>  (c) Serial data transmission is used to transmit the data packets across the network.<br>  Explain why serial data transmission is used to transmit the data packets.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">4(c)  Any three from:  3
+    The network may be spread over a long distance …
+    … so it is more reliable
+    Bits will be sent/arrive in sequence
+    …so bits less likely to be skewed
+    Less crosstalk/interference
+    … so less likely to have errors
+    The data may not need to be transmitted at a fast speed // data transmission speed of serial is adequate
+    The cables in the network only use serial transmission
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/11 • Q5(b)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5  A computer uses both random access memory (RAM) and secondary storage.<br>  (b) One type of secondary storage is optical.<br>  Circle three examples of optical storage.<br>  read only memory (ROM)  secure digital (SD) card  compact disk (CD)<br>  hard disk drive (HDD)  digital versatile disk (DVD)<br>  Blu-ray disk  universal serial bus (USB) drive  solid-state drive (SSD)<br>  [3]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5(b)  Compact disk (CD)  3
+  Digital versatile disk (DVD)
+  Blu-ray disk</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/11 • Q7</span>
+    <span class="marks-pill">[4]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">7  Data is encrypted to keep it safe during transmission.<br>  Complete the paragraph about asymmetric encryption.<br>  Use the terms from the list.<br>  Some of the terms in the list will not be used. You should only use a term once.<br>  asymmetric  certificate  cipher text<br>  decrypted  encrypted  parallel key  plain text  private key<br>  protected  public key  serial key  symmetric<br>  .............................................................. is encrypted into ..............................................................<br>  using a .............................................................. . The encrypted data is then transmitted from the<br>  sender to the receiver. The encrypted data is then decrypted using a<br>  .............................................................. .  [4]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">7  One mark for each correct term in the correct place.  4
+    plain text
+    cipher text
+    public key
+    private key
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/12 • Q2(a)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">2  Data can be transmitted from one device to another.<br>  (a) Tick (3) one box to show which of the terms is not a method for transmitting data.<br>  A  serial<br>  B  simplex<br>  C  parallel<br>  D  parity<br>  [1]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">2(a)  D  1</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/13 • Q6(a)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">6  A sensor is an input device that is used to capture data from its surrounding environment.<br>  (a) Circle three other input devices.<br>  touch screen  hard disk drive (HDD)  headphones<br>  speaker  microphone  actuator<br>  universal serial bus (USB) drive  printer  keyboard<br>  [3]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">6(a)  touch screen  3
+  microphone
+  keyboard</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/13 • Q7(a)</span>
+    <span class="marks-pill">[4]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">7  A company has a network that includes a web server.<br>  Data is transmitted across the network using serial half-duplex data transmission.<br>  (a) Draw and annotate a diagram to show how the data is transmitted using serial half-duplex<br>  data transmission.<br>  [4]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">7(a)  One mark for each correct part of the diagram.  4
+  The diagram shows:
+    Bits beings sent one at a time
+    Bits being sent over a single wire
+    Data can be sent to and from the web server/network component/computers …
+    … not at the same time
+  For example:</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/13 • Q7(b)</span>
+    <span class="marks-pill">[2]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">7  A company has a network that includes a web server.<br>  Data is transmitted across the network using serial half-duplex data transmission.<br>  (b) Give two benefits of the company using serial half-duplex data transmission for this purpose.<br>  1 ................................................................................................................................................<br>  2 ................................................................................................................................................<br>  [2]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">7(b)  Any two from:  2
+    Bits will not be skewed // Bits are sent in order
+    Less chance of error
+    Less crosstalk/interference
+    Data can be sent over a long distance (if needed)
+    It is possible to download and upload data to the web server
+    Higher bandwidth than full duplex</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2024 • 0478/13 • Q7(c)</span>
+    <span class="marks-pill">[2]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">7  A company has a network that includes a web server.<br>  Data is transmitted across the network using serial half-duplex data transmission.<br>  (c) Give one drawback of the company using serial half-duplex data transmission for this<br>  purpose.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">7(c)  Any one from:  1
+    The transmission of data may be relatively slow
+    Data cannot be sent and received at the same time
+    May be more data collisions
+  PUBLISHED
+ Question  Answer  Marks</div><div class="clean-ms-row">7(d)(i)  Any three from:  3
+    DDoS // DoS
+    Hacking
+    Malware // by example
+    Brute-force attack
+  NOTE: three different examples of malware can be awarded.</div><div class="clean-ms-row">7(d)(ii)  Any two from:  2
+    Can limit the number of requests sent to the web server at a time
+    Can process common requests that will not need to enter the network
+    Act as a firewall
+    Examine incoming data to the webserver/network
+    Can have set rules/criteria for data to meet
+    Can have a blacklist/whitelist/list of IP addresses to block
+    Blocks traffic that doesn’t meet criteria
+    Closing certain ports</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2025 • 0478/11 • Q5(b)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5<br>  ,  ,<br>  (b) A checksum is used to check the data for errors after transmission.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5(b)  Control unit // CU  1</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2025 • 0478/11 • Q5(c)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5<br>  ,  ,<br>  (c) A customer can also order food from home using the internet. The data for their order is<br>  broken down into packets and transmitted across the internet to the computer in the restaurant<br>  kitchen.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5(c)  Three from:  3</div><div class="clean-ms-row">•  On each clock pulse, an FDE cycle is performed.</div><div class="clean-ms-row">•  The clock speed is the number of FDE cycle performed in a second // The clock speed is the number of times the clock
+  pulses per second/per unit of time.</div><div class="clean-ms-row">•  If clock speed is increased more FDE cycles can be performed in a second // If clock speed is decreased fewer FDE
+  cycles can be performed in a second.</div><div class="clean-ms-row">•  If clock speed is increased, it can improve the performance of the CPU // If clock speed is decreases it decreases the
+  performance of the CPU.
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2025 • 0478/11 • Q6(a)</span>
+    <span class="marks-pill">[8]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">6  Data can be encrypted using asymmetric encryption.<br>  (a) Complete the paragraph about asymmetric encryption.<br>  Use the terms from the list.<br>  Some of the terms in the list will not be used. You may use a term more than once.<br>  algorithm  binary  cipher text  compression  error<br>  hardware  hexadecimal  meaningless  plain text  private<br>  public  readable  transmission  unreadable<br>  Data is encrypted using an encryption key. This is a type of .....................................................<br>  that scrambles the ..................................................... and turns it into<br>  ..................................................... . This makes the data ..................................................... .<br>  A ..................................................... key is used to encrypt the data. This key cannot be used<br>  to decrypt the data. A ..................................................... key is used to decrypt the data. Any<br>  device is able to request the ..................................................... key, but only your device<br>  knows the ..................................................... key.<br>  [8]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">6(a)  One mark for each correct term in the correct position  8</div><div class="clean-ms-row">•  algorithm</div><div class="clean-ms-row">•  plain text</div><div class="clean-ms-row">•  cipher text</div><div class="clean-ms-row">•  meaningless</div><div class="clean-ms-row">•  public/private</div><div class="clean-ms-row">•  private/public (must be opposite of MP5)</div><div class="clean-ms-row">•  public</div><div class="clean-ms-row">•  private
+  Data is encrypted using an encryption key. This is a type of algorithm that scrambles the plain text and turns it into cipher
+  text. This makes the data meaningless.
+  A public/private key is used to encrypt the data. This key cannot be used to decrypt the data. A private/public key is used
+  to decrypt the data. Any device is able to request the public key, but only your device knows the private key.</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2025 • 0478/11 • Q6(b)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">6  Data can be encrypted using asymmetric encryption.<br>  (b) Data can also be encrypted using symmetric encryption.<br>  Give one reason why a person would use asymmetric encryption instead of symmetric<br>  encryption.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">6(b)  Any one from:  1</div><div class="clean-ms-row">•  The process is more secure.</div><div class="clean-ms-row">•  Do not need to worry about key exchange.
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>May/June 2025 • 0478/13 • Q7(b)</span>
+    <span class="marks-pill">[8]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">7  Data is sent from an employee’s computer to a server. The data is correct when it is sent, but an<br>  error is detected when the data is received.<br>  (b) Methods of error detection and correction can be added to make sure that errors are identified<br>  after data is transmitted.<br>  Complete the statements about methods of error detection and correction.<br>  Use terms from the list. Not all terms need to be used. You should only use each term once.<br>  acknowledgement  automatic repeat query (ARQ)  binary  bit<br>  byte  calculation  check digit  checksum  correct<br>  echo check  error  even  incorrect  negative<br>  number  odd  positive  timeout<br>  A parity check is set to be ................................................................ or<br>  ................................................................ . A parity ................................................................ is<br>  added to each byte before transmission to make it match the set parity.<br>  An ................................................................ involves comparing the data sent to the data<br>  received back from the receiving device.<br>  An ................................................................ uses acknowledgement and<br>  ................................................................ . The acknowledgement system can be<br>  ................................................................ or ................................................................ .<br>  [8]<br>Permission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every<br>reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the<br>publisher will be pleased to make amends at the earliest possible opportunity.<br>To avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge<br>Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download<br>at www.cambridgeinternational.org after the live examination series.<br>Cambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge<br>Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.<br>  0478/13/M/J/25</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">7(b)  One mark for each correct term in the correct place.  8</div><div class="clean-ms-row">•  odd/even</div><div class="clean-ms-row">•  even/odd (must be opposite of MP1)</div><div class="clean-ms-row">•  bit</div><div class="clean-ms-row">•  echo check</div><div class="clean-ms-row">•  automatic repeat query (ARQ)</div><div class="clean-ms-row">•  timeout</div><div class="clean-ms-row">•  positive/negative or negative/positive
+  A parity check is set to be odd or even. A parity bit is added to each byte before transmission to make it match the set
+  parity.
+  An echo check involves comparing the data sent to the data received back from the receiving device.
+  An automatic repeat query (ARQ) uses acknowledgement and timeout. The acknowledgement system can be positive
+  or negative.</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2024 • 0478/11 • Q4(a)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">4  A company decides to create a network for its devices.<br>  All the company devices are within a single room.<br>  The employees will need to use their devices to send data to each other and share files.<br>  The company decides to send data across the network using packet switching.<br>  (a) An employee sends an email to another employee. The email is broken down into packets.<br>  Describe the structure of a packet of data for the email.<br>  0478/11/O/N/24</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">4(a)  Any four from:  4</div><div class="clean-ms-row">•  The data packet has three sections</div><div class="clean-ms-row">•  It has a packet header …</div><div class="clean-ms-row">•  … that contains data such as the destination address</div><div class="clean-ms-row">•  It has a payload …</div><div class="clean-ms-row">•  … that contains the main data for the email</div><div class="clean-ms-row">•  It has a trailer …</div><div class="clean-ms-row">•  … that contains data such as the error detection system used
+  PUBLISHED
+ Question  Answer  Marks</div><div class="clean-ms-row">4(b)(i)  Any four from:  4</div><div class="clean-ms-row">•  It sends the data multiple bits at the same time // It uses multiple wires</div><div class="clean-ms-row">•  … so the transmission speed of the data will be fast</div><div class="clean-ms-row">•  Data may not need to travel a long distance</div><div class="clean-ms-row">•  … as the devices are all within a single room</div><div class="clean-ms-row">•  It sends data in both directions at the same time</div><div class="clean-ms-row">•  … so users on the network can send data to each other with no delay</div><div class="clean-ms-row">4(b)(ii)  Any two from:  2</div><div class="clean-ms-row">•  More interference/crosstalk (due to multiple wires)</div><div class="clean-ms-row">•  Data may be skewed (due to multiple bits at a time) // bits may arrive out of order</div><div class="clean-ms-row">•  More chance of data collisions (as data sent in both directions at the same time)</div><div class="clean-ms-row">•  More chance of error in the data</div><div class="clean-ms-row">4(b)(iii)  Any one from:  1</div><div class="clean-ms-row">•  Serial simplex</div><div class="clean-ms-row">•  Serial half-duplex</div><div class="clean-ms-row">•  Serial full-duplex</div><div class="clean-ms-row">•  Parallel simplex</div><div class="clean-ms-row">•  Parallel half-duplex
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2024 • 0478/11 • Q7(b)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">7<br>  ,  ,<br>  (b) The company decides to use parallel full-duplex data transmission to send the data across<br>  the network.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">7(b)  Any one from:  1</div><div class="clean-ms-row">•  Firmware</div><div class="clean-ms-row">•  Bootloader</div><div class="clean-ms-row">•  BIOS</div><div class="clean-ms-row">•  Bootstrap
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2024 • 0478/12 • Q5(a)</span>
+    <span class="marks-pill">[2]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5  A barcode scanning system uses a check digit to check for errors in data on input.<br>  (a) Explain how the barcode scanning system operates to check for errors.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5(a)  Any four from:  4</div><div class="clean-ms-row">•  A check digit is calculated from/using the barcode data</div><div class="clean-ms-row">•  … using an algorithm // by example e.g. Modulo 11</div><div class="clean-ms-row">•  … and added to the barcode</div><div class="clean-ms-row">•  When/after the barcode is scanned the check digit is recalculated …</div><div class="clean-ms-row">•  … using the same algorithm</div><div class="clean-ms-row">•  If the check digits do not match an error has occurred when scanning the barcode // If the check digits match no error
+  has occurred when scanning the barcode</div><div class="clean-ms-row">5(b)(i)  •  Bits are sent one at a time  3</div><div class="clean-ms-row">•  Bits are sent down a single wire</div><div class="clean-ms-row">•  Data is sent in one direction only
+  PUBLISHED
+ Question  Answer  Marks</div><div class="clean-ms-row">5(b)(ii)  Any three from:  3</div><div class="clean-ms-row">•  The stock control system may be a long distance away</div><div class="clean-ms-row">•  … parallel should not be used in long distance transmission // Serial is more reliable for long distance transmission</div><div class="clean-ms-row">•  The data does not need to be sent quickly</div><div class="clean-ms-row">•  … the increased speed of parallel is not needed</div><div class="clean-ms-row">•  … as only small amounts of data need to be sent</div><div class="clean-ms-row">•  The bits are sent/arrived in order</div><div class="clean-ms-row">•  … the data will not be skewed // the data could be skewed if parallel was used</div><div class="clean-ms-row">•  … there will be no data collisions</div><div class="clean-ms-row">•  There will be less interference/crosstalk (due to single wire)</div><div class="clean-ms-row">•  … there will be fewer errors in the data</div><div class="clean-ms-row">•  No need for a reply/response from stock control system</div><div class="clean-ms-row">•  … half-duplex/full-duplex is not necessary as only one way transmission needed</div><div class="clean-ms-row">5(b)(iii)  Any two from:  2</div><div class="clean-ms-row">•  (Odd/even) Parity check // Parity byte check // parity block check</div><div class="clean-ms-row">•  Checksum</div><div class="clean-ms-row">•  Echo check</div><div class="clean-ms-row">•  (Positive/negative) ARQ // Automatic repeat query // Automatic repeat request
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2024 • 0478/12 • Q8(b)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">8  A robot vacuum cleaner uses sensors to navigate around obstacles in a room.<br>  (b) An expert system can be used to diagnose an error with a robot vacuum cleaner.<br>  Circle three components that are part of an expert system.<br>  knowledge base  operating system  firewall<br>  server  printer  actuator  inference engine<br>  rule base  encryption<br>  [3]<br>  10<br>,  ,</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">8(b)  •  Knowledge base  3</div><div class="clean-ms-row">•  Rule base</div><div class="clean-ms-row">•  Inference engine</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2025 • 0478/11 • Q5(d)</span>
+    <span class="marks-pill">[1]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5<br>  ,  ,<br>  (d) An echo check is used to check for errors after the image has been transmitted.<br>  Draw and annotate a diagram to show how the echo check would detect any errors.<br>  [3]</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5(d)  A  1</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2025 • 0478/11 • Q5(e)</span>
+    <span class="marks-pill">[3]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">5<br>  ,  ,<br>  (e) The image data is encrypted using symmetric encryption.</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">5(e)  Any three from:  3
+  For example:</div><div class="clean-ms-row">•  It could learn the route to a customer’s house</div><div class="clean-ms-row">•  It could learn where there are obstacles on a route</div><div class="clean-ms-row">•  It could learn to deal with obstacles more effectively</div><div class="clean-ms-row">•  It could reason which parts of the route are paths and which are roads</div><div class="clean-ms-row">•  It can use machine learning</div><div class="clean-ms-row">•  To identify patterns in the route data
+  PUBLISHED
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+<article class="clean-card">
+  <div class="clean-head">
+    <span>Oct/Nov 2025 • 0478/13 • Q3(a)</span>
+    <span class="marks-pill">[2025]</span>
+  </div>
+  <div class="clean-body">
+    <div class="clean-question">3  Data is split into packets before it is transmitted across a network.<br>  (a) The diagram shows a packet with three sections.<br>  Complete the diagram by writing the name of each section of the packet.<br>  Write an example in each section of what would be stored in that part of the packet.<br>  Packet<br>  First<br> The first section is called the<br> .......................................................  Example .......................................................<br>  Second<br> The second section is called the<br> .......................................................  Example .......................................................<br>  Third<br> The third section is called the<br> .......................................................  Example .......................................................<br>  [6]<br>  0478/13/O/N/25</div>
+    <textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+    <button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+    <div class="clean-marking">
+      <div class="clean-label">MARK SCHEME IN OUR FORMAT</div>
+      <div class="clean-ms-row">3(a)  One mark for each correct section  6</div><div class="clean-ms-row">One mark for each correct example of what it stores
+  First section</div><div class="clean-ms-row">•  Header</div><div class="clean-ms-row">•  Originators/senders (IP) address</div><div class="clean-ms-row">•  Destination/receivers (IP) address</div><div class="clean-ms-row">•  Packet number
+  Second section</div><div class="clean-ms-row">•  Payload</div><div class="clean-ms-row">•  The data itself
+  Third section</div><div class="clean-ms-row">•  Trailer</div><div class="clean-ms-row">•  End of packet notification</div><div class="clean-ms-row">•  Error checking data</div><div class="clean-ms-row">3(b)(i)  Four from:  4</div><div class="clean-ms-row">•  Data is sent one bit at a time</div><div class="clean-ms-row">•  … down a single wire</div><div class="clean-ms-row">•  Data can be sent in both directions …</div><div class="clean-ms-row">•  … at the same time</div><div class="clean-ms-row">3(b)(ii)  Any Four from:  4</div><div class="clean-ms-row">•  Data is sent multiple bits at the same time</div><div class="clean-ms-row">•  … down multiple wires</div><div class="clean-ms-row">•  Data can be sent in both directions …</div><div class="clean-ms-row">•  … not at the same time
+  PUBLISHED  2025
+ Question  Answer  Marks</div>
+    </div>
+  </div>
+</article>
+</section>
+</div><footer class="site-footer">
+<div class="site-footer-brand">Excellence By Adeel Kapasi <span>•</span> CS Notes</div>
+<div class="site-footer-label">Google Maps • Our locations</div>
+<div class="site-footer-links">
+<a href="https://share.google/D6klleel4komfGVpH" target="_blank" rel="noopener">View Location 1 on Google Maps ↗</a>
+<a href="https://share.google/fnQfEAAVV0bo7B6q6" target="_blank" rel="noopener">View Location 2 on Google Maps ↗</a>
+</div>
+</footer>
+</main></div>
+<script>
+(()=>{const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const boxes=$$('.done'),nav=$$('#nav button'),secs=$$('.section');function prog(){let n=boxes.filter(x=>x.checked).length,p=Math.round(n/boxes.length*100);$('#progressBar').style.width=p+'%';$('#progressText').textContent=p+'% sections completed';nav.forEach(b=>b.classList.toggle('done',!!$('.done[data-sec="'+b.dataset.target+'"]')?.checked));}const STORE='excellence-cs-ch2-done';try{const saved=JSON.parse(localStorage.getItem(STORE)||'[]');boxes.forEach(x=>{if(saved.includes(x.dataset.sec))x.checked=true;});}catch(e){}function saveProgress(){localStorage.setItem(STORE,JSON.stringify(boxes.filter(x=>x.checked).map(x=>x.dataset.sec)));}boxes.forEach(x=>x.addEventListener('change',()=>{saveProgress();prog();}));prog();nav.forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth'})));$('#resetProgress').addEventListener('click',()=>{boxes.forEach(x=>x.checked=false);localStorage.removeItem(STORE);prog();});$('#search').addEventListener('input',e=>{let q=e.target.value.trim().toLowerCase();secs.forEach(s=>s.classList.toggle('hidden',q&&!s.textContent.toLowerCase().includes(q)));});
+let shown=false;$('#answers').addEventListener('click',()=>{shown=!shown;$$('.ms').forEach(x=>x.style.outline=shown?'3px solid #9ad8bd':'');$('#answers').textContent=shown?'Model answers highlighted':'Show model answers';});
+$('#parCalc').addEventListener('click',()=>{let s=$('#parBits').value.trim(),m=$('#parMode').value;if(!/^[01]{7}$/.test(s)){ $('#parOut').innerHTML='<span class="bad">Enter exactly seven bits (0 or 1).</span>';$('#parGrid').innerHTML='';return;}let ones=[...s].filter(x=>x==='1').length,bit=m==='even'?(ones%2):(ones%2?0:1);let full=s+bit;$('#parGrid').innerHTML=[...full].map((x,i)=>'<div class="cell '+(i===7?'par':'')+'">'+x+'</div>').join('');$('#parOut').innerHTML='<span class="ok">Parity bit = '+bit+'. Total 1s = '+([...full].filter(x=>x==='1').length)+', which is '+m+'.</span>';});
+const qs=[
+{q:'Which packet part contains the actual transmitted data?',a:['Header','Payload','Trailer'],c:1},
+{q:'Why can packets arrive out of order?',a:['They may take different routes','Every packet has a different parity rule','USB reverses their order'],c:0},
+{q:'Which statement defines half-duplex?',a:['One direction only','Both directions simultaneously','Both directions, but not at the same time'],c:2},
+{q:'In even parity, what must be even?',a:['The number of bytes','The total number of 1s including the parity bit','The number of 0s before transmission'],c:1},
+{q:'What distinguishes an echo check from a checksum?',a:['Echo returns a copy of received data; checksum recalculates a value','Checksum only works on barcodes','Echo check uses a public key'],c:0},
+{q:'What two mechanisms are central to ARQ?',a:['Payload and trailer','Acknowledgement and timeout','Public and private keys'],c:1},
+{q:'A check digit is primarily used here to detect what?',a:['Data-entry errors','CPU overflow','Packet routing'],c:0},
+{q:'What is the best statement about encryption?',a:['It prevents data from being intercepted','It makes intercepted ciphertext difficult to understand without the required key','It detects all transmission errors'],c:1}
+];let qi=0,score=0,lock=false;function render(){lock=false;$('#qn').textContent=qi+1;$('#qt').textContent=qs[qi].q;$('#choices').innerHTML='';$('#qf').textContent='';$('#next').style.display='none';qs[qi].a.forEach((t,i)=>{let b=document.createElement('button');b.type='button';b.className='quizchoice';b.textContent=t;b.addEventListener('click',()=>ans(i,b));$('#choices').appendChild(b);});}function ans(i,b){if(lock)return;lock=true;let q=qs[qi];$$('.quizchoice',$('#choices')).forEach((x,j)=>{if(j===q.c)x.classList.add('correct')});if(i===q.c){score++;$('#qf').innerHTML='<span class="ok">Correct.</span>'}else{b.classList.add('wrong');$('#qf').innerHTML='<span class="bad">Review the highlighted answer and its section.</span>'}$('#next').style.display='inline-block';$('#next').textContent=qi===qs.length-1?'See score':'Next';}$('#next').addEventListener('click',()=>{if(qi<qs.length-1){qi++;render()}else{$('#qt').textContent='Score: '+score+' / '+qs.length;$('#choices').innerHTML='';$('#qf').textContent=score===qs.length?'Excellent — now practise full written process answers.':'Review weak sections, especially process chains and distinctions.';$('#next').style.display='none';}});render();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)nav.forEach(b=>b.classList.toggle('active',b.dataset.target===e.target.id))}),{rootMargin:'-20% 0px -65% 0px'});secs.forEach(s=>io.observe(s));})();
+</script>
+</body></html>

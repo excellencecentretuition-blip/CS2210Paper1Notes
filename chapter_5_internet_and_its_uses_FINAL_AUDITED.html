@@ -1,0 +1,231 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 5 — The Internet and its Uses | Cambridge O Level Computer Science 2210</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f5f7fb;color:#15203a;font-family:Inter,Segoe UI,Arial,sans-serif}.side{position:fixed;inset:0 auto 0 0;width:280px;background:#101c38;color:#fff;padding:24px 17px;overflow:auto}.side h2{margin:0;font-size:19px}.side p{font-size:12px;color:#aebee8}.side a{display:block;color:#eef3ff;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:13px}.side a:hover{background:#21345d}.main{margin-left:280px;padding:28px;max-width:1370px}.hero,.bankhero{background:linear-gradient(135deg,#101c38,#3559a8);color:#fff;border-radius:22px;padding:31px}.eyebrow{font-size:11px;letter-spacing:.13em;font-weight:900;color:#b9c9ff}.hero h1{font-size:46px;margin:6px 0}.hero p,.bankhero p{line-height:1.6;color:#e4eaff}.rule{background:#ffffff13;border:1px solid #ffffff30;border-radius:12px;padding:13px}.sec{margin:34px 0;scroll-margin-top:20px}.sec h2{font-size:30px;margin:6px 0 15px}.sec p,.sec li{line-height:1.65}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#e9efff;color:#3157d5;font-size:12px;font-weight:900}.map,.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}.map div,.compare article{background:#fff;border:1px solid #dbe2ee;border-radius:15px;padding:17px}.map b,.map span{display:block}.map b{font-size:24px;color:#3157d5}.map span{margin-top:5px}table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}th,td{text-align:left;padding:12px;border-bottom:1px solid #dbe2ee;vertical-align:top;line-height:1.5}th{background:#edf2f8}.exam,.trap{padding:13px 15px;border-radius:11px;margin-top:13px;line-height:1.55}.exam{background:#eef5ff;border-left:4px solid #3157d5}.trap{background:#fff7e8;border-left:4px solid #b66c00}.steps{display:grid;grid-template-columns:1fr 1fr;gap:9px}.steps div{background:#fff;border:1px solid #dbe2ee;border-radius:12px;padding:13px;display:flex;gap:11px}.steps b{background:#3157d5;color:#fff;min-width:28px;height:28px;border-radius:50%;display:grid;place-items:center}.steps span{line-height:1.5}.urlbox{background:#101c38;color:#fff;padding:18px;border-radius:12px;font:700 18px ui-monospace,monospace;margin:12px 0}.proto{color:#a8d0ff}.domain{color:#b9f1d2}.path{color:#ffdca6}.bank{margin-top:58px;border-top:4px solid #13244c;padding-top:25px}.bankhero h2{font-size:34px;margin:4px 0}.tools{display:flex;gap:9px;margin:15px 0}.tools input{flex:1;padding:12px;border:1px solid #d5ddeb;border-radius:10px;font:inherit}.tools button,.reveal{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.qcard{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.qhead{background:#f0f3f8;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;color:#3157d5;font-weight:900;font-size:13px}.pills{display:flex;gap:7px}.pills span,.pills b{padding:5px 9px;border-radius:999px}.pills span{background:#e5ebfa}.pills b{background:#14244b;color:#fff}.qbody{padding:18px}.question{font-size:16px;font-weight:620;line-height:1.72}.qbody textarea{width:100%;min-height:115px;margin:14px 0 8px;padding:12px;border:1px solid #d5ddeb;border-radius:11px;font:inherit}.marking{display:none;margin-top:14px}.marking.show{display:block}.label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin-bottom:8px}.msrow{background:#eef9f3;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;line-height:1.55}.reveal.open{background:#173f82}@media(max-width:850px){.side{position:relative;width:auto}.main{margin:0}.compare,.map,.steps{grid-template-columns:1fr}.qhead{flex-direction:column}}</style><style id="clean-bank-style">
+.clean-bank{margin-top:58px;border-top:4px solid #13244c;padding-top:25px}.clean-tools{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.clean-tools input{flex:1;min-width:260px;padding:12px 14px;border:1px solid #d3dceb;border-radius:11px;font:inherit}.clean-tools button,.clean-btn{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.clean-card{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.clean-head{background:#f1f4f9;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#3157d5;font-weight:900;font-size:13px}.clean-body{padding:18px}.clean-question{font-size:17px;font-weight:650;line-height:1.72;color:#121a2d;margin:4px 0 14px}.clean-answer{width:100%;min-height:110px;border:1px solid #d6deeb;border-radius:11px;padding:12px;font:inherit;resize:vertical;margin:7px 0 8px}.clean-marking{display:none;margin-top:14px}.clean-marking.show{display:block}.clean-label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin:0 0 8px}.clean-ms-row{background:#f0f9f4;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;line-height:1.55}.clean-btn.open{background:#173f82}
+</style><style id="shared-shell">
+.app{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}
+body>.app>.sidebar,body>.app>.side{position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto}
+body>.app>.main{margin-left:0!important;min-width:0}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+.nav button:hover,.nav button.active{background:#223052;color:#fff}
+.page-search{margin-top:16px}
+.page-search input{width:min(520px,100%);padding:11px 13px;border:0;border-radius:10px;font:inherit}
+.hidden-by-search{display:none!important}
+.clean-head .pills{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.clean-head .pills span{background:#e5ebfa;color:#3157d5;padding:5px 9px;border-radius:999px}
+.clean-head .pills b{background:#14244b;color:#fff;padding:5px 9px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar,body>.app>.side{position:relative;height:auto;width:auto}.nav{display:grid;grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.nav{grid-template-columns:1fr}}
+</style><style id="unified-chrome">
+body{background:#f6f8fc;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body>.app>.sidebar{background:#111b34;color:#eaf0ff;padding:22px 18px;position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto;box-sizing:border-box}
+.brand{font-weight:800;font-size:18px;line-height:1.25;color:#fff}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 8px;overflow:hidden}
+.progress>i,.progress i{display:block;height:100%;width:0;background:#8eabff}
+.pct{font-size:12px;color:#aebadd}
+.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}
+body>.app .nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+body>.app .nav button:hover,body>.app .nav button.active{background:#223052;color:#fff}
+body>.app .nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+header.hero,section.hero{background:linear-gradient(135deg,#fff,#eef3ff)!important;color:#172033!important;border-bottom:1px solid #dfe5ef;border-radius:0!important;box-shadow:none!important;padding:42px clamp(20px,5vw,70px) 30px!important;margin:0!important}
+.hero .eyebrow{color:#3157d5!important;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{color:#172033!important;font-size:clamp(30px,5vw,48px);line-height:1.05;margin:8px 0 12px}
+.hero-lead{color:#172033;font-size:18px;font-weight:650;margin:0 0 8px;max-width:800px}
+.hero p{color:#657089!important;max-width:820px}
+.hero .principle,.hero .rule{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important;border-radius:12px}
+.hero .hero-grid div{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important}
+.hero .hero-grid b{color:#3157d5!important}
+.hero .hero-grid span{color:#657089!important}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.searchbar{flex:1;min-width:220px;max-width:520px}
+.searchbar input{width:100%;padding:11px 13px;border:1px solid #dfe5ef;border-radius:10px;font:inherit;background:#fff;color:#172033}
+.toolbar .btn,.toolbar button.btn{border:1px solid #dfe5ef;background:#fff;color:#172033;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+.site-footer{margin:8px clamp(18px,4vw,48px) 36px;background:linear-gradient(135deg,#14244b,#294a88);color:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 10px 26px rgba(20,36,75,.14)}
+.site-footer-brand{font-weight:900;font-size:16px}
+.site-footer-brand span{opacity:.72}
+.site-footer-label{margin-top:7px;font-size:13px;opacity:.82}
+.site-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.site-footer-links a{display:inline-block;background:#fff;color:#14244b;text-decoration:none;font-weight:800;padding:9px 13px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar{position:relative;height:auto;width:auto}body>.app .nav{display:grid;grid-template-columns:1fr 1fr}header.hero,section.hero{padding:28px 18px 22px!important}}
+@media(max-width:520px){body>.app .nav{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app"><aside class="sidebar"><div class="brand">Excellence By Adeel Kapasi<small>CS Notes</small><small>Cambridge O Level 2210 • Paper 1 • 2026–2028</small></div><div class="progress"><i id="progressBar"></i></div><div class="pct" id="progressText">0% sections completed</div><div class="nav-title">Chapter 5</div><nav class="nav" id="nav"><button type="button" data-target="top">Overview</button><button type="button" data-target="map">Chapter map</button><button type="button" data-target="internet">5.1 Internet vs WWW</button><button type="button" data-target="url">URL / HTTP / HTTPS</button><button type="button" data-target="browser">Web browser</button><button type="button" data-target="retrieval">Web-page retrieval</button><button type="button" data-target="cookies">Cookies</button><button type="button" data-target="currency">5.2 Digital currency</button><button type="button" data-target="threats">5.3 Cyber threats</button><button type="button" data-target="solutions">Security solutions</button><button type="button" data-target="ssl">SSL</button><button type="button" data-target="practice">Past-paper cards</button></nav></aside><main class="main"><section class="hero" id="top"><div class="eyebrow">Chapter 5 • The Internet and its Uses</div><h1>The Internet and its Uses</h1>
+<p><b>Master authority:</b> Cambridge O Level Computer Science 2210 syllabus 2026–2028. <b>Exam-evidence layer:</b> supplied 0478 Paper 1 QP/MS corpus.</p>
+<div class="rule">Same locked method: syllabus defines the complete teaching boundary; supplied QP/MS deepens the teaching and supplies the practice cards. No assistant-written practice questions.</div><div class="toolbar"><div class="searchbar"><input id="search" aria-label="Search chapter" placeholder="Search this chapter…"></div><button class="btn" id="resetProgress" type="button">Reset progress</button></div></section>
+
+<section class="sec" id="map"><h2>Chapter map</h2><div class="map"><div><b>5.1</b><span>The internet & the world wide web</span></div><div><b>5.2</b><span>Digital currency & blockchain</span></div><div><b>5.3</b><span>Cyber security threats</span></div><div><b>5.3</b><span>Security solutions</span></div></div></section>
+
+<section class="sec" id="internet"><div class="tag">5.1</div><h2>Internet vs World Wide Web</h2>
+<div class="compare"><article><h3>Internet</h3><p>The <b>infrastructure</b>: the global network/network infrastructure that allows devices and networks to communicate.</p></article><article><h3>World Wide Web</h3><p>The <b>collection of websites and web pages</b> that are accessed using the internet.</p></article></div>
+<div class="trap"><b>Critical distinction:</b> the internet and WWW are not synonyms. The web uses the internet's infrastructure.</div></section>
+
+<section class="sec" id="url"><h2>URL, HTTP and HTTPS</h2>
+<p>A <b>uniform resource locator (URL)</b> is a text-based address for a web page. The syllabus expects recognition of its components: <b>protocol, domain name and web page/file name</b>.</p>
+<div class="urlbox"><span class="proto">https://</span><span class="domain">www.example.com</span><span class="path">/index.html</span></div>
+<table><tr><th>Part</th><th>Meaning</th></tr><tr><td>Protocol</td><td>Rules/protocol used for communication, e.g. HTTP or HTTPS.</td></tr><tr><td>Domain name</td><td>Human-readable name used to identify the website/domain.</td></tr><tr><td>Web page/file name</td><td>Identifies the requested resource/page/file.</td></tr></table>
+<h3>HTTP and HTTPS</h3><p><b>HTTP</b> is the protocol used to transfer web-page data. <b>HTTPS</b> provides secure transfer; the supplied papers connect secure web communication to SSL, encrypted transmission and digital-certificate validation.</p></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>HTTP vs HTTPS — exam depth:</b> HTTP provides the rules for requesting/transferring web-page data. HTTPS is the secure form used when transmitted data needs protection. Supplied papers connect a secure web connection with <b>encryption, SSL and digital-certificate authentication</b>; HTTPS/SSL protects data in transmission rather than making the website itself automatically trustworthy.</div>
+</div>
+<section class="sec" id="browser"><h2>Web browser</h2>
+<p>The main purpose of a web browser is to <b>render HTML and display web pages</b>.</p>
+<table><tr><th>Browser function</th><th>What it does</th></tr><tr><td>Bookmarks/favourites</td><td>Stores links to pages for later access.</td></tr><tr><td>History</td><td>Records pages/sites previously visited.</td></tr><tr><td>Multiple tabs</td><td>Allows multiple web pages to be open in one browser window.</td></tr><tr><td>Cookies</td><td>Stores/manages cookie data used by websites.</td></tr><tr><td>Navigation tools</td><td>Provides controls for moving through browsing history/pages.</td></tr><tr><td>Address bar</td><td>Allows a URL/address to be entered.</td></tr></table></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Browser functions required by the syllabus:</b> A web browser's main purpose is to <b>render HTML and display web pages</b>. It can also store <b>bookmarks/favourites</b>, record <b>user history</b>, allow <b>multiple tabs</b>, store/manage <b>cookies</b>, provide <b>navigation tools</b> and provide an <b>address bar</b>.</div>
+</div>
+<section class="sec" id="retrieval"><h2>How a web page is located, retrieved and displayed</h2>
+<div class="steps"><div><b>1</b><span>User enters a URL in the web browser.</span></div><div><b>2</b><span>The URL/domain is sent to a <b>domain name server (DNS)</b>.</span></div><div><b>3</b><span>DNS searches for the matching <b>IP address</b>.</span></div><div><b>4</b><span>If not found, the request can be passed to another DNS.</span></div><div><b>5</b><span>The matching IP address is returned to the user's device/browser.</span></div><div><b>6</b><span>The browser/device sends a request to the <b>web server</b>.</span></div><div><b>7</b><span>The web server sends the requested web-page / HTML data.</span></div><div><b>8</b><span>The browser <b>renders the HTML</b> and displays the page.</span></div></div>
+<div class="exam"><b>Examiner lens:</b> supplied MS repeatedly rewards the complete chain <b>URL → DNS → IP address → web server request → HTML/web-page data → browser rendering</b>.</div></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Full retrieval chain from the supplied MS:</b> The browser sends the <b>URL/domain to a DNS</b>; the DNS searches for the matching <b>IP address</b>; if it cannot find the URL it can pass the request to <b>another DNS</b>; the IP address is returned; the browser/device sends a request to the <b>web server</b>; the server returns the <b>web page/HTML data</b>; and the browser <b>renders the HTML</b> to display the page.</div>
+</div>
+<section class="sec" id="cookies"><h2>Cookies</h2>
+<p>Cookies are small pieces/files of data used by websites and stored/managed by the browser. The syllabus explicitly includes saving personal details, tracking user preferences, holding shopping-cart items and storing login details.</p>
+<div class="compare"><article><h3>Session cookie</h3><p>Temporary. Associated with the current browsing session; supplied MS evidence describes it as stored in memory/RAM and lost when the browser is closed.</p></article><article><h3>Persistent cookie</h3><p>Remains beyond the current session; supplied MS evidence describes it as stored in secondary storage and remaining until it expires or is deleted.</p></article></div></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Cookie use — syllabus checklist:</b> Cookies can save <b>personal details</b>, track <b>user preferences</b>, hold items in an <b>online shopping cart</b> and store <b>login details</b>. A <b>session cookie</b> is temporary and is lost when the browser/session ends; supplied MS evidence describes it as stored in memory/RAM. A <b>persistent cookie</b> remains after the session, normally in secondary storage, until it expires or is deleted.</div>
+</div>
+<section class="sec" id="currency"><div class="tag">5.2</div><h2>Digital currency & blockchain</h2>
+<p>A <b>digital currency</b> exists only electronically rather than physically. It can be accessed/used electronically.</p>
+<h3>Blockchain</h3><p>At this syllabus level, blockchain is a <b>digital ledger</b>: a time-stamped series of records that cannot be altered. Supplied mark-scheme evidence expands the process:</p>
+<div class="steps"><div><b>1</b><span>A transaction is made using digital currency.</span></div><div><b>2</b><span>The transaction is stored as a new set/block of data.</span></div><div><b>3</b><span>It is given a <b>time-stamp</b>.</span></div><div><b>4</b><span>It is linked to the previous set/block of data.</span></div><div><b>5</b><span>Existing transactions cannot be altered; new transactions are added.</span></div><div><b>6</b><span>This creates a traceable record/ledger of transactions.</span></div></div>
+<div class="exam"><b>Source wording worth learning:</b> blockchain is a decentralised digital ledger/database in which transactions are time-stamped, linked to previous data and cannot be altered.</div></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Blockchain — answer chain:</b> Digital currency exists only electronically. Blockchain records transactions in a <b>digital ledger</b>. Transactions/records are <b>time-stamped</b>, new records are linked into the existing chain/ledger and existing records cannot simply be altered. This provides a traceable record of digital-currency transactions.</div>
+</div>
+<section class="sec" id="threats"><div class="tag">5.3</div><h2>Cyber-security threats</h2><p>For every threat, students need both the <b>process</b> (how it happens) and the <b>aim/effect</b> (what the attacker is trying to achieve).</p>
+<table><tr><th>Threat</th><th>Process / central idea</th></tr>
+<tr><td>Brute-force attack</td><td>Repeatedly tries possible credentials/password combinations until a valid one is found; aims to gain unauthorised access.</td></tr>
+<tr><td>Data interception</td><td>Data being transmitted is captured/read by an unauthorised party; the attacker may obtain confidential information.</td></tr>
+<tr><td>DDoS</td><td>Many compromised devices/bots send large numbers of requests to a target simultaneously, overwhelming the server/service and preventing legitimate access.</td></tr>
+<tr><td>Hacking</td><td>Gaining unauthorised access to a computer/system/network, potentially to view, alter, steal or damage data/resources.</td></tr>
+<tr><td>Virus</td><td>Malicious code attached to/in another file/program; can replicate/spread when the host is executed.</td></tr>
+<tr><td>Worm</td><td>Malware capable of self-replicating and spreading across networks without needing a host file in the same way as a virus.</td></tr>
+<tr><td>Trojan horse</td><td>Malware disguised as legitimate/useful software to persuade a user to install/run it.</td></tr>
+<tr><td>Spyware</td><td>Secretly monitors/collects user activity or data and passes it to another party.</td></tr>
+<tr><td>Adware</td><td>Displays unwanted advertising, often based on/associated with user activity.</td></tr>
+<tr><td>Ransomware</td><td>Prevents access to data/system, commonly through encryption/locking, and demands payment.</td></tr>
+<tr><td>Pharming</td><td>Redirects a user to a fraudulent website, even when the intended address is used, in order to obtain data such as credentials.</td></tr>
+<tr><td>Phishing</td><td>Fraudulent communication impersonates a trusted source and attempts to persuade the victim to reveal data or follow a malicious link.</td></tr>
+<tr><td>Social engineering</td><td>Manipulates/deceives people rather than directly attacking technology, to make them disclose information or perform an unsafe action.</td></tr></table></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>DDoS — full process:</b> Malware can turn many computers/devices into <b>bots</b>, forming a <b>botnet</b>. The attacker causes the bots to send large numbers of requests simultaneously to a <b>web server</b>. The server becomes overloaded/can crash, so legitimate users cannot access the website/service.</div>
+<div class="exam"><b>Threat precision:</b> <b>Hacking</b> is gaining unauthorised access to a computer/system. A <b>brute-force attack</b> repeatedly tries password/key combinations until one succeeds. <b>Data interception</b> captures data while it is being transmitted. <b>Phishing</b> uses fraudulent communication to trick a user into disclosing data or following a malicious link; <b>pharming</b> redirects a user to a fraudulent site even when an apparently correct address is used. <b>Social engineering</b> manipulates people into revealing information or performing an unsafe action.</div>
+<div class="exam"><b>Malware distinctions:</b> A <b>virus</b> attaches to/infects files or programs and replicates when the host is run; a <b>worm</b> self-replicates and spreads across networks; a <b>Trojan horse</b> appears legitimate but contains malicious code; <b>spyware</b> secretly monitors/collects user data; <b>adware</b> displays unwanted advertising and may track behaviour; <b>ransomware</b> blocks/encrypts access to data and demands payment.</div>
+</div>
+<section class="sec" id="solutions"><h2>Security solutions</h2>
+<table><tr><th>Solution</th><th>How it helps</th></tr>
+<tr><td>Access levels</td><td>Restrict users to data/resources they are authorised to use.</td></tr>
+<tr><td>Anti-malware</td><td>Detects, blocks/quarantines and/or removes malicious software; syllabus includes anti-virus and anti-spyware.</td></tr>
+<tr><td>Username + password</td><td>Authenticates a user using credentials.</td></tr>
+<tr><td>Biometrics</td><td>Authenticates using a physical/behavioural characteristic of the user.</td></tr>
+<tr><td>Two-step verification</td><td>Requires a second authentication step, reducing reliance on one compromised credential.</td></tr>
+<tr><td>Automatic software updates</td><td>Applies security fixes/patches so known vulnerabilities are corrected.</td></tr>
+<tr><td>Check spelling/tone</td><td>Unusual wording, errors or tone can indicate a fraudulent/social-engineering communication.</td></tr>
+<tr><td>Check URL on links</td><td>Helps identify links leading to fraudulent/unexpected domains.</td></tr>
+<tr><td>Firewall</td><td>Examines network traffic against criteria/rules; can reject traffic that fails them and block/close ports.</td></tr>
+<tr><td>Privacy settings</td><td>Restrict what information is exposed and who can access it.</td></tr>
+<tr><td>Proxy server</td><td>Acts as an intermediary; can inspect/filter requests and prevent unwanted/suspicious traffic reaching the protected server/network.</td></tr>
+<tr><td>SSL</td><td>Supports secure web communication; supplied papers test encrypted connection and server identity through a digital certificate.</td></tr></table>
+<div class="exam"><b>How Cambridge often awards explanation marks:</b> identify the solution → state what it checks/does → link this to how the attack or unauthorised access is prevented.</div></section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Security-solutions checklist:</b> The syllabus requires <b>access levels</b>; <b>anti-malware</b> including anti-virus and anti-spyware; <b>authentication</b> using username/password, biometrics and two-step verification; <b>automatic software updates</b>; checking the <b>spelling and tone</b> of communications; checking the <b>URL attached to a link</b>; <b>firewalls</b>; <b>privacy settings</b>; <b>proxy servers</b>; and <b>SSL</b>. In an explain question, link the solution to the threat it prevents/reduces.</div>
+<div class="exam"><b>Proxy server against DDoS — 2025 MS depth:</b> A proxy examines incoming requests/transmissions. It can <b>limit the number/rate of requests</b> forwarded to the web server, use <b>caching</b> to answer a request without forwarding it, and <b>block requests from a particular IP address</b>. This reduces malicious traffic reaching the web server.</div>
+<div class="exam"><b>Firewall:</b> A firewall monitors/checks incoming and outgoing network traffic against rules/criteria and blocks traffic that does not meet the rules. It therefore helps prevent unauthorised or suspicious connections; it is not the same thing as anti-malware software.</div>
+</div>
+<section class="sec" id="ssl"><h2>SSL secure-connection process</h2>
+<div class="steps"><div><b>1</b><span>Browser asks the web server to identify itself.</span></div><div><b>2</b><span>Web server sends its <b>digital certificate</b>.</span></div><div><b>3</b><span>Browser authenticates/validates the certificate.</span></div><div><b>4</b><span>If valid, a secure/encrypted connection can be established and the transaction/data transfer can begin.</span></div><div><b>5</b><span>Supplied MS links the encrypted connection to asymmetric encryption so intercepted data is meaningless.</span></div><div><b>6</b><span>If the certificate is invalid, the connection is not treated as secure; the transaction can be rejected/cancelled or the user notified.</span></div></div></section>
+<section class="clean-bank" id="practice"><div class="bankhero"><div class="eyebrow">SUPPLIED PAPER CORPUS • SOURCE-ONLY PRACTICE</div><h2>Past Paper Practice & Marking</h2><p>Locked clean-source-card format: Cambridge source question → student answer → corresponding marking content. No generated practice questions.</p></div><div class="clean-tools"><input id="cleanSearch" oninput="filterClean()" placeholder="Search session, paper, topic or question…"><button onclick="allClean(true)">Show all</button><button onclick="allClean(false)">Hide all</button></div><article class="clean-card" data-search="oct/nov 2024 0478/12 q7(a–e) url, browser, dns retrieval &amp; ssl a student enters the uniform resource locator (url) for a web page into their tablet computer.
+
+(a) state what is meant by a url.
+
+(b) identify two different parts of a url.
+
+(c) the student enters the url into a piece of software that then displays the web page. identify the name of this software.
+
+(d) draw and annotate a diagram to show how the web page is located and retrieved to be displayed on the student’s tablet computer.
+
+(e) the data for the web page is transmitted using the secure socket layer (ssl) protocol. complete the paragraph about the ssl protocol using only terms from the given list."><div class="clean-head"><div>Oct/Nov 2024 • 0478/12 • Q7(a–e)</div><div class="pills"><span>URL, browser, DNS retrieval & SSL</span><b>14 marks</b></div></div><div class="clean-body"><div class="clean-question">A student enters the uniform resource locator (URL) for a web page into their tablet computer.<br><br>(a) State what is meant by a URL.<br><br>(b) Identify two different parts of a URL.<br><br>(c) The student enters the URL into a piece of software that then displays the web page. Identify the name of this software.<br><br>(d) Draw and annotate a diagram to show how the web page is located and retrieved to be displayed on the student’s tablet computer.<br><br>(e) The data for the web page is transmitted using the secure socket layer (SSL) protocol. Complete the paragraph about the SSL protocol using only terms from the given list.</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea><button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">URL: a text-based address for a web page.</div><div class="clean-ms-row">Parts can include the protocol, domain name and web page/file name.</div><div class="clean-ms-row">(c) Web browser.</div><div class="clean-ms-row">(d) URL sent from web browser to DNS; DNS finds matching IP address; if URL cannot be found it is sent to the next DNS; IP address returned to web browser; request sent from web browser to web server; web page/HTML files sent to web browser; web browser renders HTML. (5 marks available.)</div><div class="clean-ms-row">(e) The web browser asks the web server to identify itself; the web server sends its digital certificate; the web browser authenticates the digital certificate; if authentic, encrypted data transmission begins.</div></div></div></article><article class="clean-card" data-search="may/june 2025 0478/12 q5(c)(i–ii) web-page retrieval &amp; secure connection a patient uses the hospital website.
+
+(c)(i) draw and annotate a diagram to show how the web page is located and retrieved.
+
+(ii) explain how a secure connection is established between the patient’s computer and the web server."><div class="clean-head"><div>May/June 2025 • 0478/12 • Q5(c)(i–ii)</div><div class="pills"><span>Web-page retrieval & secure connection</span><b>12 marks</b></div></div><div class="clean-body"><div class="clean-question">A patient uses the hospital website.<br><br>(c)(i) Draw and annotate a diagram to show how the web page is located and retrieved.<br><br>(ii) Explain how a secure connection is established between the patient’s computer and the web server.</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea><button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(i) Web browser identified as software used to send URL/requests or receive IP address/web page data; URL/domain sent to DNS; DNS searches for matching IP address; if not found sent to another DNS; IP address sent from DNS to patient’s computer; request sent from patient’s computer to web server; web page/HTML data sent from web server to patient’s computer.</div><div class="clean-ms-row">(ii) Encrypted connection established; using asymmetric encryption; makes sent data meaningless; web browser asks web server to identify itself; web server sends digital certificate; certificate authenticated/validated by browser; valid certificate → secure connection/transaction can begin; invalid certificate → connection not secure / transaction cancelled or rejected / user notified.</div></div></div></article><article class="clean-card" data-search="oct/nov 2025 0478/12 q6(a–d) url, proxy server, web terms &amp; cookies an online clothing company has a homepage at the uniform resource locator (url)
+https://www.cieclothes.com/index.html
+
+(a) write down the three different parts of the url shown by the labels a, b and c.
+
+(b) the web pages are stored on a web server. a proxy server is used to stop distributed denial of service (ddos) attacks on the web server. describe how the proxy server can stop a ddos attack reaching a web server.
+
+(c) customers use the website to buy clothing from the company. complete the table with the missing terms and descriptions about retrieving and displaying web pages.
+
+(d) the clothing company uses cookies to store customer details. complete the statements about cookies using terms from the list."><div class="clean-head"><div>Oct/Nov 2025 • 0478/12 • Q6(a–d)</div><div class="pills"><span>URL, proxy server, web terms & cookies</span><b>12 marks</b></div></div><div class="clean-body"><div class="clean-question">An online clothing company has a homepage at the uniform resource locator (URL)<br>https://www.cieclothes.com/index.html<br><br>(a) Write down the three different parts of the URL shown by the labels a, b and c.<br><br>(b) The web pages are stored on a web server. A proxy server is used to stop distributed denial of service (DDoS) attacks on the web server. Describe how the proxy server can stop a DDoS attack reaching a web server.<br><br>(c) Customers use the website to buy clothing from the company. Complete the table with the missing terms and descriptions about retrieving and displaying web pages.<br><br>(d) The clothing company uses cookies to store customer details. Complete the statements about cookies using terms from the list.</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea><button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) Protocol; domain name; web page/file name.</div><div class="clean-ms-row">(b) Proxy server acts between users and the web server; traffic/requests can be checked against criteria / suspicious or excessive requests can be blocked so they do not reach the web server.</div><div class="clean-ms-row">(c) HTML is used to structure/create web-page content; DNS finds the IP address matching a domain/URL; IP address is the numerical address used to locate the web server; HTTPS is the secure protocol used to transmit data to/from a web server; web browser is software used to display web pages.</div><div class="clean-ms-row">(d) Cookies are stored and managed by the web browser; session cookies are temporary; persistent cookies are permanent/persist beyond the browsing session.</div></div></div></article><article class="clean-card" data-search="oct/nov 2025 0478/13 q4(a–c) security solutions, social engineering &amp; cookies a cyber security company specialises in security solutions that help prevent hackers being successful.
+
+(a) identify two security solutions that can be provided to help prevent hackers being successful. explain how each solution helps prevent hackers being successful.
+
+(b) the company also has a web page that provides information to improve people’s awareness of social engineering. describe what is meant by social engineering. include an example of social engineering in your answer.
+
+(c) the company’s website uses both session cookies and persistent cookies.
+(i) state one similarity between session cookies and persistent cookies.
+(ii) explain one difference between session cookies and persistent cookies."><div class="clean-head"><div>Oct/Nov 2025 • 0478/13 • Q4(a–c)</div><div class="pills"><span>Security solutions, social engineering & cookies</span><b>12 marks</b></div></div><div class="clean-body"><div class="clean-question">A cyber security company specialises in security solutions that help prevent hackers being successful.<br><br>(a) Identify two security solutions that can be provided to help prevent hackers being successful. Explain how each solution helps prevent hackers being successful.<br><br>(b) The company also has a web page that provides information to improve people’s awareness of social engineering. Describe what is meant by social engineering. Include an example of social engineering in your answer.<br><br>(c) The company’s website uses both session cookies and persistent cookies.<br>(i) State one similarity between session cookies and persistent cookies.<br>(ii) Explain one difference between session cookies and persistent cookies.</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea><button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Security solutions must be identified and explained. Syllabus solutions include access levels; anti-malware; authentication such as username/password, biometrics and two-step verification; automatic software updates; checking communication spelling/tone; checking link URLs; firewalls; privacy settings; proxy servers; SSL.</div><div class="clean-ms-row">Social engineering involves manipulating/deceiving a person into revealing information or carrying out an action that compromises security; the example must match the process.</div><div class="clean-ms-row">Both session and persistent cookies are cookie files/data used by websites/browser.</div><div class="clean-ms-row">Session cookies are temporary/stored for the session and are lost when the browser/session closes; persistent cookies remain in secondary storage until expiry/deletion.</div></div></div></article></section>
+<footer class="site-footer">
+<div class="site-footer-brand">Excellence By Adeel Kapasi <span>•</span> CS Notes</div>
+<div class="site-footer-label">Google Maps • Our locations</div>
+<div class="site-footer-links">
+<a href="https://share.google/D6klleel4komfGVpH" target="_blank" rel="noopener">View Location 1 on Google Maps ↗</a>
+<a href="https://share.google/fnQfEAAVV0bo7B6q6" target="_blank" rel="noopener">View Location 2 on Google Maps ↗</a>
+</div>
+</footer>
+</main>
+</div><script id="clean-bank-script">
+function toggleClean(btn){const m=btn.nextElementSibling;const o=m.classList.toggle('show');btn.textContent=o?'Hide marking':'Show marking';btn.classList.toggle('open',o)}
+function cleanRoot(){return document.querySelector('.clean-bank')||document}
+function allClean(o){cleanRoot().querySelectorAll('.clean-marking').forEach(x=>x.classList.toggle('show',o));cleanRoot().querySelectorAll('.clean-btn').forEach(b=>{b.textContent=o?'Hide marking':'Show marking';b.classList.toggle('open',o)})}
+function filterClean(){const q=(document.getElementById('cleanSearch').value||'').toLowerCase();cleanRoot().querySelectorAll('.clean-card').forEach(c=>c.style.display=!q||c.innerText.toLowerCase().includes(q)?'block':'none')}
+</script><script id="shell-script">
+(function(){
+ const nav=[...document.querySelectorAll('#nav button')];
+ nav.forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.target);if(t)t.scrollIntoView({behavior:'smooth'});}));
+ const input=document.getElementById('search');
+ if(input) input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();document.querySelectorAll('.section,.sec').forEach(s=>s.classList.toggle('hidden-by-search',!!q&&!s.textContent.toLowerCase().includes(q)));});
+ const secs=[...document.querySelectorAll('.section[id],.sec[id],.hero[id],.clean-bank[id]')];
+ if(nav.length&&'IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)nav.forEach(n=>n.classList.toggle('active',n.dataset.target===e.target.id));});},{rootMargin:'-20% 0px -65% 0px'});
+  secs.forEach(s=>io.observe(s));
+ }
+})();
+</script><script id="unified-progress">
+(function(){
+ const bar=document.getElementById('progressBar');
+ const text=document.getElementById('progressText');
+ const boxes=[...document.querySelectorAll('input.donebox, input.done')];
+ const nav=[...document.querySelectorAll('#nav button')];
+ const STORE='excellence-cs-ch5-done';
+ function save(){localStorage.setItem(STORE,JSON.stringify(boxes.filter(b=>b.checked).map(b=>b.dataset.sec)));}
+ function paint(){
+  if(!bar) return;
+  const pct=boxes.length?Math.round(boxes.filter(b=>b.checked).length/boxes.length*100):0;
+  bar.style.width=pct+'%';
+  if(text) text.textContent=pct+'% sections completed';
+  nav.forEach(btn=>{const id=btn.dataset.target||btn.dataset.id; const box=boxes.find(b=>b.dataset.sec===id); btn.classList.toggle('done',!!(box&&box.checked));});
+ }
+ try{const saved=JSON.parse(localStorage.getItem(STORE)||'[]'); boxes.forEach(b=>{if(saved.includes(b.dataset.sec)) b.checked=true;});}catch(e){}
+ boxes.forEach(b=>b.addEventListener('change',()=>{save();paint();}));
+ paint();
+ const reset=document.getElementById('resetProgress');
+ if(reset) reset.addEventListener('click',()=>{boxes.forEach(b=>b.checked=false); localStorage.removeItem(STORE); paint();});
+})();
+</script></body></html>

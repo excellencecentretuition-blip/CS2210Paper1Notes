@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111b34">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CS Paper 1">
+<title>Paper 1 · Cambridge O Level Computer Science 2210</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#f6f8fc;--nav:#111b34;--ink:#172033;--muted:#657089;--line:#dfe5ef;--accent:#3157d5;--card:#fff}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+button,a{font:inherit}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--nav);color:#eaf0ff;padding:14px 22px;padding-top:calc(14px + env(safe-area-inset-top))}
+.brand{font-weight:800;font-size:16px;letter-spacing:-.01em}
+.brand small{display:block;font-weight:500;color:#9eacd0;font-size:12px;margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.status{font-size:12px;color:#c5d2f5;border:1px solid #ffffff2e;border-radius:999px;padding:6px 10px}
+.ghost{border:1px solid #ffffff40;background:transparent;color:#fff;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer}
+.ghost:focus-visible,.card:focus-visible,.back:focus-visible{outline:3px solid #9eb4ff;outline-offset:2px}
+.home{max-width:1080px;margin:0 auto;padding:36px 22px 64px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(32px,5vw,52px);line-height:1.05;margin:8px 0 10px}
+.lead{max-width:640px;color:var(--muted);font-size:17px;margin:0 0 22px}
+.notice{background:#fff7e8;border:1px solid #f0d7a8;color:#7a4b00;border-radius:12px;padding:12px 14px;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;cursor:pointer;color:inherit;display:flex;flex-direction:column;gap:10px;min-height:168px;box-shadow:0 8px 24px #1a2a4a0d}
+.card:hover{border-color:#b9c7ee}
+.num{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--nav);color:#fff;font-weight:800}
+.card h2{font-size:20px;line-height:1.25;margin:0}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.open{margin-top:auto;color:var(--accent);font-weight:800;font-size:13px}
+.foot{margin-top:28px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.foot a{color:#14244b;background:#fff;border:1px solid var(--line);text-decoration:none;font-weight:700;padding:8px 12px;border-radius:999px}
+.viewer{display:none;height:100dvh;grid-template-rows:auto minmax(0,1fr)}
+body.reading .home-wrap{display:none}
+body.reading .viewer{display:grid}
+.viewer-bar{display:flex;align-items:center;gap:12px}
+.back{border:0;background:#ffffff18;color:#fff;border-radius:10px;padding:8px 12px;font-weight:800;cursor:pointer}
+.viewer h2{margin:0;font-size:16px;font-weight:750}
+iframe{width:100%;height:100%;border:0;background:#fff}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.bar{align-items:flex-start;flex-direction:column}.home{padding-top:24px}}
+</style>
+</head>
+<body>
+<div class="home-wrap">
+<header class="bar">
+  <div class="brand">Excellence By Adeel Kapasi<small>Cambridge O Level 2210 · Paper 1 · 2026–2028</small></div>
+  <div class="bar-actions">
+    <span class="status" id="status">Checking this device…</span>
+    <button class="ghost" id="install" type="button" hidden>Install app</button>
+  </div>
+</header>
+<main class="home">
+  <div class="kicker">Computer Science 2210</div>
+  <h1>Paper 1</h1>
+  <p class="lead">Six chapters, one place. Choose a chapter to study. The notes and mark schemes open inside this app.</p>
+  <p class="notice" id="fileNotice" hidden>This page was opened as a file. Install and offline use need the local server. Double-click start.bat in the Paper1 folder, then use the address it opens.</p>
+  <div class="grid" id="grid"></div>
+  <div class="foot">
+    <span>Excellence By Adeel Kapasi · CS Notes</span>
+    <a href="https://share.google/D6klleel4komfGVpH" target="_blank" rel="noopener">View Location 1 on Google Maps ↗</a>
+    <a href="https://share.google/fnQfEAAVV0bo7B6q6" target="_blank" rel="noopener">View Location 2 on Google Maps ↗</a>
+  </div>
+</main>
+</div>
+<section class="viewer" aria-label="Chapter">
+  <header class="bar viewer-bar">
+    <button class="back" id="back" type="button">← Chapters</button>
+    <h2 id="viewerTitle">Chapter</h2>
+  </header>
+  <iframe id="frame" title="Chapter notes"></iframe>
+</section>
+<script src="chapters.js"></script>
+<script>
+const grid = document.getElementById("grid");
+const frame = document.getElementById("frame");
+const viewerTitle = document.getElementById("viewerTitle");
+const statusEl = document.getElementById("status");
+const installBtn = document.getElementById("install");
+const fileNotice = document.getElementById("fileNotice");
+let deferredPrompt = null;
+let current = 0;
+
+PAPER1_CHAPTERS.forEach((chapter) => {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "card";
+  button.innerHTML = '<span class="num">' + String(chapter.n).padStart(2, "0") + '</span><h2>' + chapter.title + '</h2><p>Chapter ' + chapter.n + '</p><span class="open">Open chapter</span>';
+  button.addEventListener("click", () => openChapter(chapter.n, true));
+  grid.appendChild(button);
+});
+
+function setStatus(text) { statusEl.textContent = text; }
+
+function chapterUrl(n) {
+  if (navigator.serviceWorker && navigator.serviceWorker.controller) return "c/" + n;
+  return PAPER1_CHAPTERS[n - 1].file;
+}
+
+function openChapter(n, push) {
+  const chapter = PAPER1_CHAPTERS[n - 1];
+  current = n;
+  document.body.classList.add("reading");
+  viewerTitle.textContent = "Chapter " + n + " · " + chapter.title;
+  frame.title = chapter.title;
+  frame.src = chapterUrl(n);
+  document.getElementById("back").focus();
+  if (push) history.pushState({ view: "chapter", n }, "", "#chapter-" + n);
+}
+
+function showHome(push) {
+  current = 0;
+  document.body.classList.remove("reading");
+  frame.src = "about:blank";
+  if (push) history.pushState({ view: "home" }, "", location.pathname + location.search);
+}
+
+document.getElementById("back").addEventListener("click", () => showHome(true));
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("reading")) showHome(true);
+});
+window.addEventListener("popstate", () => {
+  const n = Number((location.hash.match(/^#chapter-([1-6])$/) || [])[1]);
+  if (n) openChapter(n, false);
+  else showHome(false);
+});
+
+if (location.protocol === "file:") fileNotice.hidden = false;
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+  installBtn.hidden = false;
+});
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  installBtn.hidden = true;
+});
+window.addEventListener("appinstalled", () => { installBtn.hidden = true; setStatus("Installed on this device"); });
+
+async function prepareOffline() {
+  if (!("serviceWorker" in navigator) || location.protocol === "file:") {
+    setStatus(location.protocol === "file:" ? "Open via start.bat" : "Offline install is not available here");
+    return;
+  }
+  setStatus("Saving chapters on this device…");
+  try {
+    await navigator.serviceWorker.register("sw.js");
+    await navigator.serviceWorker.ready;
+    const ready = await caches.open("cs-paper1-v1").then((cache) => cache.match("c/1")).catch(() => null);
+    setStatus(navigator.serviceWorker.controller && ready ? "Available offline" : "Ready. Open a chapter.");
+  } catch (e) {
+    setStatus("Online only on this browser");
+  }
+}
+
+navigator.serviceWorker && navigator.serviceWorker.addEventListener("controllerchange", () => {
+  if (current) frame.src = "c/" + current;
+  setStatus("Available offline");
+});
+
+history.replaceState({ view: "home" }, "", location.pathname + location.search);
+const start = Number((location.hash.match(/^#chapter-([1-6])$/) || [])[1]);
+if (start) openChapter(start, false);
+prepareOffline();
+</script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chapter 6 — Automated and Emerging Technologies | Cambridge O Level Computer Science 2210</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f5f7fb;color:#15203a;font-family:Inter,Segoe UI,Arial,sans-serif}.side{position:fixed;inset:0 auto 0 0;width:282px;background:#101c38;color:#fff;padding:24px 17px;overflow:auto}.side h2{margin:0;font-size:19px}.side p{font-size:12px;color:#aebee8}.side a{display:block;color:#eef3ff;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:13px}.side a:hover{background:#21345d}.main{margin-left:282px;padding:28px;max-width:1380px}.hero,.bankhero{background:linear-gradient(135deg,#101c38,#405fb5);color:#fff;border-radius:22px;padding:31px}.eyebrow{font-size:11px;letter-spacing:.13em;font-weight:900;color:#c1ceff}.hero h1{font-size:44px;margin:7px 0}.hero p,.bankhero p{line-height:1.6;color:#e7ebff}.rule{background:#ffffff13;border:1px solid #ffffff30;border-radius:12px;padding:13px}.sec{margin:36px 0;scroll-margin-top:20px}.sec h2{font-size:30px;margin:6px 0 15px}.sec h3{margin-top:25px}.sec p,.sec li{line-height:1.68}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#e9efff;color:#3157d5;font-size:12px;font-weight:900}.map,.compare,.three{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.three{grid-template-columns:repeat(3,1fr)}.map div,.compare article,.three article{background:#fff;border:1px solid #dbe2ee;border-radius:15px;padding:17px}.map b,.map span{display:block}.map b{font-size:24px;color:#3157d5}.num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#3157d5;color:#fff;font-weight:900}.concept,.exam,.trap,.example{padding:14px 16px;border-radius:11px;margin:14px 0;line-height:1.58}.concept{background:#f0edff;border-left:4px solid #6d55c7}.exam{background:#eef5ff;border-left:4px solid #3157d5}.trap{background:#fff7e8;border-left:4px solid #b66c00}.example{background:#eef9f3;border-left:4px solid #13845f}.steps{display:grid;grid-template-columns:1fr 1fr;gap:9px}.steps div{background:#fff;border:1px solid #dbe2ee;border-radius:12px;padding:13px;display:flex;gap:11px}.steps b{background:#3157d5;color:#fff;min-width:28px;height:28px;border-radius:50%;display:grid;place-items:center}.steps span{line-height:1.52}.flow,.links{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0}.flow span,.links div{background:#101c38;color:#fff;padding:11px 13px;border-radius:10px;font-weight:800}.flow i,.links i{font-style:normal;font-weight:900;color:#3157d5}.links div span{display:block;color:#cbd5f6;font-size:12px;font-weight:500;margin-top:3px}table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}th,td{text-align:left;padding:12px;border-bottom:1px solid #dbe2ee;vertical-align:top;line-height:1.52}th{background:#edf2f8}.checks{background:#fff;border:1px solid #dbe2ee;border-radius:14px;padding:16px 20px 16px 38px}.bank{margin-top:58px;border-top:4px solid #13244c;padding-top:25px}.bankhero h2{font-size:34px;margin:4px 0}.tools{display:flex;gap:9px;margin:15px 0}.tools input{flex:1;padding:12px;border:1px solid #d5ddeb;border-radius:10px;font:inherit}.tools button,.reveal{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.qcard{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.qhead{background:#f0f3f8;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;color:#3157d5;font-weight:900;font-size:13px}.pills{display:flex;gap:7px;flex-wrap:wrap}.pills span,.pills b{padding:5px 9px;border-radius:999px}.pills span{background:#e5ebfa}.pills b{background:#14244b;color:#fff}.qbody{padding:18px}.question{font-size:16px;font-weight:620;line-height:1.72}.qbody textarea{width:100%;min-height:125px;margin:14px 0 8px;padding:12px;border:1px solid #d5ddeb;border-radius:11px;font:inherit}.marking{display:none;margin-top:14px}.marking.show{display:block}.label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin-bottom:8px}.msrow{background:#eef9f3;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;line-height:1.55}.reveal.open{background:#173f82}@media(max-width:900px){.side{position:relative;width:auto}.main{margin:0}.compare,.map,.steps,.three{grid-template-columns:1fr}.qhead{flex-direction:column}.hero h1{font-size:35px}}</style><style id="clean-bank-style">
+.clean-bank{margin-top:58px;border-top:4px solid #13244c;padding-top:25px}.clean-tools{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.clean-tools input{flex:1;min-width:260px;padding:12px 14px;border:1px solid #d3dceb;border-radius:11px;font:inherit}.clean-tools button,.clean-btn{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.clean-card{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.clean-head{background:#f1f4f9;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#3157d5;font-weight:900;font-size:13px}.clean-body{padding:18px}.clean-question{font-size:17px;font-weight:650;line-height:1.72;color:#121a2d;margin:4px 0 14px}.clean-answer{width:100%;min-height:110px;border:1px solid #d6deeb;border-radius:11px;padding:12px;font:inherit;resize:vertical;margin:7px 0 8px}.clean-marking{display:none;margin-top:14px}.clean-marking.show{display:block}.clean-label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin:0 0 8px}.clean-ms-row{background:#f0f9f4;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;line-height:1.55}.clean-btn.open{background:#173f82}
+</style><style id="shared-shell">
+.app{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}
+body>.app>.sidebar,body>.app>.side{position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto}
+body>.app>.main{margin-left:0!important;min-width:0}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+.nav button:hover,.nav button.active{background:#223052;color:#fff}
+.page-search{margin-top:16px}
+.page-search input{width:min(520px,100%);padding:11px 13px;border:0;border-radius:10px;font:inherit}
+.hidden-by-search{display:none!important}
+.clean-head .pills{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.clean-head .pills span{background:#e5ebfa;color:#3157d5;padding:5px 9px;border-radius:999px}
+.clean-head .pills b{background:#14244b;color:#fff;padding:5px 9px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar,body>.app>.side{position:relative;height:auto;width:auto}.nav{display:grid;grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.nav{grid-template-columns:1fr}}
+</style><style id="unified-chrome">
+body{background:#f6f8fc;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body>.app>.sidebar{background:#111b34;color:#eaf0ff;padding:22px 18px;position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto;box-sizing:border-box}
+.brand{font-weight:800;font-size:18px;line-height:1.25;color:#fff}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 8px;overflow:hidden}
+.progress>i,.progress i{display:block;height:100%;width:0;background:#8eabff}
+.pct{font-size:12px;color:#aebadd}
+.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}
+body>.app .nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+body>.app .nav button:hover,body>.app .nav button.active{background:#223052;color:#fff}
+body>.app .nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+header.hero,section.hero{background:linear-gradient(135deg,#fff,#eef3ff)!important;color:#172033!important;border-bottom:1px solid #dfe5ef;border-radius:0!important;box-shadow:none!important;padding:42px clamp(20px,5vw,70px) 30px!important;margin:0!important}
+.hero .eyebrow{color:#3157d5!important;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{color:#172033!important;font-size:clamp(30px,5vw,48px);line-height:1.05;margin:8px 0 12px}
+.hero-lead{color:#172033;font-size:18px;font-weight:650;margin:0 0 8px;max-width:800px}
+.hero p{color:#657089!important;max-width:820px}
+.hero .principle,.hero .rule{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important;border-radius:12px}
+.hero .hero-grid div{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important}
+.hero .hero-grid b{color:#3157d5!important}
+.hero .hero-grid span{color:#657089!important}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.searchbar{flex:1;min-width:220px;max-width:520px}
+.searchbar input{width:100%;padding:11px 13px;border:1px solid #dfe5ef;border-radius:10px;font:inherit;background:#fff;color:#172033}
+.toolbar .btn,.toolbar button.btn{border:1px solid #dfe5ef;background:#fff;color:#172033;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+.site-footer{margin:8px clamp(18px,4vw,48px) 36px;background:linear-gradient(135deg,#14244b,#294a88);color:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 10px 26px rgba(20,36,75,.14)}
+.site-footer-brand{font-weight:900;font-size:16px}
+.site-footer-brand span{opacity:.72}
+.site-footer-label{margin-top:7px;font-size:13px;opacity:.82}
+.site-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.site-footer-links a{display:inline-block;background:#fff;color:#14244b;text-decoration:none;font-weight:800;padding:9px 13px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar{position:relative;height:auto;width:auto}body>.app .nav{display:grid;grid-template-columns:1fr 1fr}header.hero,section.hero{padding:28px 18px 22px!important}}
+@media(max-width:520px){body>.app .nav{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app">
+<aside class="sidebar"><div class="brand">Excellence By Adeel Kapasi<small>CS Notes</small><small>Cambridge O Level 2210 • Paper 1 • 2026–2028</small></div><div class="progress"><i id="progressBar"></i></div><div class="pct" id="progressText">0% sections completed</div><div class="nav-title">Chapter 6</div><nav class="nav" id="nav"><button type="button" data-target="top">Overview</button><button type="button" data-target="map">Chapter map</button><button type="button" data-target="auto">6.1 Automated systems</button><button type="button" data-target="robotics">6.2 Robotics</button><button type="button" data-target="ai">6.3 Artificial intelligence</button><button type="button" data-target="expert">Expert systems</button><button type="button" data-target="ml">Machine learning</button><button type="button" data-target="connections">Exam connections</button><button type="button" data-target="practice">Past-paper cards</button></nav></aside>
+<main class="main">
+<section class="hero" id="top">
+<div class="eyebrow">Chapter 6 • Automated and Emerging Technologies</div>
+<h1>Automated and Emerging Technologies</h1><p class="hero-lead">Automated & Emerging Technologies</p>
+<p><b>Master authority:</b> Cambridge O Level Computer Science 2210 syllabus 2026–2028. <b>Exam-evidence layer:</b> supplied 0478 Paper 1 question papers and mark schemes.</p>
+<div class="rule">Final Paper 1 chapter. Same locked method: syllabus defines the complete boundary; supplied papers deepen how the knowledge is examined; the practice bank contains source questions rather than an assistant-written question bank.</div>
+<div class="toolbar"><div class="searchbar"><input id="search" aria-label="Search chapter" placeholder="Search this chapter…"></div><button class="btn" id="resetProgress" type="button">Reset progress</button></div></section>
+
+<section class="sec" id="map"><h2>Chapter map</h2>
+<div class="map">
+<div><b>6.1</b><span>Automated systems</span></div>
+<div><b>6.2</b><span>Robotics</span></div>
+<div><b>6.3</b><span>Artificial intelligence</span></div>
+<div><b>6.3</b><span>Expert systems & machine learning</span></div>
+</div></section>
+
+<section class="sec" id="auto"><div class="tag">6.1</div><h2>Automated systems</h2>
+<p>The syllabus requires students to describe how <b>sensors, microprocessors and actuators work together</b> to create automated systems, and to describe advantages and disadvantages in a given scenario. Required contexts include <b>industry, transport, agriculture, weather, gaming, lighting and science</b>.</p>
+<div class="concept"><b>Core idea:</b> an automated system monitors a real-world condition, processes the input against programmed/stored rules or values, and controls an output without requiring continuous human intervention.</div>
+
+<h3>The control loop — the process students must be able to explain</h3>
+<div class="steps">
+<div><b>1</b><span><strong>Sensor measures</strong> a physical quantity in the environment.</span></div>
+<div><b>2</b><span>The sensor provides data/readings to the <strong>microprocessor</strong>. Past-paper mark schemes often explicitly require the data to be received continually.</span></div>
+<div><b>3</b><span>The microprocessor <strong>processes/compares</strong> the reading with stored or preset data/value(s).</span></div>
+<div><b>4</b><span>The result of the comparison determines whether action is required.</span></div>
+<div><b>5</b><span>If action is required, the microprocessor sends a <strong>control signal</strong> to an actuator/output device.</span></div>
+<div><b>6</b><span>The <strong>actuator</strong> causes a physical change in the real world.</span></div>
+<div><b>7</b><span>The sensors take further readings, so the process can <strong>repeat as a feedback/control loop</strong>.</span></div>
+</div>
+<div class="flow"><span>ENVIRONMENT</span><i>→</i><span>SENSOR</span><i>→</i><span>MICROPROCESSOR</span><i>→</i><span>ACTUATOR</span><i>→</i><span>ENVIRONMENT CHANGES</span><i>↺</i></div>
+
+<h3>Roles must not be confused</h3>
+<table>
+<tr><th>Component</th><th>Role in the automated system</th><th>Common exam mistake</th></tr>
+<tr><td><b>Sensor</b></td><td>Measures/captures a physical property and supplies input data.</td><td>Saying the sensor decides what action to take.</td></tr>
+<tr><td><b>Microprocessor</b></td><td>Receives and processes sensor data, compares it with stored/preset data and sends control signals.</td><td>Saying it physically opens, moves or turns something.</td></tr>
+<tr><td><b>Actuator</b></td><td>Receives the control signal and causes a physical action/change.</td><td>Calling it a sensor or saying it analyses data.</td></tr>
+</table>
+
+<h3>Scenario method</h3>
+<p>Cambridge repeatedly makes the control loop specific to a situation. Do not write only “sensor → processor → actuator”. Name the <b>quantity being sensed</b>, the <b>stored threshold/condition</b>, the <b>comparison</b> and the <b>resulting action</b>.</p>
+<div class="example"><b>Weather-station pattern from the supplied paper:</b> temperature sensor supplies data → microprocessor receives it → compares it with the preset value 40°C → if greater than 40°C, sends a signal to trigger an alert.</div>
+
+<h3>Advantages and disadvantages</h3>
+<div class="compare">
+<article><h4>Possible advantages</h4><p>Can perform repetitive/mundane work; can operate for long periods or at inconvenient times; can reduce human exposure to dangerous/adverse conditions; can improve consistency/precision; can create technical/maintenance roles. The valid point must fit the scenario.</p></article>
+<article><h4>Possible disadvantages</h4><p>Initial cost and maintenance; faults can stop or damage the process; workers may lose jobs or become deskilled; staff may need training; systems may have difficulty with unexpected events unless designed/adapted to handle them.</p></article>
+</div>
+<div class="exam"><b>Examiner lens:</b> “Give an advantage” usually needs a benefit to the named stakeholder. A generic statement such as “it is faster” is weaker than explaining what becomes faster and why that matters in the stated situation.</div>
+</section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Automation advantages/disadvantages — apply them:</b> Advantages can include continuous operation, consistent/repeatable output, greater precision, faster processing, reduced need for people to perform mundane/repetitive work, reduced exposure to dangerous/adverse conditions, and creation of maintenance/technical roles. Disadvantages can include purchase/maintenance cost, malfunction, loss/replacement of jobs and de-skilling. Supplied 2025 MS specifically credits employees not needing repetitive tasks, overnight work or adverse-weather work, alongside maintenance jobs, de-skilling and job replacement.</div>
+<div class="exam"><b>Required application areas:</b> Be ready to apply automated systems to <b>industry, transport, agriculture, weather, gaming, lighting and science</b>. The same advantage is not automatically valid in every scenario: connect it to the task being automated.</div>
+</div>
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>MS precision — automated control:</b> Sensor data is received by the <b>microprocessor</b>, compared against <b>stored/preset data or a threshold</b>, and when action is required the microprocessor sends a signal to an <b>actuator/output device</b>. New readings allow the process to <b>repeat continuously</b>.</div>
+<div class="exam"><b>2025 weather-station marking pattern:</b> microprocessor <b>receives sensor data</b> → compares it with a <b>preset value</b> → if the measured value crosses that preset, sends a signal to <b>trigger the required output/alert</b>.</div>
+</div>
+<section class="sec" id="robotics"><div class="tag">6.2</div><h2>Robotics</h2>
+<p>The syllabus definition is precise: <b>robotics is a branch of computer science that incorporates the design, construction and operation of robots.</b></p>
+
+<h3>Three characteristics of a robot</h3>
+<div class="three">
+<article><div class="num">1</div><h4>Mechanical structure/framework</h4><p>A robot has a physical structure that allows it to interact with or operate in the physical world.</p></article>
+<article><div class="num">2</div><h4>Electrical components</h4><p>These can include <b>sensors, microprocessors and actuators</b>.</p></article>
+<article><div class="num">3</div><h4>Programmable</h4><p>Its operation is controlled by programmed instructions.</p></article>
+</div>
+<div class="trap"><b>Important:</b> a device is not automatically a robot merely because it contains a microprocessor, is “smart”, uses AI or is an embedded system. Cambridge can ask students to use the robot characteristics to explain why a device is or is not a robot.</div>
+
+<h3>Where robots can be used</h3>
+<table>
+<tr><th>Syllabus area</th><th>Typical role to understand</th></tr>
+<tr><td>Industry</td><td>Manufacturing, assembly or repetitive production tasks.</td></tr>
+<tr><td>Transport</td><td>Movement, navigation or transport-related automated operations.</td></tr>
+<tr><td>Agriculture</td><td>Planting, monitoring, harvesting or field operations.</td></tr>
+<tr><td>Medicine</td><td>Assisting precise medical/surgical procedures.</td></tr>
+<tr><td>Domestic settings</td><td>Tasks such as robotic vacuum cleaning.</td></tr>
+<tr><td>Entertainment</td><td>Interactive or programmed entertainment applications.</td></tr>
+</table>
+<p>Syllabus examples include <b>factory equipment, domestic robots and drones</b>.</p>
+
+<h3>Robot vs automated system</h3>
+<div class="compare">
+<article><h4>Automated system</h4><p>The key idea is automatic monitoring/control of a process, commonly through sensor → microprocessor → actuator collaboration.</p></article>
+<article><h4>Robot</h4><p>Must satisfy the robot characteristics: physical/mechanical structure, electrical components and programmability. A robot may itself be used as part of an automated system.</p></article>
+</div>
+
+<h3>Advantages and disadvantages of robots</h3>
+<p>Cambridge tends to make these stakeholder- and scenario-specific. A farmer, employee, hospital, business owner and patient can experience different benefits or drawbacks from the same technology.</p>
+<div class="exam"><b>Mark-winning structure:</b> feature of robot/automation → consequence → consequence for the named person or organisation.</div>
+</section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Robot applications — syllabus checklist:</b> Robots can be used in <b>industry, transport, agriculture, medicine, domestic settings and entertainment</b>. Advantages/disadvantages must be tied to the context: e.g. precision and repeatability in manufacturing or surgery, operation in dangerous environments, continuous work, but also high cost, maintenance needs, possible malfunction and effects on employment.</div>
+</div>
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>MS precision — identifying a robot:</b> Apply all three characteristics: <b>mechanical structure/framework</b>, electrical components including <b>sensors, microprocessors and actuators</b>, and being <b>programmable</b>. In the supplied 2025 smart-speaker question, the credited explanation is that it has <b>no mechanical structure</b>, <b>no actuators</b>, and therefore <b>cannot move itself</b>.</div>
+</div>
+<section class="sec" id="ai"><div class="tag">6.3</div><h2>Artificial intelligence (AI)</h2>
+<p>The syllabus defines AI as a <b>branch of computer science dealing with the simulation of intelligent behaviours by computers</b>.</p>
+<h3>Main characteristics Cambridge requires</h3>
+<div class="three">
+<article><h4>Data + rules</h4><p>AI involves a <b>collection of data and rules for using that data</b>.</p></article>
+<article><h4>Reasoning</h4><p>It has the <b>ability to reason</b> — to use data/rules to reach decisions, results or predictions.</p></article>
+<article><h4>Learning/adaptation</h4><p>AI <b>can include</b> the ability to learn and adapt. This is particularly associated with machine learning.</p></article>
+</div>
+<div class="trap"><b>Do not define all AI as machine learning.</b> The syllabus limits the AI systems studied here to <b>expert systems</b> and <b>machine learning</b>, but they are distinct ideas.</div>
+</section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>AI definition — exact depth:</b> Artificial intelligence is a branch of computer science dealing with the <b>simulation of intelligent behaviours by computers</b>. Its characteristics include a <b>collection of data</b>, <b>rules for using that data</b>, the <b>ability to reason</b>, and it can include the ability to <b>learn and adapt</b>.</div>
+</div>
+<section class="sec" id="expert"><h2>Expert systems</h2>
+<p>An expert system is an AI system designed to use stored specialist knowledge and rules to reach a conclusion, recommendation, diagnosis or decision in a restricted domain.</p>
+<h3>Four syllabus components</h3>
+<table>
+<tr><th>Component</th><th>Role</th></tr>
+<tr><td><b>Knowledge base</b></td><td>Stores facts/knowledge relevant to the expert domain.</td></tr>
+<tr><td><b>Rule base</b></td><td>Stores rules that are applied to the knowledge/data.</td></tr>
+<tr><td><b>Inference engine</b></td><td>Applies the rules to the knowledge/data, reasons through the information, can decide what to ask next and derives a result/diagnosis/decision.</td></tr>
+<tr><td><b>Interface</b></td><td>Allows the user to input information and receive/view the system's output.</td></tr>
+</table>
+
+<h3>How an expert system operates</h3>
+<div class="steps">
+<div><b>1</b><span>The user enters facts/symptoms/data through the <strong>interface</strong>.</span></div>
+<div><b>2</b><span>The <strong>inference engine</strong> processes the supplied information and may decide which question to ask next.</span></div>
+<div><b>3</b><span>Input is located in/compared with the <strong>knowledge base</strong>.</span></div>
+<div><b>4</b><span>The inference engine applies the <strong>rule base</strong> to the knowledge/data.</span></div>
+<div><b>5</b><span>A diagnosis/result/solution/decision is produced.</span></div>
+<div><b>6</b><span>The result is presented through the <strong>interface</strong>.</span></div>
+</div>
+<div class="exam"><b>Past-paper lesson:</b> knowing only the four component names is not enough. Cambridge also asks how they interact. The inference engine is the active reasoning component; the knowledge base and rule base are not interchangeable.</div>
+</section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>Expert-system components:</b> <b>Knowledge base</b> stores the facts/knowledge; <b>rule base</b> stores rules that are applied to the knowledge/data; <b>inference engine</b> applies the rules, makes deductions and can decide which question to ask next; the <b>user interface</b> collects user input and presents questions/results.</div>
+<div class="exam"><b>Expert-system operation — MS chain:</b> The user enters data through the interface → the inference engine can decide which questions to ask, with later questions depending on earlier answers → input/symptoms are located in or compared with the knowledge base → the rule base is applied → the inference engine reaches a conclusion/diagnosis → the result is presented through the interface.</div>
+</div>
+<section class="sec" id="ml"><h2>Machine learning</h2>
+<p>The exact syllabus core is: <b>machine learning is when a program has the ability to automatically adapt its own processes and/or data.</b></p>
+<h3>What “learning” means in exam scenarios</h3>
+<div class="steps">
+<div><b>1</b><span>The system gathers/receives data from operation or previous examples.</span></div>
+<div><b>2</b><span>It identifies useful patterns, trends or outcomes in that data.</span></div>
+<div><b>3</b><span>It can <strong>adapt its own processes and/or data</strong>.</span></div>
+<div><b>4</b><span>Past results/feedback can influence later decisions or predictions.</span></div>
+<div><b>5</b><span>Its future performance can improve as its learned data/processes become better suited to the task.</span></div>
+</div>
+<div class="example"><b>Supplied-paper applications:</b> a weather system analyses trends and adapts predictions; a robot can remember obstacles/routes and improve efficiency; a robot vacuum can learn room shape, dirty areas and efficient routes.</div>
+
+<h3>AI, expert system and machine learning — keep them separate</h3>
+<table>
+<tr><th>Term</th><th>Central idea</th></tr>
+<tr><td>Artificial intelligence</td><td>Broad branch concerned with simulating intelligent behaviour.</td></tr>
+<tr><td>Expert system</td><td>Uses a knowledge base, rule base, inference engine and interface to emulate specialist decision-making in a domain.</td></tr>
+<tr><td>Machine learning</td><td>A program automatically adapts its own processes and/or data.</td></tr>
+</table>
+<div class="exam"><b>Cambridge application pattern:</b> “Explain how machine learning improves X” → state adaptation/learning → identify the scenario data it can learn → explain how that changes a future action/prediction → link to an improvement.</div>
+</section>
+
+
+<div class="sec" style="padding-top:0">
+<div class="exam"><b>2025 weather machine-learning depth:</b> The system can analyse data for <b>trends/patterns</b>, make predictions from them, receive <b>feedback on predictions</b>, change later predictions using that feedback, learn seasonal patterns and improve by <b>adapting rules/processes</b>.</div>
+<div class="exam"><b>2025 voice-recognition machine-learning depth:</b> The system can gather examples from the same/different voices, identify voice patterns, adapt its processes, store <b>successful/unsuccessful commands</b>, learn different ways to make the same request, learn <b>pronunciations/accents</b>, learn from many voices and learn to ignore <b>background/environmental noise</b>.</div>
+</div>
+<section class="sec" id="connections"><h2>High-value chapter connections</h2>
+<div class="links">
+<div><b>Sensor</b><span>captures real-world data</span></div><i>→</i><div><b>Microprocessor</b><span>processes / compares</span></div><i>→</i><div><b>Actuator</b><span>changes real world</span></div>
+</div>
+<div class="links">
+<div><b>AI</b><span>simulation of intelligent behaviour</span></div><i>→</i><div><b>Expert system</b><span>rules + knowledge</span></div><i>or</i><div><b>Machine learning</b><span>adapts processes/data</span></div>
+</div>
+<h3>Common traps to eliminate</h3>
+<ul class="checks">
+<li>Do not say a sensor “controls” the system; it supplies input data.</li>
+<li>Do not say a microprocessor physically moves a device; it sends the control signal.</li>
+<li>Do not forget the <b>comparison with stored/preset data</b> in an automated-system explanation.</li>
+<li>Do not call every automated device a robot.</li>
+<li>Do not call every AI system machine learning.</li>
+<li>Do not swap the knowledge base and rule base.</li>
+<li>Do not describe machine learning only as “the computer learns”; state that it <b>adapts its own processes and/or data</b> and apply that to the scenario.</li>
+<li>For advantages/disadvantages, identify whose advantage/disadvantage is being asked for.</li>
+</ul>
+</section>
+
+<section class="clean-bank" id="practice"><div class="bankhero"><div class="eyebrow">SUPPLIED PAPER CORPUS • CLEAN SOURCE PRACTICE</div><h2>Past Paper Practice & Marking</h2><p>Locked clean-card format: source question → student answer → marking. No separate assistant-generated practice-question bank.</p></div>
+<div class="clean-tools"><input id="cleanSearch" oninput="filterClean()" placeholder="Search session, paper, topic or question…"><button onclick="allClean(true)">Show all</button><button onclick="allClean(false)">Hide all</button></div><article class="clean-card" data-search="may/june 2025 0478/13 q6(a–f) automated weather system &amp; machine learning a weather station uses automated systems to collect and analyse data about the weather. the automated system uses sensors.
+
+(a) give one other component that would be part of the automated system. [1]
+
+(b) one sensor that is part of the automated system is a temperature sensor. give one other sensor that could be part of the automated system. [1]
+
+(c) an alert is sent to an employee in the weather office if a temperature above 40°c is detected.
+(i) explain how a temperature above 40°c is detected for the alert. [3]
+(ii) the data for the alert is sent using serial simplex data transmission. explain how the data is sent using serial simplex data transmission. [3]
+
+(d) give two advantages to the weather station employees of using an automated weather system. [2]
+
+(e) give one disadvantage to the weather station employees of using an automated weather system. [1]
+
+(f) the automated weather system is upgraded and given machine learning capabilities.
+(i) machine learning is part of a branch of computer science. identify the name of this branch of computer science. [1]
+(ii) explain how the machine learning capabilities can be used to predict future weather. [3]">
+<div class="clean-head"><div>May/June 2025 • 0478/13 • Q6(a–f)</div><div class="pills"><span>Automated weather system & machine learning</span><b>14 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A weather station uses automated systems to collect and analyse data about the weather. The automated system uses sensors.<br><br>(a) Give one other component that would be part of the automated system. [1]<br><br>(b) One sensor that is part of the automated system is a temperature sensor. Give one other sensor that could be part of the automated system. [1]<br><br>(c) An alert is sent to an employee in the weather office if a temperature above 40°C is detected.<br>(i) Explain how a temperature above 40°C is detected for the alert. [3]<br>(ii) The data for the alert is sent using serial simplex data transmission. Explain how the data is sent using serial simplex data transmission. [3]<br><br>(d) Give two advantages to the weather station employees of using an automated weather system. [2]<br><br>(e) Give one disadvantage to the weather station employees of using an automated weather system. [1]<br><br>(f) The automated weather system is upgraded and given machine learning capabilities.<br>(i) Machine learning is part of a branch of computer science. Identify the name of this branch of computer science. [1]<br>(ii) Explain how the machine learning capabilities can be used to predict future weather. [3]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) Any one from: microprocessor; actuator; storage/memory.</div><div class="clean-ms-row">(b) Any one from: humidity; light; level; infrared.</div><div class="clean-ms-row">(c)(i) Any three from: a microprocessor is used; microprocessor receives data from the sensor; microprocessor compares data against preset data of 40; if data is greater than 40 the microprocessor sends a signal to trigger the alert.</div><div class="clean-ms-row">(c)(ii) Any three from: data is sent one bit at a time; down a single wire; data can only be sent in one direction.</div><div class="clean-ms-row">(d) Any two from: employees do not need to carry out a mundane/repetitive task; do not need to work overnight; do not need to work outside in adverse weather conditions; creates maintenance jobs for system.</div><div class="clean-ms-row">(e) Any one from: may de-skill employees; may replace employees and take their job.</div><div class="clean-ms-row">(f)(i) Artificial intelligence / AI.</div><div class="clean-ms-row">(f)(ii) Any three from: can adapt its own processes/data; analyse data for trends/patterns; predict future weather patterns based on patterns; feedback is given on predictions; changes future predictions based on feedback; learn what weather occurs at certain times of year and use this to predict future weather; adapt its rules/processes for weather predictions.</div></div></div></article><article class="clean-card" data-search="may/june 2024 0478/11 q8(c–f) agricultural robot, automation &amp; machine learning a robot is used by a farmer to plant seeds.
+
+(c) the robot plants seeds and stops when it reaches a fence. it then turns and continues planting seeds. the robot uses sensors and a microprocessor to know when it reaches a fence.
+explain how the robot uses sensors and a microprocessor to know it has reached a fence. [6]
+
+(d) give two advantages of the farmer using an automated robot to plant seeds. [2]
+
+(e) give two disadvantages of the farmer using an automated robot to plant seeds. [2]
+
+(f) the robot is adapted to have machine learning capabilities. explain how this will improve the robot. [2]">
+<div class="clean-head"><div>May/June 2024 • 0478/11 • Q8(c–f)</div><div class="pills"><span>Agricultural robot, automation & machine learning</span><b>12 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A robot is used by a farmer to plant seeds.<br><br>(c) The robot plants seeds and stops when it reaches a fence. It then turns and continues planting seeds. The robot uses sensors and a microprocessor to know when it reaches a fence.<br>Explain how the robot uses sensors and a microprocessor to know it has reached a fence. [6]<br><br>(d) Give two advantages of the farmer using an automated robot to plant seeds. [2]<br><br>(e) Give two disadvantages of the farmer using an automated robot to plant seeds. [2]<br><br>(f) The robot is adapted to have machine learning capabilities. Explain how this will improve the robot. [2]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(c) Mark-scheme process is based on a suitable sensor taking readings, sending digitised data to the microprocessor, the microprocessor comparing the reading with stored/preset data, and then producing the required response when the fence is detected.</div><div class="clean-ms-row">(d) Awarded advantages are scenario-linked benefits of automating the seed-planting task.</div><div class="clean-ms-row">(e) Any two from the supplied MS include: robot may have been expensive to purchase; maintenance may be costly; may take away jobs; farmer/workers may be deskilled; training may be needed; if it breaks the farmer will need to plant manually; a fault may damage farm/seeds; cannot adapt to a new/unexpected event.</div><div class="clean-ms-row">(f) Any two from: can adapt itself by changing its own rules/data/processes; can become more efficient; can gain greater knowledge of surroundings; can remember fence location, route, obstacles, where to start/stop sowing; may make fewer errors.</div></div></div></article><article class="clean-card" data-search="oct/nov 2024 0478/13 q5(a–d) automated plough &amp; ai a farmer has a plough that is an automated system. the plough is used to dig the ground in a field to prepare it for planting seeds. the plough uses sensors and a microprocessor to maintain a straight line when digging the ground.
+
+(a) state what is meant by an automated system. [1]
+
+(b) describe the role of the microprocessor in this process. [3]
+
+(c) give two benefits to the farmer of using an automated system for this purpose. [2]
+
+(d) the plough uses artificial intelligence (ai) to navigate its way around the field. explain how the plough makes use of ai for this purpose. [4]">
+<div class="clean-head"><div>Oct/Nov 2024 • 0478/13 • Q5(a–d)</div><div class="pills"><span>Automated plough & AI</span><b>10 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A farmer has a plough that is an automated system. The plough is used to dig the ground in a field to prepare it for planting seeds. The plough uses sensors and a microprocessor to maintain a straight line when digging the ground.<br><br>(a) State what is meant by an automated system. [1]<br><br>(b) Describe the role of the microprocessor in this process. [3]<br><br>(c) Give two benefits to the farmer of using an automated system for this purpose. [2]<br><br>(d) The plough uses artificial intelligence (AI) to navigate its way around the field. Explain how the plough makes use of AI for this purpose. [4]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) An automated system operates/controls a process automatically, using computer-controlled components rather than requiring continuous human control.</div><div class="clean-ms-row">(b) The microprocessor receives sensor data, compares/processes it against stored/preset data and sends appropriate control signals so the plough maintains/corrects its path.</div><div class="clean-ms-row">(c) Marks are for benefits applied to the farmer/automated plough scenario.</div><div class="clean-ms-row">(d) Marks are for explaining AI in the navigation context: use collected data/rules, reasoning/decision-making and, where applicable, learning/adapting from data to navigate the field.</div></div></div></article><article class="clean-card" data-search="oct/nov 2024 0478/12 q8(a–c) robot vacuum, expert system &amp; machine learning a robot vacuum cleaner uses sensors to navigate around obstacles in a room.
+
+(a) tick one box to show which sensor would be the most suitable for this purpose.
+a proximity
+b flow
+c pressure
+d level [1]
+
+(b) an expert system can be used to diagnose an error with a robot vacuum cleaner. circle three components that are part of an expert system.
+knowledge base   operating system   firewall
+server   printer   actuator   inference engine
+rule base   encryption [3]
+
+(c) explain how the robot vacuum cleaner can make use of machine learning. [3]">
+<div class="clean-head"><div>Oct/Nov 2024 • 0478/12 • Q8(a–c)</div><div class="pills"><span>Robot vacuum, expert system & machine learning</span><b>7 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A robot vacuum cleaner uses sensors to navigate around obstacles in a room.<br><br>(a) Tick one box to show which sensor would be the most suitable for this purpose.<br>A proximity<br>B flow<br>C pressure<br>D level [1]<br><br>(b) An expert system can be used to diagnose an error with a robot vacuum cleaner. Circle three components that are part of an expert system.<br>knowledge base   operating system   firewall<br>server   printer   actuator   inference engine<br>rule base   encryption [3]<br><br>(c) Explain how the robot vacuum cleaner can make use of machine learning. [3]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) A — proximity.</div><div class="clean-ms-row">(b) Knowledge base; rule base; inference engine.</div><div class="clean-ms-row">(c) Any three from: could gather data during vacuuming; adapt its own processes; learn where obstacles are; learn dirtier areas; learn a path/shape of room; learn most efficient route; use learning to know areas to avoid/concentrate on/use different cleaning tools.</div></div></div></article><article class="clean-card" data-search="may/june 2025 0478/12 q5(a) expert system operation an expert system is used in a medical context.
+
+(a) explain how the expert system uses its components to reach a diagnosis. [3]">
+<div class="clean-head"><div>May/June 2025 • 0478/12 • Q5(a)</div><div class="pills"><span>Expert system operation</span><b>3 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">An expert system is used in a medical context.<br><br>(a) Explain how the expert system uses its components to reach a diagnosis. [3]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">Any three from: inference engine is used; it decides which questions to ask the user; questions can depend on previous data input; symptoms input are located in/compared to the knowledge base; the rule base is applied to the knowledge base to decide the diagnosis.</div></div></div></article><article class="clean-card" data-search="oct/nov 2024 0478/11 q9(a–b) expert systems &amp; machine learning complete the statements about artificial intelligence and an expert system using the appropriate terms.
+
+(a) complete the expert-system process. [7]
+
+(b) identify the type of artificial intelligence in which a program can adapt its own processes and/or data. [1]">
+<div class="clean-head"><div>Oct/Nov 2024 • 0478/11 • Q9(a–b)</div><div class="pills"><span>Expert systems & machine learning</span><b>8 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">Complete the statements about artificial intelligence and an expert system using the appropriate terms.<br><br>(a) Complete the expert-system process. [7]<br><br>(b) Identify the type of artificial intelligence in which a program can adapt its own processes and/or data. [1]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) Correct order: artificial; interface; inference engine; knowledge base; rule base; inference engine; interface.</div><div class="clean-ms-row">(b) Machine learning.</div></div></div></article><article class="clean-card" data-search="oct/nov 2025 0478/12 q7(a,c) robot characteristics &amp; machine learning a house has a smart speaker that can take voice commands as input. a person in the house can tell the smart speaker to play music or audio books.
+
+(a) the smart speaker cannot be described as a robot. explain why the smart speaker is not a robot. [3]
+
+(c) the smart speaker has machine learning capabilities. explain how the smart speaker can use machine learning to improve the voice command input. [4]">
+<div class="clean-head"><div>Oct/Nov 2025 • 0478/12 • Q7(a,c)</div><div class="pills"><span>Robot characteristics & machine learning</span><b>7 marks</b></div></div>
+<div class="clean-body"><div class="clean-question">A house has a smart speaker that can take voice commands as input. A person in the house can tell the smart speaker to play music or audio books.<br><br>(a) The smart speaker cannot be described as a robot. Explain why the smart speaker is not a robot. [3]<br><br>(c) The smart speaker has machine learning capabilities. Explain how the smart speaker can use machine learning to improve the voice command input. [4]</div><textarea class="clean-answer" placeholder="Write your answer here…"></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button><div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">(a) Apply the syllabus robot characteristics: a robot has a mechanical structure/framework, electrical components such as sensors/microprocessors/actuators, and is programmable. The response must explain which required robot characteristic(s) the smart speaker lacks.</div><div class="clean-ms-row">(c) Marks are for applying machine learning to voice input: the program can adapt its own processes/data from collected voice-command data and use what it learns to improve future recognition/response.</div></div></div></article></section>
+
+<footer class="site-footer">
+<div class="site-footer-brand">Excellence By Adeel Kapasi <span>•</span> CS Notes</div>
+<div class="site-footer-label">Google Maps • Our locations</div>
+<div class="site-footer-links">
+<a href="https://share.google/D6klleel4komfGVpH" target="_blank" rel="noopener">View Location 1 on Google Maps ↗</a>
+<a href="https://share.google/fnQfEAAVV0bo7B6q6" target="_blank" rel="noopener">View Location 2 on Google Maps ↗</a>
+</div>
+</footer>
+</main>
+</div><script id="clean-bank-script">
+function toggleClean(btn){const m=btn.nextElementSibling;const o=m.classList.toggle('show');btn.textContent=o?'Hide marking':'Show marking';btn.classList.toggle('open',o)}
+function cleanRoot(){return document.querySelector('.clean-bank')||document}
+function allClean(o){cleanRoot().querySelectorAll('.clean-marking').forEach(x=>x.classList.toggle('show',o));cleanRoot().querySelectorAll('.clean-btn').forEach(b=>{b.textContent=o?'Hide marking':'Show marking';b.classList.toggle('open',o)})}
+function filterClean(){const q=(document.getElementById('cleanSearch').value||'').toLowerCase();cleanRoot().querySelectorAll('.clean-card').forEach(c=>c.style.display=!q||c.innerText.toLowerCase().includes(q)?'block':'none')}
+</script><script id="shell-script">
+(function(){
+ const nav=[...document.querySelectorAll('#nav button')];
+ nav.forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.target);if(t)t.scrollIntoView({behavior:'smooth'});}));
+ const input=document.getElementById('search');
+ if(input) input.addEventListener('input',()=>{const q=input.value.trim().toLowerCase();document.querySelectorAll('.section,.sec').forEach(s=>s.classList.toggle('hidden-by-search',!!q&&!s.textContent.toLowerCase().includes(q)));});
+ const secs=[...document.querySelectorAll('.section[id],.sec[id],.hero[id],.clean-bank[id]')];
+ if(nav.length&&'IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)nav.forEach(n=>n.classList.toggle('active',n.dataset.target===e.target.id));});},{rootMargin:'-20% 0px -65% 0px'});
+  secs.forEach(s=>io.observe(s));
+ }
+})();
+</script><script id="unified-progress">
+(function(){
+ const bar=document.getElementById('progressBar');
+ const text=document.getElementById('progressText');
+ const boxes=[...document.querySelectorAll('input.donebox, input.done')];
+ const nav=[...document.querySelectorAll('#nav button')];
+ const STORE='excellence-cs-ch6-done';
+ function save(){localStorage.setItem(STORE,JSON.stringify(boxes.filter(b=>b.checked).map(b=>b.dataset.sec)));}
+ function paint(){
+  if(!bar) return;
+  const pct=boxes.length?Math.round(boxes.filter(b=>b.checked).length/boxes.length*100):0;
+  bar.style.width=pct+'%';
+  if(text) text.textContent=pct+'% sections completed';
+  nav.forEach(btn=>{const id=btn.dataset.target||btn.dataset.id; const box=boxes.find(b=>b.dataset.sec===id); btn.classList.toggle('done',!!(box&&box.checked));});
+ }
+ try{const saved=JSON.parse(localStorage.getItem(STORE)||'[]'); boxes.forEach(b=>{if(saved.includes(b.dataset.sec)) b.checked=true;});}catch(e){}
+ boxes.forEach(b=>b.addEventListener('change',()=>{save();paint();}));
+ paint();
+ const reset=document.getElementById('resetProgress');
+ if(reset) reset.addEventListener('click',()=>{boxes.forEach(b=>b.checked=false); localStorage.removeItem(STORE); paint();});
+})();
+</script></body></html>

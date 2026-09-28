@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Excellence CS Notes — Paper 1",
+  "short_name": "CS Paper 1",
+  "description": "Cambridge O Level Computer Science 2210, Paper 1, chapters 1 to 6.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f6f8fc",
+  "theme_color": "#111b34",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

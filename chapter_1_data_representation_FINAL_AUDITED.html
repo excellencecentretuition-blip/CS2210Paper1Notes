@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapter 1 — Data Representation | Cambridge O Level Computer Science 2210</title>
+<style>
+:root{--bg:#f6f8fc;--panel:#fff;--ink:#172033;--muted:#657089;--line:#dfe5ef;--nav:#111b34;--accent:#3157d5;--accent2:#6c3dd1;--good:#13795b;--warn:#a35b00;--bad:#b42318;--soft:#edf2ff;--mark:#fff4cc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.62}
+button,input,select{font:inherit}.app{display:grid;grid-template-columns:290px minmax(0,1fr);min-height:100vh}
+.sidebar{background:var(--nav);color:#eaf0ff;padding:22px 18px;position:sticky;top:0;height:100vh;overflow:auto}.brand{font-weight:800;font-size:18px}.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 8px;overflow:hidden}.progress>i{display:block;height:100%;width:0;background:#8eabff}.pct{font-size:12px;color:#aebadd}
+.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}.nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer}.nav button:hover,.nav button.active{background:#223052;color:white}.nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+.main{min-width:0}.hero{padding:42px clamp(20px,5vw,70px) 30px;background:linear-gradient(135deg,#fff,#eef3ff);border-bottom:1px solid var(--line)}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}h1{font-size:clamp(30px,5vw,52px);line-height:1.05;margin:8px 0 12px}.hero p{max-width:800px;color:var(--muted);font-size:17px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.btn{border:1px solid var(--line);background:white;color:var(--ink);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}.btn.primary{background:var(--accent);color:white;border-color:var(--accent)}.btn:focus-visible,.nav button:focus-visible,input:focus-visible{outline:3px solid #9eb4ff;outline-offset:2px}
+.content{max-width:1050px;margin:auto;padding:28px clamp(18px,4vw,48px) 80px}.section{scroll-margin-top:16px;margin:0 0 44px}.section-head{display:flex;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}.num{background:var(--nav);color:white;min-width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:900}.section h2{margin:0;font-size:27px;line-height:1.2}.section h3{margin:26px 0 10px;font-size:20px}.lead{color:var(--muted);margin:4px 0 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:18px}.card h3,.card h4{margin-top:0}.concept{border-left:4px solid var(--accent)}.ms{border-left:4px solid var(--good);background:#f3fbf7}.trap{border-left:4px solid var(--bad);background:#fff7f6}.why{border-left:4px solid var(--accent2);background:#faf7ff}.exam{border-left:4px solid var(--warn);background:#fffaf0}.label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:900;color:var(--muted);margin-bottom:5px}.formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#10192f;color:#eef3ff;border-radius:12px;padding:14px;overflow:auto;white-space:pre-wrap}.chain{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:12px 0}.chain span{padding:7px 10px;border-radius:999px;background:#edf1f8;font-weight:700}.chain b{color:var(--accent)}
+table{width:100%;border-collapse:collapse;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}th{background:#f0f3f8;font-size:13px}tr:last-child td{border-bottom:0}.scroll{overflow:auto}
+.practice{background:#10192f;color:#eef3ff;border-radius:18px;padding:20px;margin-top:18px}.practice p{color:#c6d0e8}.qrow{display:flex;gap:10px;flex-wrap:wrap}.qrow input{flex:1;min-width:180px;border:1px solid #425174;background:#182541;color:white;border-radius:10px;padding:11px}.feedback{min-height:26px;margin-top:10px;font-weight:700}.ok{color:#8ce0bd}.no{color:#ffb4ab}.answer{display:none;margin-top:12px;padding:12px;background:#1d2a48;border-radius:10px}.answer.show{display:block}
+.bits{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:12px 0}.bit{min-width:0;padding:10px 3px;text-align:center;background:#edf1f8;border-radius:8px;font-weight:900}.bit small{display:block;color:var(--muted);font-weight:600;font-size:10px}.bit.on{background:#dce5ff;color:#16358f}.sim-controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.sim-result{font-size:18px;font-weight:800}
+.checklist label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line)}.checklist label:last-child{border:0}.checklist input{margin-top:6px}.quiz-choice{display:block;width:100%;text-align:left;margin:8px 0;padding:11px;border:1px solid #425174;background:#182541;color:white;border-radius:10px;cursor:pointer}.quiz-choice.correct{border-color:#62c9a1;background:#173d35}.quiz-choice.wrong{border-color:#ff8c84;background:#4a2529}.searchbar{max-width:520px;position:relative}.searchbar input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:white}.hidden-by-search{display:none!important}.tag{display:inline-block;font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:var(--soft);color:#2848a9;margin:2px}.footer{color:var(--muted);font-size:13px;margin-top:45px;padding-top:18px;border-top:1px solid var(--line)}
+@media(max-width:820px){.app{display:block}.sidebar{position:relative;height:auto}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero{padding-top:28px}.content{padding-bottom:50px}}
+@media(max-width:460px){.nav{grid-template-columns:1fr}.bits{gap:3px}.bit{font-size:13px}.bit small{font-size:8px}}
+
+</style>
+
+<style id="clean-bank-style">
+.clean-bank{margin-top:55px;padding-top:25px;border-top:4px solid #14244b}.clean-intro{background:linear-gradient(135deg,#111d3b,#3157a6);color:#fff;padding:27px;border-radius:20px}.clean-intro h2{font-size:34px;margin:5px 0 8px}.clean-intro p{max-width:900px;color:#dbe5ff;line-height:1.6}.clean-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.clean-stats span{border:1px solid #ffffff38;background:#ffffff12;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:850}.clean-tools{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.clean-tools input{flex:1;min-width:260px;padding:12px 14px;border:1px solid #d3dceb;border-radius:11px;font:inherit}.clean-tools button,.clean-btn{border:0;background:#3157d5;color:#fff;border-radius:10px;padding:11px 15px;font-weight:850;cursor:pointer}.clean-card{background:#fff;border:1px solid #dbe2ee;border-radius:17px;margin:17px 0;overflow:hidden;box-shadow:0 8px 24px #1a2a4a0d}.clean-head{background:#f1f4f9;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#3157d5;font-weight:900;font-size:13px}.marks-pill{background:#14244b;color:#fff;border-radius:999px;padding:6px 10px}.clean-body{padding:18px}.clean-question{font-size:17px;font-weight:650;line-height:1.72;color:#121a2d;margin:4px 0 14px}.clean-answer{width:100%;min-height:110px;border:1px solid #d6deeb;border-radius:11px;padding:12px;font:inherit;resize:vertical;margin:7px 0 8px}.clean-marking{display:none;margin-top:14px}.clean-marking.show{display:block}.clean-label{font-size:11px;letter-spacing:.1em;font-weight:900;color:#667089;margin:0 0 8px}.clean-ms-row{background:#f0f9f4;border-left:3px solid #13845f;border-radius:9px;padding:11px 12px;margin:7px 0;white-space:pre-wrap;line-height:1.55}.clean-btn.open{background:#173f82}@media(max-width:700px){.clean-head{align-items:flex-start}.clean-tools button{flex:1}}
+</style><script id="clean-bank-script">
+function toggleClean(btn){const m=btn.nextElementSibling;const o=m.classList.toggle('show');btn.textContent=o?'Hide marking':'Show marking';btn.classList.toggle('open',o)}
+function cleanRoot(){return document.querySelector('.clean-bank')||document}
+function allClean(o){cleanRoot().querySelectorAll('.clean-marking').forEach(x=>x.classList.toggle('show',o));cleanRoot().querySelectorAll('.clean-btn').forEach(b=>{b.textContent=o?'Hide marking':'Show marking';b.classList.toggle('open',o)})}
+function filterClean(){const q=(document.getElementById('cleanSearch').value||'').toLowerCase();cleanRoot().querySelectorAll('.clean-card').forEach(c=>c.style.display=!q||c.innerText.toLowerCase().includes(q)?'block':'none')}
+</script><style id="unified-chrome">
+body{background:#f6f8fc;color:#172033;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body>.app>.sidebar{background:#111b34;color:#eaf0ff;padding:22px 18px;position:sticky;top:0;left:auto;bottom:auto;width:auto;height:100vh;overflow:auto;box-sizing:border-box}
+.brand{font-weight:800;font-size:18px;line-height:1.25;color:#fff}
+.brand small{display:block;color:#9eacd0;font-weight:500;font-size:12px;margin-top:4px}
+.progress{height:7px;background:#2a3656;border-radius:99px;margin:18px 0 8px;overflow:hidden}
+.progress>i,.progress i{display:block;height:100%;width:0;background:#8eabff}
+.pct{font-size:12px;color:#aebadd}
+.nav-title{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#8796bc;margin:22px 8px 8px}
+body>.app .nav button{width:100%;border:0;background:transparent;color:#cdd6ee;text-align:left;padding:9px 10px;border-radius:9px;cursor:pointer;font:inherit;display:block}
+body>.app .nav button:hover,body>.app .nav button.active{background:#223052;color:#fff}
+body>.app .nav button.done:after{content:"✓";float:right;color:#8ce0bd}
+header.hero,section.hero{background:linear-gradient(135deg,#fff,#eef3ff)!important;color:#172033!important;border-bottom:1px solid #dfe5ef;border-radius:0!important;box-shadow:none!important;padding:42px clamp(20px,5vw,70px) 30px!important;margin:0!important}
+.hero .eyebrow{color:#3157d5!important;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{color:#172033!important;font-size:clamp(30px,5vw,48px);line-height:1.05;margin:8px 0 12px}
+.hero-lead{color:#172033;font-size:18px;font-weight:650;margin:0 0 8px;max-width:800px}
+.hero p{color:#657089!important;max-width:820px}
+.hero .principle,.hero .rule{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important;border-radius:12px}
+.hero .hero-grid div{background:#fff!important;border:1px solid #dfe5ef!important;color:#172033!important}
+.hero .hero-grid b{color:#3157d5!important}
+.hero .hero-grid span{color:#657089!important}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.searchbar{flex:1;min-width:220px;max-width:520px}
+.searchbar input{width:100%;padding:11px 13px;border:1px solid #dfe5ef;border-radius:10px;font:inherit;background:#fff;color:#172033}
+.toolbar .btn,.toolbar button.btn{border:1px solid #dfe5ef;background:#fff;color:#172033;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+.site-footer{margin:8px clamp(18px,4vw,48px) 36px;background:linear-gradient(135deg,#14244b,#294a88);color:#fff;border-radius:16px;padding:20px 22px;box-shadow:0 10px 26px rgba(20,36,75,.14)}
+.site-footer-brand{font-weight:900;font-size:16px}
+.site-footer-brand span{opacity:.72}
+.site-footer-label{margin-top:7px;font-size:13px;opacity:.82}
+.site-footer-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.site-footer-links a{display:inline-block;background:#fff;color:#14244b;text-decoration:none;font-weight:800;padding:9px 13px;border-radius:999px}
+@media(max-width:900px){body>.app{display:block}body>.app>.sidebar{position:relative;height:auto;width:auto}body>.app .nav{display:grid;grid-template-columns:1fr 1fr}header.hero,section.hero{padding:28px 18px 22px!important}}
+@media(max-width:520px){body>.app .nav{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">Excellence By Adeel Kapasi<small>CS Notes</small><small>Cambridge O Level 2210 • Paper 1 • 2026–2028</small></div>
+  <div class="progress"><i id="progressBar"></i></div><div class="pct" id="progressText">0% sections completed</div>
+  <div class="nav-title">Chapter 1</div>
+  <nav class="nav" id="nav">
+    <button data-target="s1">1. Binary & number systems</button>
+    <button data-target="s2">2. Conversions</button>
+    <button data-target="s3">3. Hexadecimal</button>
+    <button data-target="s4">4. Binary addition & overflow</button>
+    <button data-target="s5">5. Logical shifts</button>
+    <button data-target="s6">6. Two's complement</button>
+    <button data-target="s7">7. Text & character sets</button>
+    <button data-target="s8">8. Sound</button>
+    <button data-target="s9">9. Images</button>
+    <button data-target="s10">10. Storage units</button>
+    <button data-target="s11">11. File-size calculations</button>
+    <button data-target="s12">12. Compression</button>
+    <button data-target="s13">13. Mastery check</button>
+  <button data-target="pastpapers">14. Past-paper practice</button></nav>
+</aside>
+
+<main class="main">
+<header class="hero">
+  <div class="eyebrow">Chapter 1 • Data Representation</div>
+  <h1>Data Representation</h1><p class="hero-lead">Learn the concept. Think in mark points. Answer like Cambridge.</p>
+  <p>Detailed notes organised from the 2026–2028 syllabus and the question/mark-scheme patterns supplied for 0478/2210. Use the mini tools, exam-answer cards and mastery checks as you study.</p>
+  <div class="toolbar">
+    <div class="searchbar"><input id="search" aria-label="Search chapter" placeholder="Search this chapter…"></div>
+    <button class="btn" id="expandAnswers">Show all model answers</button>
+    <button class="btn" id="resetProgress">Reset progress</button>
+  </div>
+</header>
+
+<div class="content">
+
+<section class="section" id="s1">
+ <div class="section-head"><div class="num">1</div><div><h2>Binary & Number Systems</h2><p class="lead">Why computers need binary, and the three bases you must control.</p></div></div>
+ <div class="grid">
+  <div class="card concept"><div class="label">Core concept</div><h3>Why does a computer use binary?</h3><p>All data must be represented in binary before a computer can process it. Computer circuits use logic gates with two states, so the states can be represented by <strong>0</strong> and <strong>1</strong>. Data is processed using logic gates and can be held in registers.</p>
+   <div class="chain"><span>Data</span><b>→</b><span>binary</span><b>→</b><span>logic gates</span><b>→</b><span>processing</span></div>
+  </div>
+  <div class="card ms"><div class="label">Cambridge-ready wording</div><p><strong>Explain why computers use binary.</strong></p><p>“Computers use logic gates that have two states, so these states can be represented using the binary digits 0 and 1.”</p><button class="btn reveal" type="button">Why this scores</button><div class="answer"><strong>Mark-point logic:</strong> two-state hardware/logic gates + representation using 0 and 1.</div></div>
+ </div>
+ <div class="scroll"><table><thead><tr><th>System</th><th>Base</th><th>Symbols</th><th>Key idea</th></tr></thead><tbody>
+ <tr><td>Denary</td><td>10</td><td>0–9</td><td>Everyday number system</td></tr>
+ <tr><td>Binary</td><td>2</td><td>0, 1</td><td>Computer representation</td></tr>
+ <tr><td>Hexadecimal</td><td>16</td><td>0–9, A–F</td><td>Compact human-readable binary representation</td></tr>
+ </tbody></table></div>
+ <div class="card trap"><div class="label">Common trap</div><p><strong>Weak:</strong> “Computers understand binary.”</p><p><strong>Why weak:</strong> it states what happens, not why. Link the two states of computer circuitry/logic gates to 0 and 1.</p></div>
+
+ <div class="card ms"><div class="label">Representation limit</div><p>For syllabus conversion questions, positive binary integers can be up to <strong>16 bits</strong>. For an unsigned 8-bit value, the maximum is <strong>255</strong>.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s1" type="checkbox"> I can explain why binary is used and identify bases 2, 10 and 16.</label></div>
+</section>
+
+<section class="section" id="s2">
+ <div class="section-head"><div class="num">2</div><div><h2>Conversions</h2><p class="lead">Denary ↔ binary ↔ hexadecimal, with visible working.</p></div></div>
+ <h3>Binary place values</h3>
+ <div class="bits" aria-label="8-bit place values">
+  <div class="bit"><small>2⁷</small>128</div><div class="bit"><small>2⁶</small>64</div><div class="bit"><small>2⁵</small>32</div><div class="bit"><small>2⁴</small>16</div><div class="bit"><small>2³</small>8</div><div class="bit"><small>2²</small>4</div><div class="bit"><small>2¹</small>2</div><div class="bit"><small>2⁰</small>1</div>
+ </div>
+ <div class="grid">
+  <div class="card"><h3>Binary → denary</h3><p>Multiply each bit by its place value and add the values where the bit is 1.</p><div class="formula">11001010₂
+= 128 + 64 + 8 + 2
+= 202₁₀</div></div>
+  <div class="card"><h3>Denary → binary</h3><p>Choose the powers of 2 that add to the denary value.</p><div class="formula">109 = 64 + 32 + 8 + 4 + 1
+109₁₀ = 01101101₂</div></div>
+ </div>
+ <h3>Try a converter</h3>
+ <div class="card">
+  <div class="qrow"><input id="denaryInput" type="number" min="0" max="65535" value="175" aria-label="Denary value"><button class="btn primary" id="convertBtn" type="button">Convert</button></div>
+  <div class="feedback" id="convertOut" aria-live="polite"></div>
+ </div>
+ <div class="card exam"><div class="label">Exam technique</div><p>If the question says <strong>show your working</strong>, do it. Past mark schemes can award a method mark separately from the final answer. For hexadecimal/binary conversion, Cambridge may award marks nibble-by-nibble.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s2" type="checkbox"> I can convert in both directions and show a valid method.</label></div>
+</section>
+
+<section class="section" id="s3">
+ <div class="section-head"><div class="num">3</div><div><h2>Hexadecimal</h2><p class="lead">One hex digit maps exactly to one 4-bit nibble.</p></div></div>
+ <div class="scroll"><table><thead><tr><th>Denary</th><th>Hex</th><th>Binary</th><th>Denary</th><th>Hex</th><th>Binary</th></tr></thead><tbody>
+ <tr><td>0</td><td>0</td><td>0000</td><td>8</td><td>8</td><td>1000</td></tr><tr><td>1</td><td>1</td><td>0001</td><td>9</td><td>9</td><td>1001</td></tr>
+ <tr><td>2</td><td>2</td><td>0010</td><td>10</td><td>A</td><td>1010</td></tr><tr><td>3</td><td>3</td><td>0011</td><td>11</td><td>B</td><td>1011</td></tr>
+ <tr><td>4</td><td>4</td><td>0100</td><td>12</td><td>C</td><td>1100</td></tr><tr><td>5</td><td>5</td><td>0101</td><td>13</td><td>D</td><td>1101</td></tr>
+ <tr><td>6</td><td>6</td><td>0110</td><td>14</td><td>E</td><td>1110</td></tr><tr><td>7</td><td>7</td><td>0111</td><td>15</td><td>F</td><td>1111</td></tr>
+ </tbody></table></div>
+ <div class="grid">
+  <div class="card concept"><h3>Binary → hexadecimal</h3><p>Group bits into nibbles from the right.</p><div class="formula">1011 0110 1001
+  B    6    9
+= B69₁₆</div></div>
+  <div class="card concept"><h3>Hexadecimal → denary</h3><div class="formula">2A7₁₆
+= (2×16²) + (10×16¹) + 7
+= 512 + 160 + 7
+= 679₁₀</div></div>
+ </div>
+ <div class="card ms"><div class="label">Why hexadecimal?</div><p>Hexadecimal is a <strong>shorter representation of binary</strong>, making long binary values easier for humans to read, understand and work with. The underlying computer data is still binary.</p></div>
+ <div class="card trap"><div class="label">Do not say</div><p>“Hexadecimal uses less memory.” A shorter written representation for humans does not mean the underlying stored data magically needs fewer bits.</p></div>
+
+ <div class="card ms"><div class="label">Where hexadecimal is used</div><p>Hexadecimal is useful wherever long binary values need a shorter human-readable representation. Cambridge can ask you to identify computer-science uses of hexadecimal, for example <strong>HTML colour codes, MAC addresses, memory addresses and error/debug codes</strong>. The reason remains the same: one hexadecimal digit represents one 4-bit nibble, so long binary values are shorter and easier for people to read, enter and check.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s3" type="checkbox"> I know the 0–F mapping and can explain why hex is beneficial.</label></div>
+</section>
+
+<section class="section" id="s4">
+ <div class="section-head"><div class="num">4</div><div><h2>Binary Addition & Overflow</h2><p class="lead">Calculation marks and conceptual explanation are separate skills.</p></div></div>
+ <div class="grid">
+  <div class="card"><h3>Addition rules</h3><div class="formula">0 + 0 = 0
+0 + 1 = 1
+1 + 0 = 1
+1 + 1 = 10  → write 0, carry 1
+1 + 1 + 1 = 11 → write 1, carry 1</div><p>Show carries whenever working is requested. Cambridge has awarded separate method/working marks.</p></div>
+  <div class="card why"><h3>What is overflow?</h3><p>A device/register has a predefined storage limit. An unsigned 8-bit register represents values from <strong>0 to 255</strong>. If an addition result is greater than 255, more than 8 bits are required.</p>
+  <div class="chain"><span>result &gt; limit</span><b>→</b><span>insufficient bits</span><b>→</b><span>overflow</span></div></div>
+ </div>
+ <div class="card ms"><div class="label">Cambridge-ready 2-mark answer</div><p>“An overflow error occurs when the result is greater than the maximum value that can be represented using the available number of bits, so the result cannot fit in the register.”</p></div>
+ <div class="card trap"><div class="label">Too vague</div><p>“The answer is too big.” Better: <strong>too large for the available number of bits/register capacity.</strong></p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s4" type="checkbox"> I can add 8-bit values, show carries and explain overflow precisely.</label></div>
+</section>
+
+<section class="section" id="s5">
+ <div class="section-head"><div class="num">5</div><div><h2>Logical Shifts</h2><p class="lead">Move bits, lose bits at one end, insert zeros at the other.</p></div></div>
+ <div class="card">
+  <div class="label">Interactive shift lab</div>
+  <p>Start with <strong id="shiftStartLabel">00101101</strong> (45). Shift it and observe both the bit pattern and denary value.</p>
+  <div class="bits" id="shiftBits"></div>
+  <div class="sim-controls"><button class="btn" id="leftShift" type="button">← Shift left</button><button class="btn" id="rightShift" type="button">Shift right →</button><button class="btn" id="shiftReset" type="button">Reset</button></div>
+  <div class="sim-result" id="shiftResult" aria-live="polite"></div>
+ </div>
+ <div class="grid">
+  <div class="card concept"><h3>Logical left shift</h3><p>Bits move left. Bits leaving the <strong>MSB</strong> are lost; zeros enter at the <strong>LSB</strong>. For a positive integer, each shift normally multiplies the value by 2, unless significant bits are lost.</p><p><strong>n places → × 2ⁿ</strong></p></div>
+  <div class="card concept"><h3>Logical right shift</h3><p>Bits move right. Bits leaving the <strong>LSB</strong> are lost; zeros enter at the <strong>MSB</strong>. Each shift divides a positive integer by 2 using integer binary representation.</p><p><strong>n places → ÷ 2ⁿ</strong></p></div>
+ </div>
+ <div class="card exam"><div class="label">Question distinction</div><p><strong>Describe the shift</strong> → direction, lost bit(s), zeros entering. <strong>State the mathematical effect</strong> → multiplication/division by the appropriate power of 2. Do not answer one question with only the other fact.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s5" type="checkbox"> I can perform multiple logical shifts and explain their effect.</label></div>
+</section>
+
+<section class="section" id="s6">
+ <div class="section-head"><div class="num">6</div><div><h2>Two's Complement</h2><p class="lead">Represent positive and negative 8-bit integers.</p></div></div>
+ <div class="scroll"><table><thead><tr><th>Bit</th><th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>0</th></tr></thead><tbody><tr><td>Value</td><td><strong>−128</strong></td><td>64</td><td>32</td><td>16</td><td>8</td><td>4</td><td>2</td><td>1</td></tr></tbody></table></div>
+ <p>For 8-bit two's complement, the range is <strong>−128 to +127</strong>. A leading 0 indicates a non-negative value; a leading 1 indicates a negative value.</p>
+ <div class="grid">
+  <div class="card"><h3>Negative denary → two's complement</h3><p>Reliable method: write the positive 8-bit value → flip every bit → add 1.</p><div class="formula">+22 = 00010110
+flip = 11101001
++ 1  = 11101010
+−22  = 11101010</div></div>
+  <div class="card"><h3>Two's complement → denary</h3><p>Use signed place values.</p><div class="formula">10001110
+= −128 + 8 + 4 + 2
+= −114</div></div>
+ </div>
+ <div class="card exam"><div class="label">Working marks</div><p>If asked to show working, expose the method. Past schemes have rewarded a valid two's-complement method separately from the correct final answer.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s6" type="checkbox"> I can convert positive and negative 8-bit two's complement values both ways.</label></div>
+</section>
+
+<section class="section" id="s7">
+ <div class="section-head"><div class="num">7</div><div><h2>Text & Character Sets</h2><p class="lead">Characters need codes before they can become binary.</p></div></div>
+ <div class="card concept"><p>A computer cannot directly process letters and symbols. A <strong>character set</strong> maps characters to numeric codes that can be represented in binary.</p><div class="chain"><span>character</span><b>→</b><span>character code</span><b>→</b><span>binary</span></div></div>
+ <div class="grid">
+  <div class="card"><h3>ASCII</h3><p><strong>American Standard Code for Information Interchange.</strong> It assigns codes to a defined set of characters so they can be stored and processed.</p></div>
+  <div class="card"><h3>Unicode</h3><p>Unicode supports a much greater range of characters and symbols, including different languages and emojis. It requires more bits per character than ASCII.</p></div>
+ </div>
+ <div class="card ms"><div class="label">Cambridge-ready comparison</div><p>“Unicode can represent a greater range of characters and symbols, including different languages and emojis, but it requires more bits per character than ASCII.”</p></div>
+
+ <div class="card ms"><div class="label">How text becomes binary</div><p>A <strong>character set</strong> stores characters and their unique binary values/codes. When text is entered, each character is matched to its code and the codes are stored in the same sequence as the characters. Supplied mark schemes also accept naming a character set such as <strong>ASCII</strong> or <strong>Unicode</strong>.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s7" type="checkbox"> I can explain character sets and compare ASCII with Unicode.</label></div>
+</section>
+
+<section class="section" id="s8">
+ <div class="section-head"><div class="num">8</div><div><h2>Representing Sound</h2><p class="lead">Analogue sound becomes digital through sampling.</p></div></div>
+ <svg viewBox="0 0 800 190" role="img" aria-label="Sound wave sampled at regular intervals" style="width:100%;background:white;border:1px solid var(--line);border-radius:15px">
+  <line x1="35" y1="95" x2="765" y2="95" stroke="#cbd3e1"/><path d="M35 95 C90 15,145 15,200 95 S310 175,365 95 S475 15,530 95 S640 175,695 95 S750 35,765 65" fill="none" stroke="#6c3dd1" stroke-width="4"/>
+  <g stroke="#9aa7bd" stroke-dasharray="4 4"><line x1="100" y1="25" x2="100" y2="165"/><line x1="190" y1="25" x2="190" y2="165"/><line x1="280" y1="25" x2="280" y2="165"/><line x1="370" y1="25" x2="370" y2="165"/><line x1="460" y1="25" x2="460" y2="165"/><line x1="550" y1="25" x2="550" y2="165"/><line x1="640" y1="25" x2="640" y2="165"/></g>
+  <g fill="#172033"><circle cx="100" cy="30" r="5"/><circle cx="190" cy="81" r="5"/><circle cx="280" cy="164" r="5"/><circle cx="370" cy="87" r="5"/><circle cx="460" cy="26" r="5"/><circle cx="550" cy="123" r="5"/><circle cx="640" cy="150" r="5"/></g>
+  <text x="38" y="25" font-size="14" fill="#657089">analogue wave</text><text x="585" y="180" font-size="14" fill="#657089">samples taken at intervals</text>
+ </svg>
+ <div class="grid">
+  <div class="card concept"><h3>Sample rate</h3><p><strong>Number of samples taken per second.</strong></p><div class="chain"><span>higher rate</span><b>→</b><span>more samples</span><b>→</b><span>more accurate recording</span><b>→</b><span>larger file</span></div></div>
+  <div class="card concept"><h3>Sample resolution</h3><p><strong>Number of bits used to represent each sample.</strong></p><div class="chain"><span>more bits/sample</span><b>→</b><span>more possible values</span><b>→</b><span>more accurate</span><b>→</b><span>larger file</span></div></div>
+ </div>
+ <div class="card trap"><div class="label">Do not confuse</div><p><strong>Sample rate = how often.</strong> &nbsp; <strong>Sample resolution = how many bits per sample.</strong></p></div>
+
+ <div class="card ms"><div class="label">Sampling — exact process</div><p><strong>Sampling</strong> is the measurement of the height/amplitude of a sound wave at regular time intervals. A higher sample rate takes more measurements each second. A higher sample resolution allocates more bits to each amplitude/sample, allowing a wider range of amplitude values and more precise representation. Increasing either normally increases recording accuracy and file size.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s8" type="checkbox"> I can explain sampling and both effects on accuracy and file size.</label></div>
+</section>
+
+<section class="section" id="s9">
+ <div class="section-head"><div class="num">9</div><div><h2>Representing Images</h2><p class="lead">Pixels, resolution and colour depth.</p></div></div>
+ <div class="grid">
+  <div class="card"><h3>Pixel</h3><p>A pixel is the smallest component of a bitmap image and represents one colour.</p></div>
+  <div class="card"><h3>Resolution</h3><p>The number of pixels in an image, often described using width × height.</p></div>
+  <div class="card"><h3>Colour depth</h3><p>The number of bits used to represent each colour/pixel.</p><p><strong>n bits → 2ⁿ possible values/colours.</strong></p></div>
+  <div class="card why"><h3>Think relationally</h3><p>Higher resolution means more pixels to store. Higher colour depth means more bits per pixel. Both therefore increase the amount of data and file size, while allowing more image information.</p></div>
+ </div>
+ <div class="chain"><span>more pixels</span><b>→</b><span>higher resolution</span><b>→</b><span>more detail/data</span><b>→</b><span>larger file</span></div>
+ <div class="chain"><span>more bits/pixel</span><b>→</b><span>higher colour depth</span><b>→</b><span>more colours/data</span><b>→</b><span>larger file</span></div>
+ <div class="card ms"><div class="label">Exam-ready explanation</div><p>“Increasing the resolution increases the number of pixels in the image, so more data needs to be stored and the image file size increases.”</p></div>
+
+ <div class="card ms"><div class="label">MS depth: colour depth & metadata</div><p>A <strong>32-bit colour depth</strong> means 32 bits are used to represent each colour/pixel; this allows up to 2<sup>32</sup> possible colour values. Increasing colour depth means more bits are stored for each colour, so the image file size increases.</p><p><strong>Metadata/header data</strong> is additional data stored with an image, such as the time and date it was taken. Supplied mark schemes have tested metadata alongside pixel, resolution and colour depth.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s9" type="checkbox"> I can define pixel, resolution and colour depth and explain their effects.</label></div>
+</section>
+
+<section class="section" id="s10">
+ <div class="section-head"><div class="num">10</div><div><h2>Data Storage Units</h2><p class="lead">For this syllabus, conversions use 1024 rather than 1000.</p></div></div>
+ <div class="scroll"><table><thead><tr><th>Relationship</th><th>Remember</th></tr></thead><tbody>
+ <tr><td>4 bits</td><td>1 nibble</td></tr><tr><td>8 bits</td><td>1 byte</td></tr><tr><td>1024 bytes</td><td>1 KiB</td></tr><tr><td>1024 KiB</td><td>1 MiB</td></tr><tr><td>1024 MiB</td><td>1 GiB</td></tr><tr><td>1024 GiB</td><td>1 TiB</td></tr><tr><td>1024 TiB</td><td>1 PiB</td></tr><tr><td>1024 PiB</td><td>1 EiB</td></tr>
+ </tbody></table></div>
+ <div class="card exam"><div class="label">Non-negotiable exam rule</div><p><strong>Use 1024, not 1000.</strong> Give the answer in the unit requested in the question.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s10" type="checkbox"> I know the storage hierarchy and can convert using 1024.</label></div>
+</section>
+
+<section class="section" id="s11">
+ <div class="section-head"><div class="num">11</div><div><h2>File-Size Calculations</h2><p class="lead">Build the answer in stages so method marks are visible.</p></div></div>
+ <div class="grid">
+  <div class="card concept"><h3>Image</h3><div class="formula">file size (bits)
+= width × height × colour depth</div><p>Then divide by 8 for bytes and by 1024 repeatedly for KiB, MiB, etc.</p></div>
+  <div class="card concept"><h3>Sound</h3><div class="formula">file size (bits)
+= sample rate × sample resolution × duration</div><p>Duration must be in seconds unless the calculation is adjusted accordingly.</p></div>
+ </div>
+ <div class="card"><h3>Worked image example</h3><div class="formula">1000 × 1000 pixels, 16-bit colour depth
+pixels = 1,000,000
+bits = 1,000,000 × 16 = 16,000,000
+bytes = 16,000,000 ÷ 8 = 2,000,000 bytes</div></div>
+ <div class="card"><h3>File-size calculator</h3>
+  <div class="qrow"><input id="imgW" type="number" value="1920" min="1" aria-label="Image width"><input id="imgH" type="number" value="1080" min="1" aria-label="Image height"><input id="imgD" type="number" value="24" min="1" aria-label="Colour depth"><button class="btn primary" id="imageCalc" type="button">Calculate image</button></div>
+  <div class="feedback" id="imageOut" aria-live="polite"></div>
+ </div>
+ <div class="card exam"><div class="label">Exam technique</div><p>Write each stage. Cambridge has awarded a final-answer mark and separate working marks in file-size calculations.</p></div>
+
+ <div class="card ms"><div class="label">MS calculation pattern</div><p>For sound, Cambridge may award separate marks for the stages <strong>sample rate × sample resolution</strong>, multiplying by <strong>track length in seconds</strong>, converting bits to bytes by <strong>÷ 8</strong>, and converting units using <strong>÷ 1024</strong>. Keep these stages visible rather than jumping directly to the final value.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s11" type="checkbox"> I can calculate image and sound file sizes and convert to the requested unit.</label></div>
+</section>
+
+<section class="section" id="s12">
+ <div class="section-head"><div class="num">12</div><div><h2>Compression</h2><p class="lead">Reduce file size, then justify the method using the scenario.</p></div></div>
+ <div class="card concept"><h3>Why compress?</h3><p>Compression reduces file size.</p><div class="chain"><span>smaller file</span><b>→</b><span>less storage</span><b>•</b><span>less bandwidth</span><b>•</b><span>shorter transmission time</span></div></div>
+ <div class="grid">
+  <div class="card"><h3>Lossy</h3><p>Permanently removes data to reduce file size. For images this may involve reducing resolution or colour depth; for sound, reducing sample rate or sample resolution. Quality can decrease.</p></div>
+  <div class="card"><h3>Lossless</h3><p>Reduces file size <strong>without permanent loss of data</strong>. The original information can be reconstructed. RLE is a syllabus example.</p></div>
+ </div>
+ <div class="card"><h3>Run-Length Encoding (RLE)</h3><p>Repeated values/pixels or patterns are identified and represented using the value/colour and the number of repetitions.</p><div class="formula">RRRRRRRBBBBB
+→ conceptually: 7R 5B</div></div>
+ <div class="card ms"><div class="label">3-mark answer pattern</div><p><strong>Identify:</strong> Run-Length Encoding. <strong>Describe:</strong> repeating pixels/patterns are identified and stored with the value/colour and number of times they repeat.</p><p>This matters because past marking has explicitly separated the mark for naming the method from marks for describing it.</p></div>
+ <div class="card why"><div class="label">Scenario reasoning</div><p>Do not write only “lossless is better quality.” Use:</p><div class="formula">technical fact → consequence → why it matters here</div><p>Example: “Lossless compression does not permanently remove image data, so detail is preserved and quality loss is avoided, which is important if the image will be printed as a large poster.”</p></div>
+
+ <div class="card ms"><div class="label">MS depth: what lossy can remove</div><p>For images, supplied mark schemes have credited reductions in <strong>resolution/number of pixels</strong>, <strong>colour depth/bit depth</strong>, <strong>quality/detail</strong> and <strong>metadata</strong>. Lossy compression permanently removes data.</p></div>
+ <div class="card exam"><div class="label">Choosing compression for the file type</div><p>Lossy compression can be unsuitable when every item of data must be preserved. In a text/report scenario, permanently removing data can remove important information and damage/corrupt the file. If the report contains images, lossy compression can also reduce their quality. Lossless compression is appropriate when the original data must be reconstructed exactly.</p></div>
+ <div class="card ms"><div class="label">RLE — full marking-point chain</div><p>Lossless compression reduces file size <strong>without permanently removing data</strong>. A compression algorithm such as <strong>Run-Length Encoding (RLE)</strong> can identify/group repeating pixels or patterns and store/index the repeated value together with the <strong>number of times it repeats</strong>.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s12" type="checkbox"> I can compare lossy/lossless, describe RLE and justify a method in context.</label></div>
+</section>
+
+<section class="section" id="s13">
+ <div class="section-head"><div class="num">13</div><div><h2>Mastery Check</h2><p class="lead">Short questions that target Cambridge-style distinctions.</p></div></div>
+ <div class="practice" id="quiz">
+  <div class="label" style="color:#9eacd0">Question <span id="qNum">1</span> / 6</div>
+  <h3 id="qText">Loading…</h3><div id="choices"></div>
+  <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+  <button class="btn" id="nextQ" type="button" style="display:none">Next question</button>
+ </div>
+ <div class="card ms" style="margin-top:16px"><div class="label">Mastery means</div><p>You can <strong>recall</strong> definitions, <strong>perform</strong> conversions/calculations, <strong>explain</strong> cause-and-effect, <strong>compare</strong> related concepts, and <strong>apply</strong> the correct points to an unfamiliar scenario.</p></div>
+ <div class="checklist"><label><input class="donebox" data-sec="s13" type="checkbox"> I completed the mastery check and reviewed my weak areas.</label></div>
+</section>
+
+
+<section class="section" id="pastpapers">
+ <div class="section-head"><div class="num">PP</div><div><h2>Past Paper Practice & Marking</h2><p class="lead">Questions adapted directly from the supplied Cambridge papers, followed by the matching mark-scheme logic in our learning format.</p></div></div>
+ <div class="card exam"><div class="label">How to use this section</div><p>Attempt each question before revealing the marking. Then compare your answer <strong>mark point by mark point</strong>. The wording below is formatted/adapted for this learning resource; the paper reference tells you the source.</p></div>
+ <article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q3(b)(ii)</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">Explain why computers use binary.</div>
+<textarea class="clean-answer" placeholder="Write your answer before revealing the mark scheme…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">Mark scheme in our format</div><div class="clean-ms-row"><strong>MP1:</strong> Computers use logic gates/switches.</div><div class="clean-ms-row"><strong>MP2:</strong> These have two states / process 0 and 1.</div><div class="clean-ms-row"><strong>Full-mark model:</strong> Computers use logic gates that have two states, so the states can be represented and processed using binary 0 and 1.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q3(c)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">Add the two 8-bit binary integers 00110000 and 01100110. Show your working.</div>
+<textarea class="clean-answer" placeholder="Show carries and final 8-bit answer…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">Mark scheme in our format</div><div class="clean-ms-row"><strong>MP1:</strong> Evidence of valid working/carries.</div><div class="clean-ms-row"><strong>MP2:</strong> Correct left nibble: 1001.</div><div class="clean-ms-row"><strong>MP3:</strong> Correct right nibble: 0110.</div><div class="clean-ms-row"><strong>Answer:</strong><div class="formula">  00110000
++ 01100110
+----------
+  10010110</div></div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q3(d)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">Describe a logical left shift of an 8-bit binary integer and state its effect on the positive integer.</div>
+<textarea class="clean-answer" placeholder="Separate the process from the mathematical effect…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">Mark scheme in our format</div><div class="clean-ms-row"><strong>Process MP:</strong> Every bit moves to the left.</div><div class="clean-ms-row"><strong>Process MP:</strong> The MSB/leftmost bit is lost and 0 enters at the LSB/rightmost position. (Any two process points were credited.)</div><div class="clean-ms-row"><strong>Effect:</strong> The positive binary integer is multiplied by 2.</div><div class="clean-ms-row"><strong>Model:</strong> All bits move one position left; the most significant bit is lost and a 0 enters at the least significant bit. The positive integer is multiplied by 2.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q2(c–d)</span><span class="marks-pill">Calculation + compression</span></div>
+<div class="clean-body">
+<div class="clean-question">A data-size question leads to 220 160 bytes. Convert this to KiB using the Cambridge convention. Then state the purpose of compression and one storage benefit.</div>
+<textarea class="clean-answer" placeholder="Show conversion and answer both compression points…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">Mark scheme in our format</div><div class="clean-ms-row"><strong>Calculation:</strong> 220 160 ÷ 1024 = <strong>215 KiB</strong>.</div><div class="clean-ms-row"><strong>Compression:</strong> reduces the size of a file.</div><div class="clean-ms-row"><strong>Benefit:</strong> the file uses less storage space.</div><div class="clean-ms-row"><strong>Exam lesson:</strong> use 1024 and answer in the unit requested.</div></div>
+</div>
+</article>
+<article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/12 • Q2(c–d)</span><span class="marks-pill">[6 across parts]</span></div>
+<div class="clean-body">
+<div class="clean-question">Explain what a 32-bit colour depth means, explain its effect on image file size, and describe a lossless compression method.</div>
+<textarea class="clean-answer" placeholder="Try to expose separate creditworthy points…"></textarea>
+<button class="clean-btn" type="button" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">Mark scheme in our format</div><div class="clean-ms-row"><strong>Colour depth:</strong> 32 bits represent each colour/pixel (or 2³² possible colours/values).</div><div class="clean-ms-row"><strong>Effect:</strong> file size increases because more bits are used to store each colour.</div><div class="clean-ms-row"><strong>Lossless:</strong> file size is reduced without permanent data loss.</div><div class="clean-ms-row"><strong>Method:</strong> e.g. RLE; repeating pixels/patterns are identified/grouped and stored with their repeat count/index.</div><div class="clean-ms-row"><strong>Model:</strong> A 32-bit colour depth uses 32 bits for each pixel colour. Increasing colour depth stores more bits per pixel, so the image file becomes larger. Lossless compression such as RLE reduces size without permanently removing data by representing repeated pixels/patterns with their value and number of repetitions.</div></div>
+</div>
+</article>
+
+ <div class="checklist"><label><input class="donebox" data-sec="pastpapers" type="checkbox"> I attempted the Chapter 1 past-paper set before reading the mark schemes.</label></div>
+</section>
+<section class="clean-bank" id="past-paper-bank">
+<div class="clean-intro"><div class="eyebrow" style="color:#a9bdff">Past-paper practice</div>
+<h2>Chapter 1 • Data Representation</h2>
+<p>Every card uses a question from the supplied Cambridge papers and answer content from its corresponding supplied mark scheme. The presentation is cleaned for the app; no question or answer has been generated.</p>
+<div class="clean-stats"><span>63 mapped source subquestions</span><span>0 generated questions</span><span>0 generated answers</span></div></div>
+<div class="clean-tools"><input id="cleanSearch" placeholder="Search: binary, hexadecimal, overflow, sound, image, compression..." oninput="filterClean()"><button onclick="allClean(true)">Reveal all MS</button><button onclick="allClean(false)">Hide all MS</button></div>
+<article class="clean-card">
+<div class="clean-head"><span>Feb/Mar 2024 • 0478/12 • Q1(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   Computers represent different types of data in binary.<br>    (a) Tick (✓) one box to show the reason why computers use binary to represent data.<br>         A      Computers only allow 1s and 0s to be entered.<br>         B      Computers are made of switches and gates that can only be on or off.<br>         C      Binary does not need to be converted into other forms of data to be displayed.<br>         D      Both computers and humans can quickly process binary data.<br>                                                                                                                                                       [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)        B                                                                                       1</div><div class="clean-ms-row">1(b)(i)      A                                                                                       1</div><div class="clean-ms-row">1(b)(ii)     01001110                                                                                1</div><div class="clean-ms-row">1(b)(iii)     •    Unique binary/denary number given/stored for each character                        2</div><div class="clean-ms-row">•    The code for R is stored, then the code for E then D in sequence</div><div class="clean-ms-row">1(c)(i)      Any two from:                                                                           2</div><div class="clean-ms-row">• More bits allocated to each amplitude</div><div class="clean-ms-row">• Amplitudes can be more precise</div><div class="clean-ms-row">• A wider range of amplitudes can be recorded</div><div class="clean-ms-row">1(c)(ii)     Increase the sample rate                                                                1
+                                                                   PUBLISHED
+ Question                                                               Answer                                                    Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Feb/Mar 2024 • 0478/12 • Q8(c)</span><span class="marks-pill">[24]</span></div>
+<div class="clean-body">
+<div class="clean-question">8   (a) Hexadecimal can be used to represent binary numbers.<br>    (c) Logical shifts are performed on binary integers.<br>         State the mathematical effect of a right shift of four places on a positive binary integer.<br>                                                                            16<br>                                                                   BLANK PAGE<br>Permission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every<br>reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the<br>publisher will be pleased to make amends at the earliest possible opportunity.<br>To avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge<br>Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download<br>at www.cambridgeinternational.org after the live examination series.<br>Cambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge<br>Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">8(c)        One mark each                                                                         2</div><div class="clean-ms-row">• Divide</div><div class="clean-ms-row">• ...by 16 / 24</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Feb/Mar 2025 • 0478/12 • Q2(b)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">2           4                      8   10    16          127     128<br>         255         256<br>         The binary number system is base ......................... . The smallest denary number that can be<br>         represented as an 8-bit binary number is ......................... . The largest denary number that<br>         can be represented as an 8-bit binary number is ......................... .<br>         The hexadecimal number system is base ......................... . Each hexadecimal digit is<br>         equivalent to ......................... bits. The numbers 1 to 9 are used and the number 10 is<br>         represented by ......................... . The hexadecimal number system continues up to the<br>         number 15, which is represented by ......................... .<br>                                                                                                         [7]<br>    (b) Two 8-bit binary numbers are given.<br>         Add the two 8-bit binary numbers using binary addition.<br>         Give your answer in binary. Show all your working.<br>          10011011<br>                                                                                                         [3]<br>                                                     0478/12/F/M/25</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(b)        Any two from:                                                                       2</div><div class="clean-ms-row">• The higher the resolution the more pixels</div><div class="clean-ms-row">• The higher the resolution the more bits to store</div><div class="clean-ms-row">• The higher the resolution the larger the file size</div><div class="clean-ms-row">2(c)(i)      Any three from:                                                                     3
+                Examples:</div><div class="clean-ms-row">• Lossless will retain all parts of the image // lossless does not delete any
+                    data // The artist does not want any of the image to be lost when
+                    downloaded</div><div class="clean-ms-row">• Lossy will reduce the quality</div><div class="clean-ms-row">• … because the artist wants to provide the detailed image</div><div class="clean-ms-row">• Image may be small in file size anyway</div><div class="clean-ms-row">• … server has enough space to store the image</div><div class="clean-ms-row">• … download time is not excessive</div><div class="clean-ms-row">2(c)(ii)     1 mark for naming, max 2 for describing, for example:                               3</div><div class="clean-ms-row">• Run-length encoding</div><div class="clean-ms-row">• Repeating pixels of one colour are identified // patterns are identified</div><div class="clean-ms-row">• … and indexed // put into a table // assigned a value</div><div class="clean-ms-row">• … as the number of repetitions and the colour code
+                                                 PUBLISHED
+ Question                                           Answer                                 Marks</div><div class="clean-ms-row">2(d)(i)      Max 5 overall                                                                   5</div><div class="clean-ms-row">Any three from:</div><div class="clean-ms-row">• Data is split into fixed size packets</div><div class="clean-ms-row">• The data is the payload</div><div class="clean-ms-row">• Each packet is given a header</div><div class="clean-ms-row">• … example of header data e.g. Destination IP, packet number, hop
+                    number</div><div class="clean-ms-row">• Each packet has a trailer</div><div class="clean-ms-row">• … example of trailer data e.g. error checking method</div><div class="clean-ms-row">Any three from:</div><div class="clean-ms-row">• Router directs each packet towards its destination</div><div class="clean-ms-row">• Routes selects the most efficient path</div><div class="clean-ms-row">• Each packet can take a different path</div><div class="clean-ms-row">• Packets can arrive out of order</div><div class="clean-ms-row">• … after the last packet has arrived, they are reordered</div><div class="clean-ms-row">2(d)(ii)     The completed diagram showing:                                                  3</div><div class="clean-ms-row">• Parallel simplex having multiple wires and serial having one wire</div><div class="clean-ms-row">• Serial full-duplex going both ways at the same time</div><div class="clean-ms-row">• Parallel simplex only going one way
+                For example:
+ Question                                           Answer                                 Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Feb/Mar 2025 • 0478/12 • Q2(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An artist creates an image on a computer.<br>    (a) State what is meant by the colour depth of an image.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)        Any one from:                                                                       1</div><div class="clean-ms-row">• Number of bits used to represent each/a/one colour</div><div class="clean-ms-row">• Number of colours that can be represented</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Feb/Mar 2025 • 0478/12 • Q3(a)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A computer has a central processing unit (CPU), memory and secondary storage.<br>    (a) The computer has a Von Neumann architecture.<br>         Circle three registers that are found in the Von Neumann architecture.<br>         accumulator                                       arithmetic register                            binary counter<br>         binary register                                   control register                               current data register<br>         current instruction register                      data counter                                   instruction counter<br>         logical register                                  program counter                                storage register<br>                                                                                                                                                         [3]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(a)        Any one from:                                                                   3</div><div class="clean-ms-row">• Accumulator</div><div class="clean-ms-row">• Current instruction register</div><div class="clean-ms-row">• Program counter
+                                                 PUBLISHED
+ Question                                           Answer                                  Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q2(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   Hypertext markup language (HTML) colour codes can be represented as hexadecimal.<br>    (a) Tick (3) one box to show which statement about the hexadecimal number system is incorrect.<br>         A       It uses the values 0 to 9 and A to F.<br>         B       It can be used as a shorter representation of binary.<br>         C       It is a base 10 system.<br>         D       It can be used to represent error codes.<br>                                                                                                                                                         [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)       C                                                                                         1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q2(b)</span><span class="marks-pill">[20]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   Hypertext markup language (HTML) colour codes can be represented as hexadecimal.<br>    (b) Denary numbers can be converted to hexadecimal.<br>         Convert the three denary numbers to hexadecimal.<br>         20 ..............................................................................................................................................<br>         32 ..............................................................................................................................................<br>         165 ............................................................................................................................................<br>                                                                                                                                                     [3]<br>         Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(b)       14                                                                                        3
+                20
+                A5
+ Question                                                                  Answer                    Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q3(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   The binary number 10100011 is stored in random access memory (RAM).<br>    A logical left shift of three places is performed on the binary number.<br>    (a) Give the 8-bit binary number that will be stored after the shift has taken place.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(a)       00011000                                                                                  1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q3(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   The binary number 10100011 is stored in random access memory (RAM).<br>    A logical left shift of three places is performed on the binary number.<br>    (b) Tick (3) one box to show which statement about a logical left shift of two places is correct.<br>         A       It would divide the binary number by 2.<br>         B       It would multiply the binary number by 2.<br>         C       It would divide the binary number by 4.<br>         D       It would multiply the binary number by 4.<br>                                                                                                                                                         [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(b)       D                                                                                         1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q3(c)</span><span class="marks-pill">[93]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   The binary number 10100011 is stored in random access memory (RAM).<br>    A logical left shift of three places is performed on the binary number.<br>    (c) 10100011 can be stored as a two’s complement integer.<br>         Convert the two’s complement integer 10100011 to denary. Show all your working.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(c)       One mark for correct working                                                              2
+                Example: Flip and add</div><div class="clean-ms-row">One mark for correct answer: −93</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/11 • Q3(d)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   The binary number 10100011 is stored in random access memory (RAM).<br>    A logical left shift of three places is performed on the binary number.<br>    (d) The binary number is measured as a byte because it has 8 bits.<br>         State how many bytes there are in a kibibyte (KiB).</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(d)       1024                                                                                      1
+ Question                                                                  Answer                    Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q1(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   Data can be measured in bits.<br>    (b) State how many bits there are in a kibibyte (KiB).</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(b)       8192                                                                                                    1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q1(c)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   Data can be measured in bits.<br>    (c) Give the name of the data storage measurement that is equal to 1024 gibibytes (GiB).</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(c)       (1) Tebibyte // TiB                                                                                     1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q1(d)</span><span class="marks-pill">[1024]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   Data can be measured in bits.<br>    (d) A 16-bit colour image has a resolution of 512 pixels wide by 512 pixels high.<br>         Calculate the file size of the image in kibibytes (KiB). Show all your working.<br>         Answer ......................................................... KiB<br>                                                                                                                                                         [3]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(d)       One mark for each correct stage of working (max 2):                                                     3
+                     512  512
+                     262 144 * 2 // multiplied by 16 and divided by 8
+                     524 288/1024</div><div class="clean-ms-row">One mark for the correct answer:
+                512 (KiB)
+ Question                                                                       Answer                             Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q3(a)</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   Binary is a base 2 number system.<br>    (a) Give the name of the number system that is base 16.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(a)       Hexadecimal                                                                            1</div><div class="clean-ms-row">3(b)(i)      1010                                                                                   3
+                110010
+                11001001</div><div class="clean-ms-row">3(b)(ii)     Two from:                                                                              2
+                     Computers use logic gates/switches …
+                     … that only process the values 1 and 0 // that only have two states</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q3(c)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   Binary is a base 2 number system.<br>    (c) The two binary integers 00110000 and 01100110 are added together.<br>         Add the binary integers using binary addition and show your answer in binary. Show all your<br>         working.<br>                                                                   0478/12/M/J/24<br>                                     * 0019654976305 *</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(c)       One mark for evidence of working, for example 2 carries                                3</div><div class="clean-ms-row">One mark for each correct nibble (Max 2)</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/12 • Q5(a)</span><span class="marks-pill">[7]</span></div>
+<div class="clean-body">
+<div class="clean-question">5   Instructions are processed by a central processing unit (CPU) in a computer.<br>    (a) Complete the paragraph about fetching an instruction into the CPU to be processed.<br>         Use the terms from the list.<br>         Some of the terms in the list will not be used. You should only use a term once.<br>           address                                     arithmetic logic unit (ALU)                   binary                      control unit (CU)<br>                 current instruction register (CIR)                                     data                   denary                       driver<br>                             fetch                             interrupt                memory address register (MAR)<br>                          memory data register (MDR)                                      random access memory (RAM)<br>                         read only memory (ROM)                                      secondary storage                             signal<br>         of the next instruction to be processed; this is then sent to the<br>         Once the address is received, the instruction stored at the location is<br>                                                                                                                                                         [7]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">5(a)       One mark for each correct term in the correct place:                                                       7
+                      address
+                      memory address register // MAR
+                      random access memory // RAM
+                      memory data register // MDR
+                      data
+                      current instruction register // CIR
+                      control unit // CU</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/13 • Q1(a)</span><span class="marks-pill"></span></div>
+<div class="clean-body">
+<div class="clean-question">1   The size of a file can be measured in different units.<br>    (a) State how many bits there are in a byte.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/13 • Q1(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   The size of a file can be measured in different units.<br>    (b) State how many kibibytes (KiB) there are in 2 mebibytes (MiB).</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(b)       2048                                                                                         1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/13 • Q2(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels.<br>    (a) State what is meant by a 16-bit colour depth.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)       16 bits used to represent each colour in the image                                           1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/13 • Q2(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An image has a 16-bit colour depth and a resolution of 1000 × 1750 pixels.<br>    (b) The resolution of the image is changed to 750 × 1500 pixels.<br>         Give the effect this will have on the file size of the image.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(b)       The file size will decrease                                                                  1
+ Question                                                                    Answer                     Marks</div><div class="clean-ms-row">3(a)(i)      One mark for each correct nibble, in the correct order.                                      3
+                1010 0010 1111</div><div class="clean-ms-row">3(a)(ii)     2607                                                                                         1</div><div class="clean-ms-row">3(b)(i)      One mark for each correct character, in the correct order.                                   3
+                19B</div><div class="clean-ms-row">3(b)(ii)     411                                                                                          1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/13 • Q3(c)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A programmer is creating a computer game. One character is not moving correctly.<br>    The programmer needs to debug the program. To do this they need to look at addresses that are<br>    locations in memory.<br>    The addresses are displayed as hexadecimal numbers.<br>    (c) Give one reason why the addresses are displayed in hexadecimal instead of binary.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(c)       Any one from:                                                                                1
+                     It is easier/quicker to read/understand/debug
+                     It is a shorter representation of binary // It takes up less screen space
+                                                          PUBLISHED
+ Question                                                    Answer                    Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2024 • 0478/13 • Q9(a)</span><span class="marks-pill">[7]</span></div>
+<div class="clean-body">
+<div class="clean-question">9    A printer runs out of ink and needs a new ink cartridge. An interrupt is sent and a message is<br>     generated to notify the user that the ink cartridge is empty.<br>     (a) Complete the paragraph about the use of an interrupt in this process.<br>          Use the terms from the list.<br>          Some of the terms in the list will not be used. You should only use a term once.<br>                binary                      clock                     computer                        data                     error<br>    fetch–decode–execute cycle                                hexadecimal                           higher                      interrupt queue<br>        interrupt service routine (ISR)                                lower                     printer                     priority level<br>                           secondary storage                               sorting                     transmission<br>          The ...................................................................... sends an interrupt to the<br>          ...................................................................... . The interrupt is given a<br>          ...................................................................... . The processor completes its current<br>          ...................................................................... and checks the<br>          ...................................................................... to see if there is an interrupt with<br>          ...................................................................... priority than the current task. If there is, it stores<br>          the current task and fetches the interrupt. It then calls the<br>          ...................................................................... , which is a sequence of instructions that<br>          handles the interrupt. The interrupt is handled, which generates a message to the user to<br>          notify them that the ink cartridge is empty.<br>                                                                                                                                                        [7]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">9(a)       One mark for each correct term in the correct place.                                 7
+                     printer
+                     computer
+                     priority level
+                     fetch–decode–execute cycle
+                     interrupt queue
+                     higher
+                     interrupt service routine (ISR)</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/11 • Q1(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   The size of a file can be measured using different data storage units.<br>    (a) Tick (3) one box to show the smallest data storage unit.<br>         A       byte<br>         B       gibibyte (GiB)<br>         C       kibibyte (KiB)<br>         D       nibble<br>                                                                                                                                                         [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)        D                                                                                    1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/11 • Q1(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   The size of a file can be measured using different data storage units.<br>    (b) State how many tebibytes (TiB) are equal to 2 pebibytes (PiB).<br>         Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(b)        2048                                                                                 1</div><div class="clean-ms-row">1(c)(i)      (Data) Compression                                                                   1</div><div class="clean-ms-row">1(c)(ii)     Any one from:                                                                        1</div><div class="clean-ms-row">•     Less bandwidth required to transmit the file</div><div class="clean-ms-row">•     Less storage space needed to store the file</div><div class="clean-ms-row">•     To meet email file size limit</div><div class="clean-ms-row">•     To use less data allowance
+ Question                                                              Answer                   Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/11 • Q2(a)</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   A clothes store has a ticket system to allow customers to speak to a personal shopper.<br>    The ticket displays a ticket number in hexadecimal, for example 11B.<br>    (a) The ticket system has an output device that creates a paper ticket.<br>         Identify an appropriate output device to produce the paper ticket.<br>                                                                   0478/11/M/J/25</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)        Printer                                                                              1</div><div class="clean-ms-row">2(b)(i)      0001 0100 1011                                                                       2
+                1001 0111 1010</div><div class="clean-ms-row">2(b)(ii)     Any two from:                                                                        2</div><div class="clean-ms-row">•     Easier/quicker for the customer to understand/read/remember</div><div class="clean-ms-row">•     Takes up less space on the ticket // Shorter representation</div><div class="clean-ms-row">2(c)(i)      44                                                                                   2
+                267</div><div class="clean-ms-row">2(c)(ii)     (0)6D                                                                                2
+                19F
+                                                                   PUBLISHED
+ Question                                                                 Answer                                                        Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/11 • Q3</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   An image is converted to binary to be represented by a computer.<br>    Complete the table with the missing terms and definition about representing an image.<br>                            Term                                                                     Definition<br>      .....................................................   This is the smallest component of an image.<br>                        resolution                             .............................................................................................<br>                                                              This is the number of bits used to create each colour in an<br>                                                              image.<br>                                                              This is additional data that is stored with an image that can<br>      .....................................................   provide information such as the time and date the image<br>                                                              was taken.<br>                                                                                                                                                          [4]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3         One mark for each correct term or definition.                                                                                4
+                                Term                              Definition
+                                pixel             It is the smallest component of an image.
+                                                  The number of pixels high by the
+                              resolution          number of pixels wide // The number of
+                                                  pixels in an image
+                          colour depth //         This is the number of bits that are used to
+                             bit depth            create each colour in an image.
+                                                  This is additional data that is stored with
+                                                  an image that can provide information
+                       metadata // header
+                                                  such as the time and date the image was
+                                                  taken.
+ Question                                                                 Answer                                                        Marks</div><div class="clean-ms-row">4(a)(i)      Two from (one mark for serial, one mark for full-duplex):                                                                    2
+                serial</div><div class="clean-ms-row">• Serial is suitable as data may be travelling a long distance (over 5 metres).</div><div class="clean-ms-row">• Serial is suitable to make sure that bits don’t arrive skewed/arrives in order.</div><div class="clean-ms-row">• Serial is suitable as there is less chance of error.</div><div class="clean-ms-row">• Serial has sufficient transmission speed as not much data being sent.
+                full-duplex</div><div class="clean-ms-row">• Full-duplex is suitable as data needs to go between customer and kitchen computer // data needs to go in both
+                     directions // so notification of errors can be sent back to customer .</div><div class="clean-ms-row">4(a)(ii)     The data may be transmitted faster.                                                                                          1
+                                                                  PUBLISHED
+ Question                                                              Answer                                                            Marks</div><div class="clean-ms-row">4(b)(i)      Any five from:                                                                                                               5</div><div class="clean-ms-row">•    The checksum is calculated from/using the data.</div><div class="clean-ms-row">•    … using an algorithm // by example.</div><div class="clean-ms-row">•    The (checksum) value is transmitted with the data.</div><div class="clean-ms-row">•    The (checksum) value is recalculated after transmission/by recipient.</div><div class="clean-ms-row">•    If the checksum values do not match, an error is detected // If the checksum values match, no error is detected …</div><div class="clean-ms-row">•    … request for data to be resent if there is an error.</div><div class="clean-ms-row">4(b)(ii)     Any one from:                                                                                                                1</div><div class="clean-ms-row">•    Parity byte/block check</div><div class="clean-ms-row">•    Echo check</div><div class="clean-ms-row">4(c)(i)      D                                                                                                                            1</div><div class="clean-ms-row">4(c)(ii)     Any Two from:                                                                                                                2</div><div class="clean-ms-row">•    The packets arrive in the wrong order.</div><div class="clean-ms-row">•    Each packet could take a different route.</div><div class="clean-ms-row">•    Some packets may take longer than others to be transmitted.</div><div class="clean-ms-row">•    Some packets may not arrive/be corrupted and need to be requested again .
+                                                                      PUBLISHED
+ Question                                                                   Answer                                                             Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/11 • Q6(a)</span><span class="marks-pill">[8]</span></div>
+<div class="clean-body">
+<div class="clean-question">6   Data can be encrypted using asymmetric encryption.<br>                                  (a) Complete the paragraph about asymmetric encryption.<br>                                       Use the terms from the list.<br>                                       Some of the terms in the list will not be used. You may use a term more than once.<br>                                                  algorithm                             binary         cipher text                    compression                        error<br>                                             hardware                                hexadecimal             meaningless                       plain text                  private<br>                                                             public                        readable              transmission                      unreadable<br>                                       Data is encrypted using an encryption key. This is a type of .....................................................<br>                                       that scrambles the ..................................................... and turns it into<br>                                       ..................................................... . This makes the data ..................................................... .<br>                                       A ..................................................... key is used to encrypt the data. This key cannot be used<br>                                       to decrypt the data. A ..................................................... key is used to decrypt the data. Any<br>                                       device is able to request the ..................................................... key, but only your device<br>                                       knows the ..................................................... key.<br>                                                                                                                                                                                       [8]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">6(a)        One mark for each correct term in the correct position                                                                              8</div><div class="clean-ms-row">•    algorithm</div><div class="clean-ms-row">•    plain text</div><div class="clean-ms-row">•    cipher text</div><div class="clean-ms-row">•    meaningless</div><div class="clean-ms-row">•    public/private</div><div class="clean-ms-row">•    private/public (must be opposite of MP5)</div><div class="clean-ms-row">•    public</div><div class="clean-ms-row">•    private
+                Data is encrypted using an encryption key. This is a type of algorithm that scrambles the plain text and turns it into cipher
+                text. This makes the data meaningless.
+                A public/private key is used to encrypt the data. This key cannot be used to decrypt the data. A private/public key is used
+                to decrypt the data. Any device is able to request the public key, but only your device knows the private key.</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/12 • Q1(c)</span><span class="marks-pill">[11100110]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A computer stores data temporarily in random access memory (RAM).<br>    (c) The denary numbers 19 and 230 are converted to binary numbers to be stored in the RAM.<br>         Convert the two denary numbers to binary numbers.<br>         19 ..............................................................................................................................................<br>         230 ............................................................................................................................................<br>                                                                                                                                                     [2]<br>         Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(c)        •    10011                                                                                                                      2</div><div class="clean-ms-row">•    11100110</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/12 • Q1(d)</span><span class="marks-pill">[1101]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A computer stores data temporarily in random access memory (RAM).<br>    (d) The hexadecimal numbers 35 and 8AD are converted to binary numbers to be stored in the<br>        RAM.<br>         Convert the two hexadecimal numbers to binary numbers.<br>         35 ..............................................................................................................................................<br>         8AD ...........................................................................................................................................<br>                                                                                                                                                    [2]<br>         Working space<br>                                                                   0478/12/M/J/25</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(d)        •    0011 0101                                                                                                                  2</div><div class="clean-ms-row">•    1000 1010 1101</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/13 • Q1(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A student records himself singing a song for his music project. The recorded sound is converted to<br>    binary to be processed by a computer.<br>    (a) Give one input device the student can use to record the song.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)        Microphone                                                                                           1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/13 • Q1(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A student records himself singing a song for his music project. The recorded sound is converted to<br>    binary to be processed by a computer.<br>    (b) The student uses sound editing software to edit the recorded sound.<br>         Tick (✓) one box to show whether sound editing software is an example of application,<br>         security, system or utility software.<br>         A       application software<br>         B       security software<br>         C       system software<br>         D       utility software<br>                                                                                                                                                        [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(b)        A                                                                                                    1</div><div class="clean-ms-row">1(c)(i)      •     25                                                                                             2</div><div class="clean-ms-row">•     180</div><div class="clean-ms-row">1(c)(ii)     •     19                                                                                             2</div><div class="clean-ms-row">•     B4</div><div class="clean-ms-row">1(c)(iii)     00101001                                                                                             1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>May/June 2025 • 0478/13 • Q7(b)</span><span class="marks-pill">[8]</span></div>
+<div class="clean-body">
+<div class="clean-question">7      Data is sent from an employee’s computer to a server. The data is correct when it is sent, but an<br>       error is detected when the data is received.<br>       (b) Methods of error detection and correction can be added to make sure that errors are identified<br>           after data is transmitted.<br>              Complete the statements about methods of error detection and correction.<br>              Use terms from the list. Not all terms need to be used. You should only use each term once.<br>             acknowledgement                                 automatic repeat query (ARQ)                              binary                  bit<br>                 byte                 calculation                    check digit                     checksum                      correct<br>                     echo check                            error            even                 incorrect                   negative<br>                                     number                        odd              positive                   timeout<br>              A parity check is set to be ................................................................ or<br>              ................................................................ . A parity ................................................................ is<br>              added to each byte before transmission to make it match the set parity.<br>              An ................................................................ involves comparing the data sent to the data<br>              received back from the receiving device.<br>              An ................................................................ uses acknowledgement and<br>              ................................................................ . The acknowledgement system can be<br>              ................................................................ or ................................................................ .<br>                                                                                                                                                             [8]<br>Permission to reproduce items where third-party owned material protected by copyright is included has been sought and cleared where possible. Every<br>reasonable effort has been made by the publisher (UCLES) to trace copyright holders, but if any items requiring clearance have unwittingly been included, the<br>publisher will be pleased to make amends at the earliest possible opportunity.<br>To avoid the issue of disclosure of answer-related information to candidates, all copyright acknowledgements are reproduced online in the Cambridge<br>Assessment International Education Copyright Acknowledgements Booklet. This is produced for each series of examinations and is freely available to download<br>at www.cambridgeinternational.org after the live examination series.<br>Cambridge Assessment International Education is part of Cambridge Assessment. Cambridge Assessment is the brand name of the University of Cambridge<br>Local Examinations Syndicate (UCLES), which is a department of the University of Cambridge.<br>                                                                         0478/13/M/J/25</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">7(b)        One mark for each correct term in the correct place.                                                                           8</div><div class="clean-ms-row">•    odd/even</div><div class="clean-ms-row">•    even/odd (must be opposite of MP1)</div><div class="clean-ms-row">•    bit</div><div class="clean-ms-row">•    echo check</div><div class="clean-ms-row">•    automatic repeat query (ARQ)</div><div class="clean-ms-row">•    timeout</div><div class="clean-ms-row">•    positive/negative or negative/positive
+                A parity check is set to be odd or even. A parity bit is added to each byte before transmission to make it match the set
+                parity.
+                An echo check involves comparing the data sent to the data received back from the receiving device.
+                An automatic repeat query (ARQ) uses acknowledgement and timeout. The acknowledgement system can be positive
+                or negative.</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/11 • Q1(a)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   The size of a file can be measured using different units.<br>    (a) Tick (3) one box to show which of these is not a unit of measurement for a file.<br>         A      bit<br>         B      bot<br>         C      nibble<br>         D      byte<br>                                                                                                                                                       [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)       B                                                                                                1</div><div class="clean-ms-row">1(b)(i)      •    Lossy                                                                                       2</div><div class="clean-ms-row">•    Lossless</div><div class="clean-ms-row">1(b)(ii)     Any three from:                                                                                  3</div><div class="clean-ms-row">•    The file requires less storage space</div><div class="clean-ms-row">•    Takes less time to transmit</div><div class="clean-ms-row">•    A lower bandwidth can be used to transmit the file</div><div class="clean-ms-row">•    Less data usage for data allowance</div><div class="clean-ms-row">•    More likely to meet file size limits set by email clients/apps
+ Question                                                                     Answer                        Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/11 • Q3(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A user enters text into a computer system, using a keyboard.<br>    An American standard code for information interchange (ASCII) character set is used to convert<br>    the text to binary.<br>    (a) Identify one other character set that could be used to convert the text to binary.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(a)       Unicode                                                                                       1</div><div class="clean-ms-row">3(b)(i)      •    (0)1000001                                                                               2</div><div class="clean-ms-row">•    (0)1101101</div><div class="clean-ms-row">3(b)(ii)     •    41                                                                                       2</div><div class="clean-ms-row">•    6D</div><div class="clean-ms-row">3(c)(i)      121                                                                                           1</div><div class="clean-ms-row">3(c)(ii)     79                                                                                            1</div><div class="clean-ms-row">3(c)(iii)    00011110                                                                                      1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/11 • Q5(c)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">5<br>                              ,           ,<br>                                  (c) The character ‘y’ is represented by the binary ASCII number 01111001.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">5(c)       Any one from:                                                                                                 1</div><div class="clean-ms-row">•    Accumulator</div><div class="clean-ms-row">•    Memory address register // MAR</div><div class="clean-ms-row">•    Memory data register // MDR</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/11 • Q5(d)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">5<br>                              ,           ,<br>    (d) The character ‘T’ is represented by the binary ASCII number 01010100.<br>         The character ‘t’ is represented by the binary ASCII number 01110100.<br>         Add the two binary numbers using binary addition. Give your answer in binary. Show all your<br>         working.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">5(d)       •    data                                                                                                     3</div><div class="clean-ms-row">•    address</div><div class="clean-ms-row">•    control</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/11 • Q6(c)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">6   A computer programmer uses assembly language to create a computer program for an embedded<br>                                  system in a washing machine.<br>                                  (c) The washing machine needs to display error codes on a small screen if there is a problem<br>                                      with the washing machine.<br>                                       The error codes are stored as binary. The binary numbers are too long to be displayed on the<br>                                       washing machine.<br>                                       State how the error codes could be reduced in length to be displayed on the screen.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">6(c)       Any one from:                                                                                  1</div><div class="clean-ms-row">•    Convert to hexadecimal</div><div class="clean-ms-row">•    Convert to denary</div><div class="clean-ms-row">•    A character set can be used</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/11 • Q9(a)</span><span class="marks-pill">[7]</span></div>
+<div class="clean-body">
+<div class="clean-question">9      A doctor’s surgery has an expert system that helps diagnose the illnesses of its patients.<br>       (a) Complete the paragraph about the operation of the expert system.<br>              Use the terms from the list.<br>              Some of the terms in the list will not be used. Some terms may be used more than once.<br>                          artificial                        binary          central processing unit (CPU)                    data<br>                  inference engine                              interface          knowledge base                  primary storage<br>                           process                          real       read only memory (ROM)                       rule base<br>              An expert system is a type of ............................................ intelligence. The doctor will type<br>              data about the symptoms of the illness into the ...................................................................... .<br>              The ................................................................ will decide which questions to ask the doctor.<br>              It will do this by linking the facts in the ....................................................................... to the<br>              .................................................................... .<br>              The ..................................................................... will decide on a diagnosis and this will be<br>              output on the .................................................................... .<br>                                                                                                                                                           [7]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">9(a)       One mark for each correct term in the correct order.                                         7</div><div class="clean-ms-row">•    artificial</div><div class="clean-ms-row">•    interface</div><div class="clean-ms-row">•    inference engine</div><div class="clean-ms-row">•    knowledge base</div><div class="clean-ms-row">•    rule base</div><div class="clean-ms-row">•    inference engine</div><div class="clean-ms-row">•    interface</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q2(c)</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   Data storage can be measured using different units of measurement.<br>    (c) A 10 second sound effect is recorded for a movie.<br>         It is recorded with a sample rate of 22,016 Hz and a sample resolution of 8 bits.<br>         Calculate the file size of the sound effect in kibibytes (KiB). Show all your working.<br>         Answer ..................................................... KiB<br>                                                                                                                                                         [3]<br>                                                                  0478/12/O/N/24</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(c)       Any two from:                                                                                                                     3</div><div class="clean-ms-row">•     22 016  8 then divided 8</div><div class="clean-ms-row">•     22 016  10</div><div class="clean-ms-row">•     220 160 / 1024</div><div class="clean-ms-row">One mark for:
+                215 KiB</div><div class="clean-ms-row">2(d)(i)      Reducing the size of a file                                                                                                       1</div><div class="clean-ms-row">2(d)(ii)     It will take up/use less storage space                                                                                            1
+                −
+ Question                                                                Answer                                                          Marks</div><div class="clean-ms-row">3(a)(i)      They are both number systems                                                                                                      1</div><div class="clean-ms-row">3(a)(ii)     •     Binary is base-2 whereas hexadecimal is base-16                                                                             2</div><div class="clean-ms-row">•     Binary only uses numbers whereas hexadecimal also uses letters // Binary only uses 0 and 1 whereas hexadecimal
+                      uses 0 to 9/A to F
+                                                                    PUBLISHED
+ Question                                                                 Answer                                       Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q3(b)</span><span class="marks-pill">[11101011]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A user enters data that is hexadecimal into a computer system. The data is converted to binary to<br>                                  be processed by the computer.<br>                                  (b) Data that is denary can also be converted to binary.<br>                                       Give the binary number for each of the three denary numbers.<br>                                       15 ..............................................................................................................................................<br>                                       180 ............................................................................................................................................<br>                                       235 ............................................................................................................................................<br>                                                                                                                                                                                   [3]<br>                                       Working space<br>                                                                           4<br>,             ,</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(b)       •    (0000)1111                                                                                                 3</div><div class="clean-ms-row">•    10110100</div><div class="clean-ms-row">•    11101011</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q3(c)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A user enters data that is hexadecimal into a computer system. The data is converted to binary to<br>                                  be processed by the computer.<br>    (c) Denary numbers can also be converted to hexadecimal.<br>         Give the hexadecimal number for each of the three denary numbers.<br>         14 ..............................................................................................................................................<br>         100 ............................................................................................................................................<br>         250 ............................................................................................................................................<br>                                                                                                                                                     [3]<br>         Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(c)       •    E                                                                                                          3</div><div class="clean-ms-row">•    64</div><div class="clean-ms-row">•    FA</div><div class="clean-ms-row">3(d)(i)      Any two from:                                                                                                   2</div><div class="clean-ms-row">•    Each/All/Every value/digit/bit in the binary number is shifted/moved to the left</div><div class="clean-ms-row">•    The left most/most significant bit is lost</div><div class="clean-ms-row">•    A 0 is added as the right most/least significant bit</div><div class="clean-ms-row">3(d)(ii)     The binary integer is multiplied by 2                                                                           1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/12 • Q3(e)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A user enters data that is hexadecimal into a computer system. The data is converted to binary to<br>                                  be processed by the computer.<br>    (e) A negative binary integer needs to be stored in a register in the computer.<br>         Give the name of the number system that can be used to represent negative binary integers.<br>                                                                  0478/12/O/N/24</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(e)       Two’s complement                                                                                                1
+                −
+ Question                                                                 Answer                                       Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/13 • Q1(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   Data can be measured using different units of storage.<br>    (a) Tick (✓) one box to show which of the following is the largest unit of data storage.<br>         A       tebibyte (TiB)<br>         B       pebibyte (PiB)<br>         C       mebibyte (MiB)<br>         D       gibibyte (GiB)<br>                                                                                                                                                         [1]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)       B                                                                                      1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/13 • Q2(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An employee has a report that they need to email to their employer.<br>    The employee compresses the report file before emailing it.<br>    (a) State the effect the compression has on the report file.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)       The file size will be reduced                                                         1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/13 • Q2(b)</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An employee has a report that they need to email to their employer.<br>    The employee compresses the report file before emailing it.<br>    (b) Give two benefits of compressing the report file before emailing it.<br>         1 ................................................................................................................................................<br>         2 ................................................................................................................................................<br>                                                                                                                                                         [2]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(b)       Any two from:                                                                         2</div><div class="clean-ms-row">•    It will be under the file size limit for the email</div><div class="clean-ms-row">•    It will be uploaded/transmitted/downloaded faster</div><div class="clean-ms-row">•    It will take less storage space (on computer)</div><div class="clean-ms-row">•    It will use less data allowance (if mobile data used)</div><div class="clean-ms-row">•    Requires less bandwidth</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/13 • Q2(c)</span><span class="marks-pill">[2]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An employee has a report that they need to email to their employer.<br>    The employee compresses the report file before emailing it.<br>    (c) The employee decides to use lossless compression to compress the file.<br>         Explain why lossy compression is not suitable.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(c)       Any three from:                                                                       3</div><div class="clean-ms-row">•    Data will be permanently removed</div><div class="clean-ms-row">•    … and that could be important/necessary data</div><div class="clean-ms-row">•    (The report will have text in it and) lossy is not suitable for text files</div><div class="clean-ms-row">•    … as it will damage/corrupt the file</div><div class="clean-ms-row">•    The report may have images in it and the quality of these will be reduced</div><div class="clean-ms-row">2(d)(i)      Character set                                                                         1</div><div class="clean-ms-row">2(d)(ii)     Any two from:                                                                         2</div><div class="clean-ms-row">•    It can represent more characters</div><div class="clean-ms-row">•    It can represent emojis/symbols</div><div class="clean-ms-row">•    It can represent more languages</div><div class="clean-ms-row">2(d)(iii)    Each character requires more storage space                                            1</div><div class="clean-ms-row">2(e)(i)      •    originator’s address                                                             3</div><div class="clean-ms-row">•    destination address</div><div class="clean-ms-row">•    packet number</div><div class="clean-ms-row">2(e)(ii)     C                                                                                     1</div><div class="clean-ms-row">2(e)(iii)    Router                                                                                1</div><div class="clean-ms-row">2(f)(i)     •    A copy of the data is sent back to the employee’s device/sender                  3</div><div class="clean-ms-row">•    The employee’s device/sender compares the data sent to the data
+                     received back</div><div class="clean-ms-row">•    If the original and the copy do not match, an error has occurred</div><div class="clean-ms-row">2(f)(ii)    Any two from:                                                                         2</div><div class="clean-ms-row">•    The checksum is calculated from/using the data</div><div class="clean-ms-row">•    … using the same algorithm</div><div class="clean-ms-row">•    … so, if the values are different the data must be different</div><div class="clean-ms-row">2(g)(i)      Any one from:                                                                         1</div><div class="clean-ms-row">•    To keep it secure</div><div class="clean-ms-row">•    The data is sensitive/confidential</div><div class="clean-ms-row">•    To make it meaningless
+                                                  PUBLISHED                                          2024
+ Question                                             Answer                                      Marks</div><div class="clean-ms-row">2(g)(ii)     Any one from:                                                                          1</div><div class="clean-ms-row">•    They both use a key</div><div class="clean-ms-row">•    They both scramble the data // both make the data meaningless</div><div class="clean-ms-row">•    They both turn plain text into cypher text</div><div class="clean-ms-row">2(g)(iii)    Any two from:                                                                          2</div><div class="clean-ms-row">•    Symmetric uses one/public key whereas asymmetric uses two/public and
+                     private keys</div><div class="clean-ms-row">•    Symmetric can send the key with the data whereas asymmetric does not</div><div class="clean-ms-row">•    Symmetric decrypts the data using the same key whereas asymmetric
+                     decrypts the data using a different key</div><div class="clean-ms-row">•    Symmetric is less secure than asymmetric
+ Question                                             Answer                                      Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2024 • 0478/13 • Q6(b)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">6   (a) Complete the statements about cookies.<br>         Use only terms from the list.<br>         Not all terms need to be used. Some terms may be used more than once.<br>                                   binary                  close                  denary                   expire<br>                   hexadecimal                          image                malware                     operating system<br>                           permanent                       persistent                   session                    sound<br>                                                       temporary                 web browser<br>         Cookies are small text files that are stored by a ....................................................... .<br>         ....................................................... cookies are ....................................................... text files<br>         that are deleted when the ....................................................... is closed.<br>         ....................................................... cookies are ....................................................... text files<br>         that are stored on a user’s secondary storage device until they are manually deleted or they<br>         ....................................................... .<br>                                                                                                                                                         [7]<br>    (b) Give three examples of the use of cookies.<br>         1 ................................................................................................................................................<br>         2 ................................................................................................................................................<br>         3 ................................................................................................................................................<br>                                                                                                                                                         [3]<br>                                                                     0478/13/O/N/24<br>                                                                                                          11<br>                              ,               ,</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">6(b)       Any three from:                                                                      3
+                For example:</div><div class="clean-ms-row">•    User preferences // by example</div><div class="clean-ms-row">•    Login details</div><div class="clean-ms-row">•    Payment details</div><div class="clean-ms-row">•    User’s personal details e.g. address</div><div class="clean-ms-row">•    Contents of a shopping cart</div><div class="clean-ms-row">•    Targeted advertising
+ Question                                             Answer                                    Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/11 • Q1(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A student has an electronic calculator. The calculator has a screen that displays the result of<br>    calculations.<br>    The calculator has 8-bit registers.<br>    (a) State the highest denary number that could be stored in a single 8-bit register.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)        255                                                                                                                   1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/11 • Q1(b)</span><span class="marks-pill">[10101000]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A student has an electronic calculator. The calculator has a screen that displays the result of<br>    calculations.<br>    The calculator has 8-bit registers.<br>    (b) Denary numbers are typed into the calculator. They are converted to binary numbers and<br>        stored in the 8-bit registers.<br>         The student types in the denary number 23 and the denary number 168.<br>         Give the 8-bit binary numbers that are stored in the registers for these two denary numbers.<br>         23<br>         168<br>                                                                                                                                                         [2]<br>         Working space ..........................................................................................................................</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(b)        00010111                                                                                                              2
+                10101000</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/11 • Q1(c)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A student has an electronic calculator. The calculator has a screen that displays the result of<br>    calculations.<br>    The calculator has 8-bit registers.<br>    (c) The result of a calculation that is stored in a register is the binary number 00001011<br>         Give the denary number that will be displayed on the screen for this binary number.<br>         00001011 ............................................................................................................................ [1]<br>         Working space<br>                                                                  0478/11/O/N/25</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(c)        11                                                                                                                    1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/11 • Q3(d)</span><span class="marks-pill">[3]</span></div>
+<div class="clean-body">
+<div class="clean-question">3<br>                                 ,                 ,<br>                                  (d) Another result of a calculation that is stored in a register is the binary number 01000010<br>                                          Give the denary number that will be displayed on the screen for this binary number.<br>                                          01000010 ............................................................................................................................ [1]<br>                                          Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(d)        •   Authentication                                                                                                        3</div><div class="clean-ms-row">•   Biometric</div><div class="clean-ms-row">•   Input device
+ Question                                                                  Answer                                                    Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/11 • Q2(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   An employee of a company sells houses. He sends images of the houses to his company.<br>    (a) The employee compresses the image files using lossy compression before sending them.<br>        Lossy compression reduces the size of the image files.<br>         Give two other reductions that lossy compression makes to the images.<br>         1 ................................................................................................................................................<br>         2 ................................................................................................................................................<br>                                                                                                                                                       [2]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)        Any two from:                                                                              2</div><div class="clean-ms-row">•    Resolution // number of pixels</div><div class="clean-ms-row">•    Colour depth // bit depth</div><div class="clean-ms-row">•    Quality // detail</div><div class="clean-ms-row">•    Metadata</div><div class="clean-ms-row">2(b)(i)      Router                                                                                     1</div><div class="clean-ms-row">2(b)(ii)     (Packet) header                                                                            1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/11 • Q3(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">3   A student has a portable device. He uses an on-screen keyboard to write messages to his friend.<br>    (a) Explain how the text the student writes is converted to binary to be processed.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">3(a)        Any three from:                                                                                                           3</div><div class="clean-ms-row">•    A character set is used</div><div class="clean-ms-row">•    … such as ASCII/Unicode</div><div class="clean-ms-row">•    Each character has a unique binary value that it is converted to</div><div class="clean-ms-row">3(b)(i)      4096                                                                                                                      1</div><div class="clean-ms-row">3(b)(ii)     0.004 // 0.0039(0625)                                                                                                     1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/12 • Q1(a)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes,<br>    for example A4B.<br>    A computer is used to store a database of the codes. The computer has 12-bit registers.<br>    (a) Give the largest hexadecimal number that can be stored in a 12-bit register.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(a)        FFF                                                                                          1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/12 • Q1(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes,<br>    for example A4B.<br>    A computer is used to store a database of the codes. The computer has 12-bit registers.<br>    (b) Give the largest denary number that can be stored in a 12-bit register.</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(b)        4095                                                                                         1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/12 • Q1(c)</span><span class="marks-pill">[0011]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes,<br>    for example A4B.<br>    A computer is used to store a database of the codes. The computer has 12-bit registers.<br>    (c) Two toys have the hexadecimal codes 429 and 1A3.<br>         Convert the two hexadecimal codes to 12-bit binary numbers.<br>         429 ............................................................................................................................................<br>         1A3 ...........................................................................................................................................<br>                                                                                                                                                    [2]<br>         Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(c)        0100 0010 1001                                                                               2
+                0001 1010 0011</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/12 • Q1(d)</span><span class="marks-pill">[4]</span></div>
+<div class="clean-body">
+<div class="clean-question">1   A toy store gives each of the toys it sells a unique code. The codes are 3-digit hexadecimal codes,<br>    for example A4B.<br>    A computer is used to store a database of the codes. The computer has 12-bit registers.<br>    (d) Two binary numbers that are stored in the registers are 100010100001 and 011100001011.<br>         Convert the two binary numbers to hexadecimal numbers.<br>         100010100001 ..........................................................................................................................<br>         011100001011 ..........................................................................................................................<br>                                                                                                                                            [2]<br>         Working space<br>                                                                  0478/12/O/N/25</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">1(d)        8A1                                                                                          2
+                70B</div><div class="clean-ms-row">1(e)(i)      Microprocessor                                                                               1</div><div class="clean-ms-row">1(e)(ii)     A                                                                                            1</div><div class="clean-ms-row">1(e)(iii)     Light                                                                                        1</div><div class="clean-ms-row">1(e)(iv)      Any four from:                                                                               4</div><div class="clean-ms-row">•     The disk is spun</div><div class="clean-ms-row">•     A laser is shone onto the disk</div><div class="clean-ms-row">•     Pits are burnt into the disk</div><div class="clean-ms-row">•     Pits are in a (spiral) track</div><div class="clean-ms-row">•     Pits and lands represent binary values
+                                                                 PUBLISHED
+ Question                                                              Answer                               Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/12 • Q2(a)</span><span class="marks-pill">[00111001]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   Two binary numbers are stored in a computer.<br>    (a) Add the two binary numbers using binary addition.<br>         Give your answer in binary. Show all of your working.<br>                   11110101<br>         +         00111001<br>                                                                                                                                                         [4]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(a)        One mark for each correct nibble (2)                                                             4</div><div class="clean-ms-row">One mark for a correct method of working for example 4 or 5 correct carries</div><div class="clean-ms-row">One mark for showing an overflow error
+                 (1) 111   1
+                     11110101
+                + 00111001</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/12 • Q2(b)</span><span class="marks-pill">[30]</span></div>
+<div class="clean-body">
+<div class="clean-question">2   Two binary numbers are stored in a computer.<br>    (b) A logic right shift of three places is performed on the binary number 11110101.<br>         Give the denary number for the binary number that would be stored after the logical shift of<br>         three places has occurred. Show all of your working.<br>         Working space ..........................................................................................................................<br>         Denary number .........................................................................................................................<br>                                                                                                                                            [3]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">2(b)        One mark for showing the binary number after the shift                                           3</div><div class="clean-ms-row">One mark for valid method of working to convert to denary</div><div class="clean-ms-row">One mark for correct denary number</div><div class="clean-ms-row">•    00011110</div><div class="clean-ms-row">•    16 + 8 + 4 + 2</div><div class="clean-ms-row">•    30
+ Question                                                              Answer                               Marks</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/13 • Q5(a)</span><span class="marks-pill">[5]</span></div>
+<div class="clean-body">
+<div class="clean-question">5     Text, images and sound are represented as binary to be processed by a computer.<br>      (a) Complete the table by writing the missing terms and descriptions about representing text,<br>          images and sound as binary.<br>                      Term                                                                          Description<br>                character set<br>                                                           This is the number of samples taken each second when recording<br>                                                           sound.<br>                       pixel<br>                   resolution<br> ...................................................       This is the number of bits used to represent a colour in an image.<br>                                                                                                                                                               [5]</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">5(a)        One mark for each correct term or description                                           5
+                            Term                                    Description
+                    character set            This stores all the characters and their unique
+                                             binary values
+                    sample rate              This is the number of samples taken each second
+                                             when recording sound.
+                    pixel                    This is the smallest unit/part of an image
+                    resolution               This is the number of pixels that appear in an
+                                             image/displayed on a screen // The number of
+                                             pixels high by the number of pixels wide // the bit
+                                             rate and sample rate of sound
+                    colour depth // bit      This is the number of bits used to represent a
+                    depth                    colour in an image.</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/13 • Q5(b)</span><span class="marks-pill">[1]</span></div>
+<div class="clean-body">
+<div class="clean-question">5     Text, images and sound are represented as binary to be processed by a computer.<br>      (b) The size of an image file is 1000 bytes.<br>             Give the size of the image file in bits.<br>                                                                         0478/13/O/N/25<br>                                                                                                        11<br>                                  ,              ,</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">5(b)        8000 (bits)                                                                             1</div></div>
+</div></article><article class="clean-card">
+<div class="clean-head"><span>Oct/Nov 2025 • 0478/13 • Q5(c)</span><span class="marks-pill"></span></div>
+<div class="clean-body">
+<div class="clean-question">5     Text, images and sound are represented as binary to be processed by a computer.<br>                                  (c) The size of a sound file is 4096 mebibytes (MiB).<br>                                       Give the size of the file in gibibytes (GiB).<br>                                       Working space</div>
+<textarea class="clean-answer" placeholder="Write your answer here before revealing the marking scheme..."></textarea>
+<button class="clean-btn" onclick="toggleClean(this)">Show marking</button>
+<div class="clean-marking"><div class="clean-label">MARK SCHEME IN OUR FORMAT</div><div class="clean-ms-row">5(c)</div></div>
+</div></article></section>
+</div>
+<footer class="site-footer">
+<div class="site-footer-brand">Excellence By Adeel Kapasi <span>•</span> CS Notes</div>
+<div class="site-footer-label">Google Maps • Our locations</div>
+<div class="site-footer-links">
+<a href="https://share.google/D6klleel4komfGVpH" target="_blank" rel="noopener">View Location 1 on Google Maps ↗</a>
+<a href="https://share.google/fnQfEAAVV0bo7B6q6" target="_blank" rel="noopener">View Location 2 on Google Maps ↗</a>
+</div>
+</footer>
+</main>
+</div>
+
+<script>
+(function(){
+ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+ const sections=$$('.section'), boxes=$$('.donebox'), navBtns=$$('#nav button');
+ navBtns.forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth'})));
+ function progress(){
+   const done=boxes.filter(b=>b.checked).length, pct=Math.round(done/boxes.length*100);
+   $('#progressBar').style.width=pct+'%'; $('#progressText').textContent=pct+'% sections completed';
+   navBtns.forEach(n=>n.classList.toggle('done',!!$('.donebox[data-sec="'+n.dataset.target+'"]')?.checked));
+ }
+ const STORE='excellence-cs-ch1-done';
+ try{const saved=JSON.parse(localStorage.getItem(STORE)||'[]');boxes.forEach(b=>{if(saved.includes(b.dataset.sec))b.checked=true;});}catch(e){}
+ function saveProgress(){localStorage.setItem(STORE,JSON.stringify(boxes.filter(b=>b.checked).map(b=>b.dataset.sec)));}
+ boxes.forEach(b=>b.addEventListener('change',()=>{saveProgress();progress();})); progress();
+ $('#resetProgress').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);localStorage.removeItem(STORE);progress();});
+ $$('.reveal').forEach(b=>b.addEventListener('click',()=>{const a=b.nextElementSibling;a.classList.toggle('show');b.textContent=a.classList.contains('show')?'Hide explanation':'Why this scores';}));
+ let allShown=false;
+ $('#expandAnswers').addEventListener('click',()=>{allShown=!allShown;$$('.answer').forEach(a=>a.classList.toggle('show',allShown));$('#expandAnswers').textContent=allShown?'Hide all model answers':'Show all model answers';});
+ $('#search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();sections.forEach(s=>s.classList.toggle('hidden-by-search',q && !s.textContent.toLowerCase().includes(q)));});
+ $('#convertBtn').addEventListener('click',()=>{let n=Number($('#denaryInput').value);if(!Number.isInteger(n)||n<0||n>65535){$('#convertOut').textContent='Enter a whole number from 0 to 65535.';return;}let bits=n.toString(2), padded=bits.padStart(Math.max(8,Math.ceil(bits.length/4)*4),'0');$('#convertOut').innerHTML='<strong>Binary:</strong> '+padded.replace(/(.{4})(?=.)/g,'$1 ')+' &nbsp; <strong>Hex:</strong> '+n.toString(16).toUpperCase();});
+ let shift=45;
+ function renderShift(){let s=shift.toString(2).padStart(8,'0');$('#shiftBits').innerHTML=[...s].map((x,i)=>'<div class="bit '+(x==='1'?'on':'')+'"><small>'+(128>>i)+'</small>'+x+'</div>').join('');$('#shiftResult').textContent=s+'₂ = '+shift+'₁₀';}
+ $('#leftShift').addEventListener('click',()=>{shift=(shift<<1)&255;renderShift();});$('#rightShift').addEventListener('click',()=>{shift=shift>>1;renderShift();});$('#shiftReset').addEventListener('click',()=>{shift=45;renderShift();});renderShift();
+ $('#imageCalc').addEventListener('click',()=>{const w=Number($('#imgW').value),h=Number($('#imgH').value),d=Number($('#imgD').value);if(![w,h,d].every(x=>Number.isFinite(x)&&x>0)){ $('#imageOut').textContent='Use positive values for width, height and colour depth.';return;}const bits=w*h*d, bytes=bits/8, kib=bytes/1024, mib=kib/1024;$('#imageOut').innerHTML='<strong>'+bits.toLocaleString()+' bits</strong> = '+bytes.toLocaleString(undefined,{maximumFractionDigits:2})+' bytes = '+kib.toLocaleString(undefined,{maximumFractionDigits:2})+' KiB = '+mib.toLocaleString(undefined,{maximumFractionDigits:3})+' MiB';});
+ const qs=[
+  {q:'Why is “the result is too big” an incomplete explanation of overflow?',a:['It does not state that the result exceeds the representable limit / available bits','Overflow only happens with hexadecimal','Overflow means the CPU is too slow'],c:0},
+  {q:'What exactly is sample resolution?',a:['Samples taken per second','Bits used to represent each sample','Length of the sound file'],c:1},
+  {q:'A logical right shift of 3 places has what mathematical effect on a positive integer?',a:['× 3','÷ 6','÷ 8'],c:2},
+  {q:'Which statement best compares Unicode with ASCII?',a:['Unicode supports a greater range of characters but generally needs more bits per character','ASCII supports more languages','Unicode is a compression method'],c:0},
+  {q:'Why can higher image resolution increase file size?',a:['It automatically changes binary to hexadecimal','There are more pixels whose data must be stored','It removes repeated pixels'],c:1},
+  {q:'Which is the strongest scenario answer for choosing lossless for a detailed poster?',a:['Lossless is better','Lossless keeps the file exactly the same size','Lossless avoids permanently removing image data, preserving detail needed for the large print'],c:2}
+ ];
+ let qi=0, score=0, locked=false;
+ function showQ(){locked=false;$('#qNum').textContent=qi+1;$('#qText').textContent=qs[qi].q;$('#quizFeedback').textContent='';$('#nextQ').style.display='none';$('#choices').innerHTML='';qs[qi].a.forEach((x,i)=>{const b=document.createElement('button');b.type='button';b.className='quiz-choice';b.textContent=x;b.addEventListener('click',()=>answer(i,b));$('#choices').appendChild(b);});}
+ function answer(i,b){if(locked)return;locked=true;const q=qs[qi];$$('.quiz-choice',$('#choices')).forEach((x,j)=>{if(j===q.c)x.classList.add('correct');});if(i===q.c){score++;$('#quizFeedback').innerHTML='<span class="ok">Correct — precise and mark-focused.</span>';}else{b.classList.add('wrong');$('#quizFeedback').innerHTML='<span class="no">Not quite. Review the highlighted answer and the related section.</span>';}$('#nextQ').style.display='inline-block';$('#nextQ').textContent=qi===qs.length-1?'See score':'Next question';}
+ $('#nextQ').addEventListener('click',()=>{if(qi<qs.length-1){qi++;showQ();}else{$('#qText').textContent='Score: '+score+' / '+qs.length;$('#choices').innerHTML='';$('#quizFeedback').textContent=score===qs.length?'Excellent. Now practise full written responses and calculations.':'Review the sections linked to any errors, then retry.';$('#nextQ').style.display='none';}});
+ showQ();
+ const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navBtns.forEach(n=>n.classList.toggle('active',n.dataset.target===e.target.id));}})},{rootMargin:'-20% 0px -65% 0px'});
+ sections.forEach(s=>io.observe(s));
+})();
+</script>
+
+</body>
+</html>
