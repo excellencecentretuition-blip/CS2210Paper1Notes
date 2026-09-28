@@ -102,7 +102,10 @@ function setStatus(text) { statusEl.textContent = text; }
 
 function chapterUrl(n) {
   if (navigator.serviceWorker && navigator.serviceWorker.controller) return "c/" + n;
-  return PAPER1_CHAPTERS[n - 1].file;
+  const name = PAPER1_CHAPTERS[n - 1].file.replace(/^\.\.\//, "");
+  const path = location.pathname;
+  if (/\/Paper1\/(?:index\.html)?$/.test(path) || path.endsWith("/Paper1")) return "../" + name;
+  return name;
 }
 
 function openChapter(n, push) {
@@ -158,7 +161,7 @@ async function prepareOffline() {
   try {
     await navigator.serviceWorker.register("sw.js");
     await navigator.serviceWorker.ready;
-    const ready = await caches.open("cs-paper1-v1").then((cache) => cache.match("c/1")).catch(() => null);
+    const ready = await caches.open("cs-paper1-v2").then((cache) => cache.match("c/1")).catch(() => null);
     setStatus(navigator.serviceWorker.controller && ready ? "Available offline" : "Ready. Open a chapter.");
   } catch (e) {
     setStatus("Online only on this browser");
